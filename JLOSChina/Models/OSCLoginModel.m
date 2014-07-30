@@ -65,7 +65,7 @@
     else {
         // 已登录过，不用再次登录
         [OSCGlobalConfig setOAuthAccessToken:self.sinaWeibo.accessToken];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"DID_LOGIN_SUCCESS" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGIN_NOTIFICATION object:nil];
     }
 }
 
@@ -83,7 +83,7 @@
         
         // 登录成功
         [OSCGlobalConfig setOAuthAccessToken:sinaweibo.accessToken];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"DID_LOGIN_SUCCESS" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGIN_NOTIFICATION object:nil];
     }
     else {
         [OSCGlobalConfig HUDShowMessage:@"登录授权失败" addedToView:KEY_WINDOW];

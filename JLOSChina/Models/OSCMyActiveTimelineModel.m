@@ -39,8 +39,8 @@
     NSString* path =
     [OSCAPIClient relativePathForActiveListWithLoginedUserId:[OSCGlobalConfig loginedUserEntity].authorId
                                            activeCatalogType:self.activeCatalogType
-                                                 pageCounter:self.pageCounter
-                                                perpageCount:self.perpageCount];
+                                                 pageIndex:self.pageIndex
+                                                pageSize:self.pageSize];
     return path;
 }
 

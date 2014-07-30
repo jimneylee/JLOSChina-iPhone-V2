@@ -42,22 +42,22 @@
     // 由于接口未统一，不得不怎么做，dirty!
     switch (self.contentType) {
         case OSCContentType_LatestNews:
-            path = [OSCAPIClient relativePathForLatestNewsListWithPageCounter:self.pageCounter
-                                                        perpageCount:self.perpageCount];
+            path = [OSCAPIClient relativePathForLatestNewsListWithPageIndex:self.pageIndex
+                                                                 pageSize:self.pageSize];
             self.listElementName = @"newslist";
             self.itemElementName = @"news";
             break;
         case OSCContentType_LatestBlog:
-            path = [OSCAPIClient relativePathForLatestBlogsListWithPageCounter:self.pageCounter
-                                                             perpageCount:self.perpageCount];
-            self.listElementName = @"blogs";
+            path = [OSCAPIClient relativePathForLatestBlogsListWithPageIndex:self.pageIndex
+                                                                  pageSize:self.pageSize];
+            self.listElementName = @"bloglist";
             self.itemElementName = @"blog";
             break;
             
         case OSCContentType_RecommendBlog:
-            path = [OSCAPIClient relativePathForRecommendBlogsListWithPageCounter:self.pageCounter
-                                                                perpageCount:self.perpageCount];
-            self.listElementName = @"blogs";
+            path = [OSCAPIClient relativePathForRecommendBlogsListWithPageIndex:self.pageIndex
+                                                                     pageSize:self.pageSize];
+            self.listElementName = @"bloglist";
             self.itemElementName = @"blog";
             break;
             
@@ -91,17 +91,6 @@
 - (Class)cellClass
 {
     return [OSCNewsCell class];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSDictionary*)generateParameters
-{
-    if ([OSCGlobalConfig getOAuthAccessToken]) {
-        NSDictionary *parameters = @{@"access_token" : [OSCGlobalConfig getOAuthAccessToken],
-                                     @"dataType"     : @"xml"};
-        return parameters;
-    }
-    return nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

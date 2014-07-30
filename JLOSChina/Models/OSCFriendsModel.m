@@ -19,8 +19,8 @@
 {
 	self = [super initWithDelegate:delegate];
 	if (self) {
-        self.perpageCount = 200;
-        self.hasMoreData = NO;//default just get one page and sort them
+        self.pageSize = 1000;   // default 1000 friend
+        self.hasMoreData = NO;  // default just get one page and sort them
         self.listElementName = @"friends";
         self.itemElementName = @"friend";
 	}
@@ -31,8 +31,8 @@
 - (NSString*)relativePath
 {
     return [OSCAPIClient relativePathForFriendsListWithUserId:[OSCGlobalConfig loginedUserEntity].authorId
-                                                  pageCounter:0//default just get one page and sort them
-                                                 perpageCount:self.perpageCount];
+                                                  pageIndex:self.pageStartIndex//default just get one page and sort them
+                                                 pageSize:self.pageSize];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

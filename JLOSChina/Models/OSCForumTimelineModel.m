@@ -39,8 +39,8 @@
 {
     NSString* path = nil;
     path = [OSCAPIClient relativePathForForumListWithForumType:self.topicType
-                                                   pageCounter:self.pageCounter
-                                                  perpageCount:self.perpageCount];
+                                                   pageIndex:self.pageIndex
+                                                  pageSize:self.pageSize];
     return path;
 
 }
