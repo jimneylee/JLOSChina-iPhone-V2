@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3AAC7EFD-0370-40B2-AFF7-16EE02F52F23</string>
+	<key>IDESourceControlProjectName</key>
+	<string>JLOSChinaV2</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4D60DB83-FC5F-458D-9AC5-B2653B5628F2</key>
+		<string>http://git.oschina.net/jimneylee/JLOSChina-iPhone</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>JLOSChinaV2.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4D60DB83-FC5F-458D-9AC5-B2653B5628F2</key>
+		<string>..</string>
+		<key>A5C2B45C-FF46-4437-8D0E-9348A99C632B</key>
+		<string>../vendor/JLNimbusTimeline</string>
+		<key>CDE07762-B2B0-455C-B689-5F6E660BD09C</key>
+		<string>../vendor/JASidePanels</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://git.oschina.net/jimneylee/JLOSChina-iPhone</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4D60DB83-FC5F-458D-9AC5-B2653B5628F2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CDE07762-B2B0-455C-B689-5F6E660BD09C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JASidePanels</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A5C2B45C-FF46-4437-8D0E-9348A99C632B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JLNimbusTimeline</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4D60DB83-FC5F-458D-9AC5-B2653B5628F2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JLOSChina-iPhone</string>
+		</dict>
+	</array>
+</dict>
+</plist>
