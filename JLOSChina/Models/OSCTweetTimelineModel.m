@@ -37,18 +37,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)relativePath
 {
+    // 用户ID [ 0：最新动弹，-1：热门动弹，其他：我的动弹 ]
+    
     NSString* path = nil;
     switch (self.tweetType) {
         case OSCTweetType_Latest:
             path = [OSCAPIClient relativePathForTweetListWithUserId:@"0"
-                                                        pageCounter:self.pageCounter
-                                                        perpageCount:self.perpageCount];
+                                                        pageIndex:self.pageIndex
+                                                       pageSize:self.pageSize];
             break;
             
         case OSCTweetType_Hot:
             path = [OSCAPIClient relativePathForTweetListWithUserId:@"-1"
-                                                        pageCounter:self.pageCounter
-                                                       perpageCount:self.perpageCount];
+                                                        pageIndex:self.pageIndex
+                                                       pageSize:self.pageSize];
             break;
             
         case OSCTweetType_Mine:
@@ -57,8 +59,8 @@
                 NSString* uid = [NSString stringWithFormat:@"%ld",
                                  [OSCGlobalConfig loginedUserEntity].authorId];
                 path = [OSCAPIClient relativePathForTweetListWithUserId:uid//暂用红薯id=12测试
-                                                            pageCounter:self.pageCounter
-                                                           perpageCount:self.perpageCount];
+                                                            pageIndex:self.pageIndex
+                                                           pageSize:self.pageSize];
             }
 
             break;

@@ -43,8 +43,8 @@
     [OSCAPIClient relativePathForUserActiveListWithUserId:self.userId
                                                orUsername:self.username
                                             loginedUserId:[OSCGlobalConfig loginedUserEntity].authorId
-                                              pageCounter:self.pageCounter
-                                             perpageCount:self.perpageCount];
+                                              pageIndex:self.pageIndex
+                                             pageSize:self.pageSize];
     return path;
 }
 
@@ -100,6 +100,7 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
     // TODO: dirty code: set uid -> authorid, name -> author
+    // http://www.oschina.net/action/openapi/user_information?user=0&friend_name=%E7%BA%A2%E8%96%AF&pageIndex=1&pageSize=20&access_token=f0c2fcec-5fc6-4880-90f4-59b04748d912&dataType=xml
     NSMutableDictionary* dic = self.detailDictionary;
     if (dic[@"uid"]) {
         [dic setObject:dic[@"uid"] forKey:@"authorid"];
