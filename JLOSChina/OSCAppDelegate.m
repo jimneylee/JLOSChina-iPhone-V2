@@ -16,6 +16,7 @@
 
 #import "OSCAccountEntity.h"
 #import "OSCLoginModel.h"
+#import "OSCTabBarC.h"
 #import "OSCHomeC.h"
 #import "OSCTweetC.h"
 #import "OSCLeftMenuC.h"
@@ -116,6 +117,8 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 1
+    
+#if 0
     OSCHomeC *forumTopics = [[OSCHomeC alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:forumTopics];
     nav.navigationBar.translucent = NO;
@@ -124,8 +127,12 @@
     self.sidePanelController.leftGapPercentage = LEFT_GAP_PERCENTAGE;
     self.sidePanelController.centerPanel = nav;
     self.sidePanelController.leftPanel = leftSideC;
-    
     self.window.rootViewController = self.sidePanelController;
+#else
+    self.tabBarC = [[OSCTabBarC alloc] init];
+    self.window.rootViewController = self.tabBarC;
+#endif
+    
     [self.window makeKeyAndVisible];
     
     [self prepareAfterLaunching];
