@@ -22,6 +22,7 @@
 {
 	self = [super initWithDelegate:delegate];
 	if (self) {
+        
         self.superElementName = nil;
         self.itemElementName = nil;
         self.listElementName = nil;
@@ -42,6 +43,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary*)generateParameters
 {
+    if ([OSCGlobalConfig getOAuthAccessToken]) {
+        NSDictionary *parameters = @{@"access_token" : [OSCGlobalConfig getOAuthAccessToken],
+                                     @"dataType"     : @"xml"};
+        return parameters;
+    }
     return nil;
 }
 
@@ -67,10 +73,10 @@
         self.isLoading = YES;
     }
     if (more) {
-        self.pageCounter++;
+        self.pageIndex++;
     }
     else {
-        self.pageCounter = 0;//PAGE_START_INDEX;
+        self.pageIndex = self.pageStartIndex;
     }
     NSString* relativePath = [self relativePath];
     if ([[self apiSharedClient] respondsToSelector:@selector(GET:parameters:refresh:success:failure:)]) {
@@ -147,7 +153,7 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
 {
     if ([elementName isEqualToString:self.listElementName]) {
-        self.listDataArray = [NSMutableArray arrayWithCapacity:self.perpageCount];
+        self.listDataArray = [NSMutableArray arrayWithCapacity:self.pageSize];
     }
     
     // set super element and create dic

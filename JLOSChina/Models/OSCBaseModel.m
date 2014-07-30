@@ -50,6 +50,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSDictionary*)generateParameters
 {
+    if ([OSCGlobalConfig getOAuthAccessToken]) {
+        NSDictionary *parameters = @{@"access_token" : [OSCGlobalConfig getOAuthAccessToken],
+                                     @"dataType"     : @"xml"};
+        return parameters;
+    }
     return nil;
 }
 
