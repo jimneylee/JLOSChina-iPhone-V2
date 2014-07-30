@@ -1,0 +1,102 @@
+PODS:
+  - AFNetworking (2.3.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.3.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.3.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.3.1)
+  - AFNetworking/Security (2.3.1)
+  - AFNetworking/Serialization (2.3.1)
+  - AFNetworking/UIKit (2.3.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - HPGrowingTextView (1.1)
+  - LTUpdate (0.0.2)
+  - MBProgressHUD (0.8)
+  - MTStatusBarOverlay (0.9.1)
+  - Nimbus (1.2.0):
+    - Nimbus/AttributedLabel
+    - Nimbus/Badge
+    - Nimbus/Collections
+    - Nimbus/Collections
+    - Nimbus/Core
+    - Nimbus/CSS
+    - Nimbus/Interapp
+    - Nimbus/Launcher
+    - Nimbus/Models
+    - Nimbus/NetworkControllers
+    - Nimbus/NetworkImage
+    - Nimbus/Overview
+    - Nimbus/PagingScrollView
+    - Nimbus/Photos
+    - Nimbus/Textfield
+    - Nimbus/WebController
+  - Nimbus/AttributedLabel (1.2.0):
+    - Nimbus/Core
+  - Nimbus/Badge (1.2.0):
+    - Nimbus/Core
+  - Nimbus/Collections (1.2.0):
+    - Nimbus/Core
+  - Nimbus/Core (1.2.0)
+  - Nimbus/CSS (1.2.0):
+    - AFNetworking (~> 2.1)
+    - Nimbus/Core
+    - Nimbus/Textfield
+  - Nimbus/Interapp (1.2.0):
+    - Nimbus/Core
+  - Nimbus/Launcher (1.2.0):
+    - Nimbus/Core
+    - Nimbus/PagingScrollView
+  - Nimbus/Models (1.2.0):
+    - Nimbus/Core
+  - Nimbus/NetworkControllers (1.2.0):
+    - Nimbus/Core
+  - Nimbus/NetworkImage (1.2.0):
+    - AFNetworking (~> 2.1)
+    - Nimbus/Core
+  - Nimbus/Overview (1.2.0):
+    - Nimbus/Core
+    - Nimbus/Models
+  - Nimbus/PagingScrollView (1.2.0):
+    - Nimbus/Core
+  - Nimbus/Photos (1.2.0):
+    - Nimbus/Core
+    - Nimbus/PagingScrollView
+  - Nimbus/Textfield (1.2.0):
+    - Nimbus/Core
+  - Nimbus/WebController (1.2.0):
+    - Nimbus/Core
+  - SDSegmentedControl (1.0.2)
+  - SSKeychain (1.2.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.2.3)
+  - HPGrowingTextView (~> 1.1)
+  - LTUpdate (~> 0.0.2)
+  - MBProgressHUD (~> 0.8)
+  - MTStatusBarOverlay (~> 0.9.1)
+  - Nimbus (~> 1.2.0)
+  - SDSegmentedControl (~> 1.0.2)
+  - SSKeychain (~> 1.2.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
+  HPGrowingTextView: 07d5ab1f1e867acfb7a6f498b819948c9e97d07c
+  LTUpdate: 2b565ebcec2be846c89c94072301696dc93b8074
+  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  MTStatusBarOverlay: f1fef7143ed3e9ce3d2c6ee3f297079e5cab905f
+  Nimbus: 14fd6f034c5f53d3dccef6cfd5763959497289a9
+  SDSegmentedControl: 01fda28a7ba24a45915c0a3e69c32691643aa327
+  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
+
+COCOAPODS: 0.32.1
