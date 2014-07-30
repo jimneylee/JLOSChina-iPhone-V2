@@ -68,14 +68,14 @@
 //================================================================================
 
 // 资讯、博客、推荐阅读
-+ (NSString*)relativePathForLatestNewsListWithPageCounter:(unsigned int)pageCounter
-                                   perpageCount:(unsigned int)perpageCount;
++ (NSString*)relativePathForLatestNewsListWithPageIndex:(unsigned int)pageIndex
+                                   pageSize:(unsigned int)pageSize;
 
-+ (NSString*)relativePathForLatestBlogsListWithPageCounter:(unsigned int)pageCounter
-                                          perpageCount:(unsigned int)perpageCount;
++ (NSString*)relativePathForLatestBlogsListWithPageIndex:(unsigned int)pageIndex
+                                          pageSize:(unsigned int)pageSize;
 
-+ (NSString*)relativePathForRecommendBlogsListWithPageCounter:(unsigned int)pageCounter
-                                             perpageCount:(unsigned int)perpageCount;
++ (NSString*)relativePathForRecommendBlogsListWithPageIndex:(unsigned int)pageIndex
+                                             pageSize:(unsigned int)pageSize;
 
 // 内容详细接口
 + (NSString*)relativePathForNewsDetailWithId:(unsigned long)newsId;
@@ -87,36 +87,36 @@
 // 回复列表接口
 + (NSString*)relativePathForRepliesListWithCatalogType:(unsigned int)catalogType
                                            contentId:(unsigned long)contentId
-                                         pageCounter:(unsigned int)pageCounter
-                                        perpageCount:(unsigned int)perpageCount;
+                                         pageIndex:(unsigned int)pageIndex
+                                        pageSize:(unsigned int)pageSize;
 
 + (NSString*)relativePathForRepliesListWithBlogId:(unsigned long)blogId
-                                      pageCounter:(unsigned int)pageCounter
-                                     perpageCount:(unsigned int)perpageCount;
+                                      pageIndex:(unsigned int)pageIndex
+                                     pageSize:(unsigned int)pageSize;
 
 // 社区分类列表
 + (NSString*)relativePathForForumListWithForumType:(OSCForumTopicType)type
-                                     pageCounter:(unsigned int)pageCounter
-                                    perpageCount:(unsigned int)perpageCount;
+                                     pageIndex:(unsigned int)pageIndex
+                                    pageSize:(unsigned int)pageSize;
 
 // 最新动弹
 + (NSString*)relativePathForTweetListWithUserId:(NSString*)uid
-                                    pageCounter:(unsigned int)pageCounter
-                                   perpageCount:(unsigned int)perpageCount;
+                                    pageIndex:(unsigned int)pageIndex
+                                   pageSize:(unsigned int)pageSize;
 
 // 活动状态：所有、@我、评论、我的
 + (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)uid
                                       activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
-                                            pageCounter:(unsigned int)pageCounter
-                                           perpageCount:(unsigned int)perpageCount;
+                                            pageIndex:(unsigned int)pageIndex
+                                           pageSize:(unsigned int)pageSize;
 
 + (NSString*)relativePathForMyInfoWithLoginedUserId:(unsigned long)uid;
 
 + (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
                                           orUsername:(NSString*)username
                                        loginedUserId:(unsigned long)loginUserId
-                                         pageCounter:(unsigned int)pageCounter
-                                        perpageCount:(unsigned int)perpageCount;
+                                         pageIndex:(unsigned int)pageIndex
+                                        pageSize:(unsigned int)pageSize;
 
 //================================================================================
 // topic write
@@ -131,8 +131,8 @@
 //================================================================================
 
 + (NSString*)relativePathForFriendsListWithUserId:(unsigned long)uid
-                                      pageCounter:(unsigned int)pageCounter
-                                     perpageCount:(unsigned int)perpageCount;
+                                      pageIndex:(unsigned int)pageIndex
+                                     pageSize:(unsigned int)pageSize;
 
 @end
 

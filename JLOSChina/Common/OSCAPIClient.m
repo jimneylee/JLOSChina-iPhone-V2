@@ -8,7 +8,7 @@
 
 #import "OSCAPIClient.h"
 
-NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
+NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,28 +49,25 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 // 活跃帖子、优质帖子、无人问津、最近创建
 // TODO: add topic type:
 // http://www.oschina.net/openapi/docs/news_list
-+ (NSString*)relativePathForLatestNewsListWithPageCounter:(unsigned int)pageCounter
-                                             perpageCount:(unsigned int)perpageCount
++ (NSString*)relativePathForLatestNewsListWithPageIndex:(unsigned int)pageIndex
+                                             pageSize:(unsigned int)pageSize
 {
-
-    return [NSString stringWithFormat:@"/action/openapi/news_list?catalog=1&pageIndex=%u&pageSize=%u",
-                                        pageCounter, perpageCount];
+    return [NSString stringWithFormat:@"news_list?catalog=1&pageIndex=%u&pageSize=%u",
+                                        pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForLatestBlogsListWithPageCounter:(unsigned int)pageCounter
-                                              perpageCount:(unsigned int)perpageCount
++ (NSString*)relativePathForLatestBlogsListWithPageIndex:(unsigned int)pageIndex
+                                              pageSize:(unsigned int)pageSize
 {
-    
-    return [NSString stringWithFormat:@"blog_list?type=latest&pageIndex=%u&pageSize=%u",
-                                        pageCounter, perpageCount];
+    return [NSString stringWithFormat:@"blog_list?&pageIndex=%u&pageSize=%u",
+                                        pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForRecommendBlogsListWithPageCounter:(unsigned int)pageCounter
-                                                 perpageCount:(unsigned int)perpageCount
++ (NSString*)relativePathForRecommendBlogsListWithPageIndex:(unsigned int)pageIndex
+                                                 pageSize:(unsigned int)pageSize
 {
-    
-    return [NSString stringWithFormat:@"blog_list?type=recommend&pageIndex=%u&pageSize=%u",
-            pageCounter, perpageCount];
+    return [NSString stringWithFormat:@"blog_recommend_list?pageIndex=%u&pageSize=%u",
+            pageIndex, pageSize];
 }
 
 + (NSString*)relativePathForNewsDetailWithId:(unsigned long)newsId
@@ -90,45 +87,47 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 
 + (NSString*)relativePathForRepliesListWithCatalogType:(unsigned int)catalogType
                                            contentId:(unsigned long)contentId
-                                         pageCounter:(unsigned int)pageCounter
-                                        perpageCount:(unsigned int)perpageCount
+                                         pageIndex:(unsigned int)pageIndex
+                                        pageSize:(unsigned int)pageSize
 {
     return [NSString stringWithFormat:@"comment_list?catalog=%u&id=%ld&pageIndex=%u&pageSize=%u",
-                                        catalogType, contentId, pageCounter, perpageCount];
+                                        catalogType, contentId, pageIndex, pageSize];
 }
 
 + (NSString*)relativePathForRepliesListWithBlogId:(unsigned long)blogId
-                                      pageCounter:(unsigned int)pageCounter
-                                     perpageCount:(unsigned int)perpageCount
+                                      pageIndex:(unsigned int)pageIndex
+                                     pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"blogcomment_list?id=%ld&pageIndex=%u&pageSize=%u",
-                                        blogId, pageCounter, perpageCount];
+    return [NSString stringWithFormat:@"blog_comment_list?id=%ld&pageIndex=%u&pageSize=%u",
+                                        blogId, pageIndex, pageSize];
 }
 
 + (NSString*)relativePathForForumListWithForumType:(OSCForumTopicType)type
-                                       pageCounter:(unsigned int)pageCounter
-                                      perpageCount:(unsigned int)perpageCount
+                                       pageIndex:(unsigned int)pageIndex
+                                      pageSize:(unsigned int)pageSize
 {
     return [NSString stringWithFormat:@"post_list?catalog=%u&pageIndex=%u&pageSize=%u",
-                                        type+1, pageCounter, perpageCount];
+                                        type+1, pageIndex, pageSize];
 }
 
+//用户ID [ 0：最新动弹，-1：热门动弹，其他：我的动弹 ]
 + (NSString*)relativePathForTweetListWithUserId:(NSString*)uid
-                                    pageCounter:(unsigned int)pageCounter
-                                   perpageCount:(unsigned int)perpageCount
+                                    pageIndex:(unsigned int)pageIndex
+                                   pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"tweet_list?uid=%@&pageIndex=%u&pageSize=%u",
-                                        uid, pageCounter, perpageCount];
+    return [NSString stringWithFormat:@"tweet_list?user=%@&pageIndex=%u&pageSize=%u",
+                                        uid, pageIndex, pageSize];
 }
 
 // 活动状态：所有、@我、评论、我的
+// catalog : 类别ID [ 0、1所有动态,2提到我的,3评论,4我自己 ]
 + (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)loginUserId
                                       activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
-                                            pageCounter:(unsigned int)pageCounter
-                                           perpageCount:(unsigned int)perpageCount
+                                            pageIndex:(unsigned int)pageIndex
+                                           pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"active_list?uid=%ld&catalog=%u&pageIndex=%u&pageSize=%u",
-            loginUserId, activeCatalogType, pageCounter, perpageCount];
+    return [NSString stringWithFormat:@"active_list?user=%ld&catalog=%u&pageIndex=%u&pageSize=%u",
+            loginUserId, activeCatalogType, pageIndex, pageSize];
 }
 
 + (NSString*)relativePathForMyInfoWithLoginedUserId:(unsigned long)loginUserId
@@ -139,17 +138,16 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 + (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
                                           orUsername:(NSString*)username
                                        loginedUserId:(unsigned long)loginUserId
-                                         pageCounter:(unsigned int)pageCounter
-                                        perpageCount:(unsigned int)perpageCount
+                                         pageIndex:(unsigned int)pageIndex
+                                        pageSize:(unsigned int)pageSize
 {
     if (username.length) {
-        // 这个借口貌似无用
-        return [NSString stringWithFormat:@"user_information?uid=%ld&hisname=%@&pageIndex=%u&pageSize=%u",
-                loginUserId, [username urlEncoded], pageCounter, perpageCount];
+        return [NSString stringWithFormat:@"user_information?user=%ld&friend_name=%@&pageIndex=%u&pageSize=%u",
+                loginUserId, [username urlEncoded], pageIndex, pageSize];
     }
     else {
-        return [NSString stringWithFormat:@"user_information?uid=%ld&hisuid=%ld&pageIndex=%u&pageSize=%u",
-                loginUserId, uid, pageCounter, perpageCount];
+        return [NSString stringWithFormat:@"user_information?user=%ld&friend=%ld&pageIndex=%u&pageSize=%u",
+                loginUserId, uid, pageIndex, pageSize];
     }
 }
 
@@ -188,11 +186,11 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/api/";
 }
 
 + (NSString*)relativePathForFriendsListWithUserId:(unsigned long)uid
-                                      pageCounter:(unsigned int)pageCounter
-                                     perpageCount:(unsigned int)perpageCount
+                                      pageIndex:(unsigned int)pageIndex
+                                     pageSize:(unsigned int)pageSize
 {
     return [NSString stringWithFormat:@"friends_list?uid=%ld&pageIndex=%u&pageSize=%u",
-            uid, pageCounter, perpageCount];
+            uid, pageIndex, pageSize];
 }
 
 @end
