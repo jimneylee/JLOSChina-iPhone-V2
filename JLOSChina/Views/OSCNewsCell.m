@@ -231,12 +231,11 @@ didSelectTextCheckingResult:(NSTextCheckingResult *)result
         if ([url.absoluteString hasPrefix:PROTOCOL_AT_SOMEONE]) {
             NSString* someone = [url.absoluteString substringFromIndex:PROTOCOL_AT_SOMEONE.length];
             someone = [someone stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [OSCGlobalConfig HUDShowMessage:[NSString stringWithFormat:@"%@，暂时接口不支持", someone]
+            [OSCGlobalConfig HUDShowMessage:someone
                                addedToView:[UIApplication sharedApplication].keyWindow];
             if (superviewC) {
-                //TODO:
-                //OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUsername:someone];
-                //[superviewC.navigationController pushViewController:c animated:YES];
+                OSCUserHomeC* c = [[OSCUserHomeC alloc] initWithUsername:someone];
+                [superviewC.navigationController pushViewController:c animated:YES];
             }
         }
         else if ([url.absoluteString hasPrefix:PROTOCOL_NODE]) {
