@@ -40,7 +40,7 @@
 - (void)replyContentId:(unsigned long)topicId
          catalogType:(OSCCatalogType)catalogType
                 body:(NSString*)body
-             success:(void(^)(OSCReplyEntity* replyEntity))success
+             success:(void(^)(OSCCommentEntity* replyEntity))success
              failure:(void(^)(OSCErrorEntity* errorEntity))failure
 {
     self.successBlock = success;
@@ -84,7 +84,7 @@
              contentId:(unsigned long)topicId
            catalogType:(OSCCatalogType)catalogType
                   body:(NSString*)body
-               success:(void(^)(OSCReplyEntity* replyEntity))success
+               success:(void(^)(OSCCommentEntity* replyEntity))success
                failure:(void(^)(OSCErrorEntity* error))failure;
 {
     self.successBlock = success;
@@ -139,7 +139,7 @@
 - (void)parseDataDictionary
 {
     NSMutableDictionary* dic = self.dataDictionary[XML_COMMENT];
-    self.replyEntity = [OSCReplyEntity entityWithDictionary:dic];
+    self.replyEntity = [OSCCommentEntity entityWithDictionary:dic];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

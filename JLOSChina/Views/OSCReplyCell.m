@@ -15,7 +15,7 @@
 #import "OSCUserHomeC.h"
 //#import "RCContentPhotoBrowerC.h"
 #import "OSCCommonRepliesListC.h"
-#import "OSCReplyEntity.h"
+#import "OSCCommentEntity.h"
 #import "RCKeywordEntity.h"
 
 #define NAME_FONT_SIZE [UIFont systemFontOfSize:15.f]
@@ -34,7 +34,7 @@
 @property (nonatomic, strong) NINetworkImageView* headView;
 @property (nonatomic, strong) UIButton* replyBtn;
 @property (nonatomic, strong) UIImageView* moreImageView;
-@property (nonatomic, strong) OSCReplyEntity* replyEntity;
+@property (nonatomic, strong) OSCCommentEntity* replyEntity;
 @end
 @implementation OSCReplyCell
 
@@ -44,7 +44,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)addAllLinksForAtSomeoneInContentLabel:(NIAttributedLabel*)contentLabel
-                       withStatus:(OSCReplyEntity*)o
+                       withStatus:(OSCCommentEntity*)o
                      fromLocation:(NSInteger)location
 {
     RCKeywordEntity* keyworkEntity = nil;
@@ -61,7 +61,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)addAllLinksForSharpSoftwareInContentLabel:(NIAttributedLabel*)contentLabel
-                                       withStatus:(OSCReplyEntity*)o
+                                       withStatus:(OSCCommentEntity*)o
                                      fromLocation:(NSInteger)location
 {
     RCKeywordEntity* keyworkEntity = nil;
@@ -78,7 +78,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (void)insertAllEmotionsInContentLabel:(NIAttributedLabel*)contentLabel
-                             withStatus:(OSCReplyEntity*)o
+                             withStatus:(OSCCommentEntity*)o
 {
     RCKeywordEntity* keyworkEntity = nil;
     if (o.emotionRanges.count) {
@@ -98,7 +98,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (CGFloat)attributeHeightForEntity:(OSCReplyEntity*)o withWidth:(CGFloat)width
++ (CGFloat)attributeHeightForEntity:(OSCCommentEntity*)o withWidth:(CGFloat)width
 {
     // only alloc one time,reuse it, optimize best
     static NIAttributedLabel* contentLabel = nil;
@@ -130,7 +130,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView
 {
-    if ([object isKindOfClass:[OSCReplyEntity class]]) {
+    if ([object isKindOfClass:[OSCCommentEntity class]]) {
         CGFloat cellMargin = CELL_PADDING_4;
         CGFloat contentViewMarin = CELL_PADDING_6;
         CGFloat sideMargin = cellMargin + contentViewMarin;
@@ -142,7 +142,7 @@
         height = height + CELL_PADDING_4;
         
         // body
-        OSCReplyEntity* o = (OSCReplyEntity*)object;
+        OSCCommentEntity* o = (OSCCommentEntity*)object;
         CGFloat kContentLength = tableView.width - sideMargin * 2;
         
 #if 0// sizeWithFont
@@ -299,8 +299,8 @@
 - (BOOL)shouldUpdateCellWithObject:(id)object
 {
     [super shouldUpdateCellWithObject:object];
-    if ([object isKindOfClass:[OSCReplyEntity class]]) {
-        OSCReplyEntity* o = (OSCReplyEntity*)object;
+    if ([object isKindOfClass:[OSCCommentEntity class]]) {
+        OSCCommentEntity* o = (OSCCommentEntity*)object;
         self.replyEntity = o;
         if (o.user.avatarUrl.length) {
             [self.headView setPathToNetworkImage:o.user.avatarUrl];

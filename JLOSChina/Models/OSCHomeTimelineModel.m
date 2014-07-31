@@ -8,9 +8,8 @@
 
 #import "OSCHomeTimelineModel.h"
 #import "OSCAPIClient.h"
-#import "OSCNewsCell.h"
+#import "OSCCommonCell.h"
 #import "OSCCommonEntity.h"
-#import "OSCBlogEntity.h"
 
 #define XML_NOTICE @"notice"
 
@@ -70,27 +69,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)objectClass
 {
-    // 由于接口未统一，不得不怎么做，dirty!
-    switch (self.contentType) {
-        case OSCContentType_LatestNews:
-            return [OSCCommonEntity class];
-            break;
-            
-        case OSCContentType_LatestBlog:
-        case OSCContentType_RecommendBlog:
-            return [OSCBlogEntity class];
-            break;
-            
-        default:
-            return [OSCBlogEntity class];
-            break;
-    }
+    return [OSCCommonEntity class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClass
 {
-    return [OSCNewsCell class];
+    return [OSCCommonCell class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,9 +88,9 @@
     if ([elementName isEqualToString:@"catalog"]) {
         self.catalogType = [self.tmpInnerElementText integerValue];
     }
+    
     // super will set nil to self.tmpInnerElementText
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
-    
 }
 
 @end

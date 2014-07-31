@@ -8,29 +8,29 @@
 
 #import <Foundation/Foundation.h>
 #import "OSCBaseModel.h"
-#import "OSCReplyEntity.h"
+#import "OSCCommentEntity.h"
 
-typedef void (^SuccessBlock)(OSCReplyEntity* entity);
+typedef void (^SuccessBlock)(OSCCommentEntity* entity);
 typedef void (^FailureBlock)(OSCErrorEntity* errorEntity);
 
 @interface OSCReplyModel : OSCBaseModel
 
 @property (nonatomic, strong) SuccessBlock successBlock;
 @property (nonatomic, strong) FailureBlock failureBlock;
-@property (nonatomic, strong) OSCReplyEntity* replyEntity;
+@property (nonatomic, strong) OSCCommentEntity* replyEntity;
 @property (nonatomic, assign) BOOL isReplyComment;
 
 // reply alse for other's comment, just add @someone
 - (void)replyContentId:(unsigned long)topicId
          catalogType:(OSCCatalogType)catalogType
                 body:(NSString*)body
-             success:(void(^)(OSCReplyEntity* replyEntity))success
+             success:(void(^)(OSCCommentEntity* replyEntity))success
              failure:(void(^)(OSCErrorEntity* error))failure;
 // this is useless
 - (void)replyCommentId:(unsigned long)commentId
              contentId:(unsigned long)topicId
            catalogType:(OSCCatalogType)catalogType
                   body:(NSString*)body
-               success:(void(^)(OSCReplyEntity* replyEntity))success
+               success:(void(^)(OSCCommentEntity* replyEntity))success
                failure:(void(^)(OSCErrorEntity* error))failure;
 @end
