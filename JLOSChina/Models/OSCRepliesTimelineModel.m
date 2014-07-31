@@ -43,29 +43,29 @@
         case OSCContentType_LatestNews:
             path = [OSCAPIClient relativePathForRepliesListWithCatalogType:catalogType
                                                                  contentId:self.topicId
-                                                               pageCounter:self.pageCounter
-                                                              perpageCount:self.perpageCount];
+                                                               pageIndex:self.pageIndex
+                                                              pageSize:self.pageSize];
             break;
             
         case OSCContentType_LatestBlog:
         case OSCContentType_RecommendBlog:
             path = [OSCAPIClient relativePathForRepliesListWithBlogId:self.topicId
-                                                          pageCounter:self.pageCounter
-                                                         perpageCount:self.perpageCount];
+                                                          pageIndex:self.pageIndex
+                                                         pageSize:self.pageSize];
             break;
             
         case OSCContentType_Forum:
             path = [OSCAPIClient relativePathForRepliesListWithCatalogType:catalogType
                                                                  contentId:self.topicId
-                                                               pageCounter:self.pageCounter
-                                                              perpageCount:self.perpageCount];
+                                                               pageIndex:self.pageIndex
+                                                              pageSize:self.pageSize];
             break;
             
         case OSCContentType_Tweet:
             path = [OSCAPIClient relativePathForRepliesListWithCatalogType:catalogType
                                                                  contentId:self.topicId
-                                                               pageCounter:self.pageCounter
-                                                              perpageCount:self.perpageCount];
+                                                               pageIndex:self.pageIndex
+                                                              pageSize:self.pageSize];
             break;
             
         default:
