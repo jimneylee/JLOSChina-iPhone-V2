@@ -77,6 +77,8 @@
 		2832C24E1883C019003E96F3 /* OSCAboutAppC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2832C2481883C019003E96F3 /* OSCAboutAppC.xib */; };
 		2832C24F1883C019003E96F3 /* OSCMoreC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C24A1883C019003E96F3 /* OSCMoreC.m */; };
 		2832C2501883C019003E96F3 /* OSCMoreC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C24A1883C019003E96F3 /* OSCMoreC.m */; };
+		28443D5E1988C44F00029E3B /* OSCTabBarC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28443D5D1988C44F00029E3B /* OSCTabBarC.m */; };
+		28443D5F1988C44F00029E3B /* OSCTabBarC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28443D5D1988C44F00029E3B /* OSCTabBarC.m */; };
 		287CBBF8188783340002F534 /* 001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 287CBB91188783340002F534 /* 001@2x.png */; };
 		287CBBF9188783340002F534 /* 001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 287CBB91188783340002F534 /* 001@2x.png */; };
 		287CBBFA188783340002F534 /* 002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 287CBB92188783340002F534 /* 002@2x.png */; };
@@ -628,6 +630,9 @@
 		2832C2491883C019003E96F3 /* OSCMoreC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMoreC.h; sourceTree = "<group>"; };
 		2832C24A1883C019003E96F3 /* OSCMoreC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMoreC.m; sourceTree = "<group>"; };
 		283F5D0D187FA319008ECE0E /* JLV2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JLV2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28443D5C1988C44F00029E3B /* OSCTabBarC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTabBarC.h; sourceTree = "<group>"; };
+		28443D5D1988C44F00029E3B /* OSCTabBarC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTabBarC.m; sourceTree = "<group>"; };
+		28443D601988DCC300029E3B /* TTCategoryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTCategoryHeader.h; sourceTree = "<group>"; };
 		2847BE181867D86500D9CEF0 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		2847BE1A1867D91D00D9CEF0 /* NIAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIAttributedLabel.h; sourceTree = "<group>"; };
 		2847BE1B1867D91D00D9CEF0 /* NIAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIAttributedLabel.m; sourceTree = "<group>"; };
@@ -1334,6 +1339,7 @@
 				2897EF2F1856C422000BB6B9 /* NSDateAdditions.m */,
 				2897EF301856C422000BB6B9 /* NSStringAdditions.h */,
 				2897EF311856C422000BB6B9 /* NSStringAdditions.m */,
+				28443D601988DCC300029E3B /* TTCategoryHeader.h */,
 				2897EF321856C422000BB6B9 /* Three20.bundle */,
 				2897EF331856C422000BB6B9 /* TTCorePreprocessorMacros.h */,
 				2897EF341856C422000BB6B9 /* TTGlobalCoreLocale.h */,
@@ -1418,14 +1424,16 @@
 		2897EF6E1856C54B000BB6B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				28443D5C1988C44F00029E3B /* OSCTabBarC.h */,
+				28443D5D1988C44F00029E3B /* OSCTabBarC.m */,
 				2897EF7A1856E11A000BB6B9 /* OSCLeftMenuC.h */,
 				2897EF7B1856E11A000BB6B9 /* OSCLeftMenuC.m */,
 				2897EF801856E2BE000BB6B9 /* OSCHomeC.h */,
 				2897EF811856E2BE000BB6B9 /* OSCHomeC.m */,
-				CE543D721882A5D000D18D77 /* OSCForumC.h */,
-				CE543D731882A5D000D18D77 /* OSCForumC.m */,
 				2832C2261883A9E5003E96F3 /* OSCTweetC.h */,
 				2832C2271883A9E5003E96F3 /* OSCTweetC.m */,
+				CE543D721882A5D000D18D77 /* OSCForumC.h */,
+				CE543D731882A5D000D18D77 /* OSCForumC.m */,
 				CE9CA9C4188D63A500C9177C /* OSCMineC.h */,
 				CE9CA9C5188D63A500C9177C /* OSCMineC.m */,
 				28B3367D188E1CC800179302 /* OSCUserHomeC.h */,
@@ -2292,6 +2300,7 @@
 			files = (
 				2897EF591856C422000BB6B9 /* UIFontAdditions.m in Sources */,
 				28B3367F188E1CC800179302 /* OSCUserHomeC.m in Sources */,
+				28443D5E1988C44F00029E3B /* OSCTabBarC.m in Sources */,
 				2832C24B1883C019003E96F3 /* OSCAboutAppC.m in Sources */,
 				CE543D741882A5D000D18D77 /* OSCForumC.m in Sources */,
 				28CABA691886791700BFA036 /* OSCFriendsC.m in Sources */,
@@ -2416,6 +2425,7 @@
 			files = (
 				CE90A04E1872E6910030DB1E /* UIFontAdditions.m in Sources */,
 				28B33680188E1CC800179302 /* OSCUserHomeC.m in Sources */,
+				28443D5F1988C44F00029E3B /* OSCTabBarC.m in Sources */,
 				2832C24C1883C019003E96F3 /* OSCAboutAppC.m in Sources */,
 				CE543D751882A5D000D18D77 /* OSCForumC.m in Sources */,
 				28CABA6A1886791700BFA036 /* OSCFriendsC.m in Sources */,
