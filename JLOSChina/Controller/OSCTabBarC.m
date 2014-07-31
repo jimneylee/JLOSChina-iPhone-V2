@@ -44,7 +44,7 @@
                 
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self setTitleColor:RGBCOLOR(210, 210, 210) forState:UIControlStateNormal];
         
 #if 0
         self.badgeView = [[NIBadgeView alloc] initWithFrame:CGRectZero];
@@ -55,7 +55,7 @@
         
         self.badgeView.text = @"2";
 #else
-        self.badgeView = [JSCustomBadge customBadgeWithString:@"2"
+        self.badgeView = [JSCustomBadge customBadgeWithString:@""
                                                  withStringColor:[UIColor whiteColor]
                                                   withInsetColor:[UIColor redColor]
                                                   withBadgeFrame:YES

@@ -37,7 +37,7 @@
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
                                                        action:@selector(autoPullDownRefreshActionAnimation)],
          nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginToFetchData)
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
                                                      name:DID_LOGIN_NOTIFICATION object:nil];
     }
     return self;
@@ -191,7 +191,7 @@
 
 #pragma mark - DID_LOGIN_NOTIFICATION
 
-- (void)didLoginToFetchData
+- (void)didLoginNotification
 {
     [self autoPullDownRefreshActionAnimation];
 }
