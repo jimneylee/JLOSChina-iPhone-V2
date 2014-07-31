@@ -11,14 +11,12 @@
 #import "OSCAccountEntity.h"
 #import "OSCUserFullEntity.h"
 
-typedef void (^LoginBlock)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity);
-
-@interface OSCLoginModel : NSObject
+@interface OSCAuthModel : NSObject
 
 @property (nonatomic, strong) OSCAccountEntity* accountEntity;
 @property (nonatomic, strong) OSCUserFullEntity* userEntity;
-@property (nonatomic, strong) LoginBlock loginBlock;
 
-- (void)loginWithBlock:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block;
++ (OSCAuthModel*)sharedAuthModel;
+- (BOOL)checkAuthValid;
 
 @end

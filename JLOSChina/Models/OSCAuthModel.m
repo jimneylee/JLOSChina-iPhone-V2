@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "OSCLoginModel.h"
+#import "OSCAuthModel.h"
 #import "OSCAPIClient.h"
 #import "NSDataAdditions.h"
 #import "SinaWeibo.h"
@@ -15,14 +15,26 @@
 #define kAppSecret          @"qYlSXyRf0DjY3uLyQ5Fd4m3QBOUjbGVy"
 #define kAppRedirectURL     @"http://www.oschina.net/default.html"
 
-@interface OSCLoginModel()<SinaWeiboDelegate>
+@interface OSCAuthModel()<SinaWeiboDelegate>
 
 @property (nonatomic, strong) SinaWeibo *sinaWeibo;
 @end
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@implementation OSCLoginModel
+@implementation OSCAuthModel
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (OSCAuthModel*)sharedAuthModel
+{
+    static OSCAuthModel* _sharedAuthModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedAuthModel = [[OSCAuthModel alloc] init];
+    });
+    
+    return _sharedAuthModel;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,9 +66,8 @@
 #pragma mark - Public
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loginWithBlock:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block
+- (BOOL)checkAuthValid
 {
-
     BOOL authValid = self.sinaWeibo.isAuthValid;
     
     if (!authValid) {
@@ -65,8 +76,9 @@
     else {
         // 已登录过，不用再次登录
         [OSCGlobalConfig setOAuthAccessToken:self.sinaWeibo.accessToken];
-        [[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGIN_NOTIFICATION object:nil];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGIN_NOTIFICATION object:nil];
     }
+    return authValid;
 }
 
 #pragma mark - SinaWeiboDelegate

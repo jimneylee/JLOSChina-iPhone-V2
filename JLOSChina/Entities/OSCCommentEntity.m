@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 jimneylee. All rights reserved.
 //
 
-#import "OSCReplyEntity.h"
+#import "OSCCommentEntity.h"
 #import "NSDate+OSChina.h"
 #import "RCRegularParser.h"
 #import "NSString+stringFromValue.h"
 #import "RCKeywordEntity.h"
 #import "OSCEmotionEntity.h"
 
-@implementation OSCReplyEntity
+@implementation OSCCommentEntity
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithDictionary:(NSDictionary*)dic
@@ -26,9 +26,11 @@
     if (self) {
         self.body = dic[XML_CONTENT];
         self.createdAtDate = [NSDate normalFormatDateFromString:dic[@"pubDate"]];
-        self.user = [OSCUserEntity entityWithDictionary:@{@"author" : [NSString stringFromValue:dic[@"author"]],
-                                                         @"authorid" : [NSString stringFromValue:dic[@"authorid"]],
-                                                         @"portrait" : [NSString stringFromValue:dic[@"portrait"]]}];
+        self.user = [OSCUserEntity entityWithDictionary:
+                      @{@"author"   : [NSString stringFromValue:dic[@"commentAuthor"]],
+                        @"authorid" : [NSString stringFromValue:dic[@"commentAuthorId"]],
+                        @"portrait" : [NSString stringFromValue:dic[@"commentPortrait"]]
+                        }];
         
         [self parseAllKeywords];
     }
@@ -42,7 +44,7 @@
         return nil;
     }
     
-    OSCReplyEntity* entity = [[OSCReplyEntity alloc] initWithDictionary:dic];
+    OSCCommentEntity* entity = [[OSCCommentEntity alloc] initWithDictionary:dic];
     return entity;
 }
 
@@ -110,7 +112,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // inline sort by reply id, remove it when api return sorted array
-- (NSComparisonResult)compare:(OSCReplyEntity*)other
+- (NSComparisonResult)compare:(OSCCommentEntity*)other
 {
     return [self.replyId compare:other.replyId];
 }

@@ -8,6 +8,6 @@
 
 #import "NICellCatalog.h"
 
-@interface OSCNewsCell : NITextCell
+@interface OSCCommonCell : NITextCell
 
 @end

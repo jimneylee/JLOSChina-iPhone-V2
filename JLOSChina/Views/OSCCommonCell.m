@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 jimneylee. All rights reserved.
 //
 
-#import "OSCNewsCell.h"
+#import "OSCCommonCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "NimbusNetworkImage.h"
 #import "NIAttributedLabel.h"
@@ -17,27 +17,28 @@
 //#import "RCForumTopicsC.h"
 #import "OSCUserHomeC.h"
 
-#define TITLE_FONT_SIZE [UIFont systemFontOfSize:18.f]
-#define CREATED_FONT_SIZE [UIFont systemFontOfSize:15.f]
-#define REPLIES_COUNT_FONT_SIZE [UIFont boldSystemFontOfSize:18.f]
+#define TITLE_FONT_SIZE [UIFont systemFontOfSize:16.f]
+#define CREATED_FONT_SIZE [UIFont systemFontOfSize:13.f]
+#define REPLIES_COUNT_FONT_SIZE [UIFont boldSystemFontOfSize:16.f]
+
+#define CELL_MARGIN 4
+#define CONTENT_MARGIN 6
 #define HEAD_IAMGE_HEIGHT 34
 
-@interface OSCNewsCell()<NIAttributedLabelDelegate>
+@interface OSCCommonCell()<NIAttributedLabelDelegate>
 @property (nonatomic, strong) OSCCommonEntity* topicEntity;
 @property (nonatomic, strong) UILabel* repliesCountLabel;
 @property (nonatomic, strong) NIAttributedLabel* createdLabel;
 @end
 
-@implementation OSCNewsCell
+@implementation OSCCommonCell
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (CGFloat)heightForObject:(id)object atIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView
 {
     if ([object isKindOfClass:[OSCCommonEntity class]]) {
-        CGFloat cellMargin = CELL_PADDING_4;
-        CGFloat contentViewMarin = CELL_PADDING_6;
-        CGFloat sideMargin = cellMargin + contentViewMarin;
 
+        CGFloat sideMargin = CELL_MARGIN + CONTENT_MARGIN;
         CGFloat height = sideMargin;
         
         OSCCommonEntity* o = (OSCCommonEntity*)object;
@@ -60,7 +61,8 @@
         height = height + CELL_PADDING_4;
         height = height + CREATED_FONT_SIZE.lineHeight;
         
-        height = height + sideMargin;
+        // 间距太大，不增加cellMargin
+        height = height + CONTENT_MARGIN;//sideMargin;
         
         return height;
     }
@@ -135,14 +137,10 @@
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
     }
     
-    // layout
-    CGFloat cellMargin = CELL_PADDING_4;
-    CGFloat contentViewMarin = CELL_PADDING_6;
-    //CGFloat sideMargin = cellMargin + contentViewMarin;
-    
-    self.contentView.frame = CGRectMake(cellMargin, cellMargin,
-                                        self.width - cellMargin * 2,
-                                        self.height - cellMargin * 2);
+    // layout    
+    self.contentView.frame = CGRectMake(CELL_MARGIN, CONTENT_MARGIN,
+                                        self.width - CELL_MARGIN * 2,
+                                        self.height - CELL_MARGIN);//cellMargin * 2
     // replies count
     CGSize repliesCountSize = CGSizeZero;
     if (IOS_IS_AT_LEAST_7) {
@@ -154,10 +152,10 @@
     self.repliesCountLabel.frame = CGRectMake(0.f, 0.f,
                                               repliesCountSize.width + CELL_PADDING_6,
                                               self.repliesCountLabel.font.lineHeight);
-    self.repliesCountLabel.right = self.contentView.width - contentViewMarin;
-    self.repliesCountLabel.bottom = self.contentView.height - contentViewMarin;
+    self.repliesCountLabel.right = self.contentView.width - CONTENT_MARGIN;
+    self.repliesCountLabel.bottom = self.contentView.height - CONTENT_MARGIN;
     // title
-    CGFloat kTitleLength = self.contentView.width - contentViewMarin * 2;
+    CGFloat kTitleLength = self.contentView.width - CONTENT_MARGIN * 2;
 #if 1
     NSAttributedString *attributedText =
     [[NSAttributedString alloc] initWithString:self.textLabel.text
@@ -170,7 +168,7 @@
     CGSize titleSize = [self.topicTitleLabel.text sizeWithFont:TITLE_FONT_SIZE
                                             constrainedToSize:CGSizeMake(kTitleLength, FLT_MAX)];
 #endif
-    self.textLabel.frame = CGRectMake(contentViewMarin, contentViewMarin,
+    self.textLabel.frame = CGRectMake(CONTENT_MARGIN, CONTENT_MARGIN,
                                         kTitleLength, titleSize.height);
     
     self.createdLabel.frame = CGRectMake(self.textLabel.left, self.textLabel.bottom + CELL_PADDING_4,
