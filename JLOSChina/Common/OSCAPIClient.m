@@ -123,8 +123,8 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 // catalog : 类别ID [ 0、1所有动态,2提到我的,3评论,4我自己 ]
 + (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)loginUserId
                                       activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
-                                            pageIndex:(unsigned int)pageIndex
-                                           pageSize:(unsigned int)pageSize
+                                              pageIndex:(unsigned int)pageIndex
+                                               pageSize:(unsigned int)pageSize
 {
     return [NSString stringWithFormat:@"active_list?user=%ld&catalog=%u&pageIndex=%u&pageSize=%u",
             loginUserId, activeCatalogType, pageIndex, pageSize];
@@ -137,17 +137,16 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 
 + (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
                                           orUsername:(NSString*)username
-                                       loginedUserId:(unsigned long)loginUserId
-                                         pageIndex:(unsigned int)pageIndex
-                                        pageSize:(unsigned int)pageSize
+                                           pageIndex:(unsigned int)pageIndex
+                                            pageSize:(unsigned int)pageSize
 {
     if (username.length) {
-        return [NSString stringWithFormat:@"user_information?user=%ld&friend_name=%@&pageIndex=%u&pageSize=%u",
-                loginUserId, [username urlEncoded], pageIndex, pageSize];
+        return [NSString stringWithFormat:@"user_information?friend_name=%@&pageIndex=%u&pageSize=%u",
+                [username urlEncoded], pageIndex, pageSize];
     }
     else {
-        return [NSString stringWithFormat:@"user_information?user=%ld&friend=%ld&pageIndex=%u&pageSize=%u",
-                loginUserId, uid, pageIndex, pageSize];
+        return [NSString stringWithFormat:@"user_information?friend=%ld&pageIndex=%u&pageSize=%u",
+                uid, pageIndex, pageSize];
     }
 }
 

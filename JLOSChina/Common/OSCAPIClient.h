@@ -114,7 +114,6 @@
 
 + (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
                                           orUsername:(NSString*)username
-                                       loginedUserId:(unsigned long)loginUserId
                                          pageIndex:(unsigned int)pageIndex
                                         pageSize:(unsigned int)pageSize;
 
