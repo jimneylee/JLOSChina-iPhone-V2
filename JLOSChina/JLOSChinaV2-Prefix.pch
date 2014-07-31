@@ -15,6 +15,7 @@
     #import <Foundation/Foundation.h>
 
     #import "JLNimbusTimeline.h"
+    #import "TTCategoryHeader.h"
 
     // Nimbus addtional header
     #import "NimbusPagingScrollView.h"
