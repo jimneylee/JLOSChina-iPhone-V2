@@ -184,7 +184,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    CGFloat kDefaultSegemetedControlHeight = 43.f;// see: SDSegmentedControl commonInit
+    static CGFloat kDefaultSegemetedControlHeight = 43.f;// see: SDSegmentedControl commonInit
     return kDefaultSegemetedControlHeight;
 }
 

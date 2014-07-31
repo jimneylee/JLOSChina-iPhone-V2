@@ -38,7 +38,7 @@
                                                        action:@selector(autoPullDownRefreshActionAnimation)],
          nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginToFetchData)
-                                                     name:@"DID_LOGIN_SUCCESS" object:nil];
+                                                     name:DID_LOGIN_NOTIFICATION object:nil];
     }
     return self;
 }
@@ -51,6 +51,9 @@
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.backgroundColor = TABLE_VIEW_BG_COLOR;
     self.tableView.backgroundView = nil;
+    
+    [self initSegmentedControl];
+    ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +73,7 @@
 #pragma mark - Private
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (SDSegmentedControl *)segmentedControl
+- (void)initSegmentedControl
 {
     if (!_segmentedControl) {
         // TODO: pull request to author fix this bug: initWithFrame can not call [self commonInit]
@@ -79,15 +82,14 @@
         _segmentedControl.interItemSpace = 0.f;
         [_segmentedControl addTarget:self action:@selector(segmentedDidChange)
                     forControlEvents:UIControlEventValueChanged];
-        NSArray* sectionNames = @[@"最新资讯", @"最新博客", @"推荐博客"];
-        for (int i = 0; i < sectionNames.count; i++) {
-            [self.segmentedControl insertSegmentWithTitle:sectionNames[i]
-                                                  atIndex:i
-                                                 animated:NO];
-        }
     }
     
-    return _segmentedControl;
+    NSArray* sectionNames = @[@"最新资讯", @"最新博客", @"推荐博客"];
+    for (int i = 0; i < sectionNames.count; i++) {
+        [_segmentedControl insertSegmentWithTitle:sectionNames[i]
+                                          atIndex:i
+                                         animated:NO];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -187,11 +189,11 @@
     return kDefaultSegemetedControlHeight;
 }
 
-#pragma mark - DID_LOGIN_SUCCESS
+#pragma mark - DID_LOGIN_NOTIFICATION
 
 - (void)didLoginToFetchData
 {
-    ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
+    [self autoPullDownRefreshActionAnimation];
 }
 
 @end
