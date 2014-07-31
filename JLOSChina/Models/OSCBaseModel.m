@@ -61,6 +61,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)postParams:(NSDictionary*)params errorBlock:(void(^)(OSCErrorEntity* errorEntity))errorBlock
 {
+    // 每次请求都要判断token是否过期，似乎有点不合理，
+    // 但是还没有找到更好的解决token过期的检测问题
+    
+    if (![OSCGlobalConfig checkAuthValid]) {
+        if (errorBlock) {
+            OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
+            errorBlock(errorEntity);
+        }
+        return;
+    }
+    
     NSString* path = [self relativePath];
     OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
     [httpClient POST:path parameters:params
@@ -88,6 +99,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)getParams:(NSDictionary*)params errorBlock:(void(^)(OSCErrorEntity* errorEntity))errorBlock
 {
+    // 每次请求都要判断token是否过期，似乎有点不合理，
+    // 但是还没有找到更好的解决token过期的检测问题
+    
+    if (![OSCGlobalConfig checkAuthValid]) {
+        if (errorBlock) {
+            OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
+            errorBlock(errorEntity);
+        }
+        return;
+    }
+    
     NSString* path = [self relativePath];
     OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
     [httpClient GET:path parameters:params

@@ -7,6 +7,7 @@
 //
 
 #import "OSCBaseTableModel.h"
+#import "OSCAuthModel.h"
 
 @interface OSCBaseTableModel()
 
@@ -65,6 +66,17 @@
 - (void)loadDataWithBlock:(void(^)(NSArray* indexPaths, NSError *error))block
                      more:(BOOL)more refresh:(BOOL)refresh
 {
+    // 每次请求都要判断token是否过期，似乎有点不合理，
+    // 但是还没有找到更好的解决token过期的检测问题
+    
+    if (![OSCGlobalConfig checkAuthValid]) {
+        if (block) {
+            NSError* error = [[NSError alloc] init];
+            block(nil, error);
+        }
+        return;
+    }
+    
     self.showIndexPathsBlock = block;
     if (self.isLoading) {
         return;
