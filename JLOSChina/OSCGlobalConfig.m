@@ -8,6 +8,7 @@
 
 #import "OSCGlobalConfig.h"
 #import "OSCEmotionEntity.h"
+#import "OSCAuthModel.h"
 
 // emotion
 static NSArray* emotionsArray = nil;
@@ -40,6 +41,16 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 + (void)setLoginedUserEntity:(OSCUserFullEntity*)userEntity
 {
     loginedUserEntity = userEntity;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (BOOL)checkAuthValid
+{
+    if (![[OSCAuthModel sharedAuthModel] checkAuthValid]) {
+        [OSCGlobalConfig HUDShowMessage:@"请先登录" addedToView:KEY_WINDOW];
+        return NO;
+    }
+    return YES;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

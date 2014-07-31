@@ -57,6 +57,8 @@ typedef NS_ENUM(NSInteger, OSCMyActiveCatalogType) {
 + (OSCUserFullEntity*)loginedUserEntity;
 + (void)setLoginedUserEntity:(OSCUserFullEntity*)userEntity;
 
++ (BOOL)checkAuthValid;
+
 // App Info
 + (NSString *)getIOSGuid;
 + (NSString *)getOSVersion;
