@@ -8,7 +8,7 @@
 
 #import "OSCCommonDetailC.h"
 #import "OSCCommonDetailModel.h"
-#import "OSCReplyEntity.h"
+#import "OSCCommentEntity.h"
 #import "OSCCommonBodyView.h"
 #import "OSCReplyModel.h"
 #import "OSCQuickReplyC.h"
@@ -53,6 +53,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"详细";
+        self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createBarButtonItemWithTitle:@"查看回复" target:self
@@ -238,7 +239,7 @@
 {
     return ^BOOL(id object, id target, NSIndexPath* indexPath) {
         if (!self.editing) {
-            if ([object isKindOfClass:[OSCReplyEntity class]]) {
+            if ([object isKindOfClass:[OSCCommentEntity class]]) {
                 //RCReplyEntity* topic = (RCReplyEntity*)object;
                 //nothing to do!
                 [OSCGlobalConfig HUDShowMessage:@"TODO:relative recommend!" addedToView:self.view];
@@ -312,7 +313,7 @@
 #pragma mark - RCQuickReplyDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didReplySuccessWithMyReply:(OSCReplyEntity*)replyEntity
+- (void)didReplySuccessWithMyReply:(OSCCommentEntity*)replyEntity
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     

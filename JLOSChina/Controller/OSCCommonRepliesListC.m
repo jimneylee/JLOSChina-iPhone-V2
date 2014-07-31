@@ -8,7 +8,7 @@
 
 #import "OSCCommonRepliesListC.h"
 #import "OSCRepliesTimelineModel.h"
-#import "OSCReplyEntity.h"
+#import "OSCCommentEntity.h"
 #import "OSCCommonBodyView.h"
 #import "OSCReplyModel.h"
 #import "OSCQuickReplyC.h"
@@ -56,6 +56,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"热情回复";
+        self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
@@ -239,7 +240,7 @@
 {
     return ^BOOL(id object, id target, NSIndexPath* indexPath) {
         if (!self.editing) {
-            if ([object isKindOfClass:[OSCReplyEntity class]]) {
+            if ([object isKindOfClass:[OSCCommentEntity class]]) {
                 //RCReplyEntity* topic = (RCReplyEntity*)object;
                 //nothing to do!
                 //[RCGlobalConfig HUDShowMessage:@"TODO:回复该贴/赞该贴" addedToView:self.view];
@@ -301,7 +302,7 @@
 #pragma mark - RCQuickReplyDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didReplySuccessWithMyReply:(OSCReplyEntity*)replyEntity
+- (void)didReplySuccessWithMyReply:(OSCCommentEntity*)replyEntity
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     

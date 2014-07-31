@@ -8,7 +8,7 @@
 
 #import "OSCForumTimelineModel.h"
 #import "OSCAPIClient.h"
-#import "OSCNewsCell.h"
+#import "OSCCommonCell.h"
 #import "OSCTopicEntity.h"
 
 #define XML_NOTICE @"notice"
@@ -54,7 +54,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)cellClass
 {
-    return [OSCNewsCell class];
+    return [OSCCommonCell class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
