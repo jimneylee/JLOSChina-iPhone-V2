@@ -8,7 +8,7 @@
 
 #import "OSCRepliesTimelineModel.h"
 #import "OSCReplyCell.h"
-#import "OSCReplyEntity.h"
+#import "OSCCommentEntity.h"
 
 @implementation OSCRepliesTimelineModel
 
@@ -77,7 +77,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (Class)objectClass
 {
-	return [OSCReplyEntity class];
+	return [OSCCommentEntity class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

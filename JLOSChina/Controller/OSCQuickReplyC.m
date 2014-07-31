@@ -192,7 +192,7 @@
         [replyModel replyContentId:self.topicId
                        catalogType:self.catalogType
                             body:pureBodyText //self.textView.text
-                         success:^(OSCReplyEntity* replyEntity){
+                         success:^(OSCCommentEntity* replyEntity){
                              self.textView.text = @"";
                              [self.textView resignFirstResponder];
                              

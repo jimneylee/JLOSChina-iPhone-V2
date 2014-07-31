@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HPGrowingTextView.h"
 #import "OSCEmotionMainView.h"
-#import "OSCReplyEntity.h"
+#import "OSCCommentEntity.h"
 
 @protocol RCQuickReplyDelegate;
 @interface OSCQuickReplyC : UIViewController<HPGrowingTextViewDelegate>
@@ -27,7 +27,7 @@
 
 @protocol RCQuickReplyDelegate <NSObject>
 @optional
-- (void)didReplySuccessWithMyReply:(OSCReplyEntity*)replyEntity;
+- (void)didReplySuccessWithMyReply:(OSCCommentEntity*)replyEntity;
 - (void)didReplyFailure;
 - (void)didReplyCancel;
 
