@@ -3,10 +3,10 @@
 //  TaoCZ
 //
 //  Created by jimneylee on 6/28/14.
-//  Copyright 2014 taocz. All rights reserved.
+//  Copyright 2014 jimneylee. All rights reserved.
 //
 
-@interface TCTabBarC : UITabBarController <UINavigationBarDelegate, UITabBarControllerDelegate>
+@interface OSCTabBarC : UITabBarController <UINavigationBarDelegate, UITabBarControllerDelegate>
 
 
 @end

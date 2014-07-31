@@ -3,16 +3,18 @@
 //  TaoCZ
 //
 //  Created by jimneylee on 6/28/14.
-//  Copyright 2014 taocz. All rights reserved.
+//  Copyright 2014 jimneylee. All rights reserved.
 //
 
-#import "TCTabBarC.h"
+#import "OSCTabBarC.h"
 #import "NIBadgeView.h"
 #import <JSCustomBadge/JSCustomBadge.h>
 #import "UINavigationBar+FlatUI.h"
-#import "MLNavigationController.h"
 
-#import "TCHomeC.h"
+#import "OSCHomeC.h"
+#import "OSCTweetC.h"
+#import "OSCForumC.h"
+#import "OSCMineC.h"
 
 #define ANIMATION_DURATION 0.25f
 #define MAX_TAB_COUNT 5
@@ -42,9 +44,8 @@
                 
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [self setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         
-        // badge
 #if 0
         self.badgeView = [[NIBadgeView alloc] initWithFrame:CGRectZero];
         self.badgeView.tintColor = [UIColor redColor];
@@ -61,7 +62,6 @@
                                              withBadgeFrameColor:[UIColor redColor]
                                                        withScale:.8f
                                                      withShining:NO];
-        //
         [self addSubview:self.badgeView];
 #endif
     }
@@ -93,7 +93,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-@interface TCTabBarC()<UINavigationControllerDelegate>
+@interface OSCTabBarC()<UINavigationControllerDelegate>
 
 @property (nonatomic, assign) int currentSelectedIndex;
 @property (nonatomic, strong) NSMutableArray* tabBtns;
@@ -103,7 +103,7 @@
 
 @end
 
-@implementation TCTabBarC
+@implementation OSCTabBarC
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - init & dealloc
@@ -146,7 +146,7 @@
 #else
     UIImageView *bgView = [[UIImageView alloc] init];
     bgView.userInteractionEnabled = YES;
-    bgView.backgroundColor = RGBCOLOR(178, 178, 178);
+    bgView.backgroundColor = APP_THEME_COLOR;//RGBCOLOR(178, 178, 178);
     [self.view addSubview:bgView];
 	self.tabBarBgView = bgView;
 #endif
@@ -160,10 +160,9 @@
 	self.currentSelectedIndex = 0;
     
     [self setBadgeValue:@"2" forTabIndex:0];
-    [self setBadgeValue:@"5" forTabIndex:0];
-    [self setBadgeValue:@"7" forTabIndex:0];
-    [self setBadgeValue:@"4" forTabIndex:0];
-    [self setBadgeValue:@"6" forTabIndex:0];
+    [self setBadgeValue:@"5" forTabIndex:1];
+    [self setBadgeValue:@"7" forTabIndex:2];
+    [self setBadgeValue:@"4" forTabIndex:3];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,48 +218,28 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSMutableArray *)generateViewContrllers
 {
-    TCHomeC *homeC1 = [[TCHomeC alloc] initWithStyle:UITableViewStyleGrouped];
-    MLNavigationController *navi1 = [[MLNavigationController alloc] initWithRootViewController:homeC1];
+    OSCHomeC *homeC = [[OSCHomeC alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *navi1 = [[UINavigationController alloc] initWithRootViewController:homeC];
     navi1.navigationBar.tintColor = [UIColor darkGrayColor];
     navi1.delegate = self;
-    if ([navi1 respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        navi1.interactivePopGestureRecognizer.enabled = NO;
-    }
     
-    TCHomeC *homeC2 = [[TCHomeC alloc] initWithStyle:UITableViewStylePlain];
-    MLNavigationController *navi2 = [[MLNavigationController alloc] initWithRootViewController:homeC2];
+    OSCTweetC *tweetC = [[OSCTweetC alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *navi2 = [[UINavigationController alloc] initWithRootViewController:tweetC];
     navi2.navigationBar.tintColor = [UIColor darkGrayColor];
     navi2.delegate = self;
-    if ([navi2 respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        navi2.interactivePopGestureRecognizer.enabled = NO;
-    }
     
-    TCHomeC *homeC3 = [[TCHomeC alloc] initWithStyle:UITableViewStylePlain];
-    MLNavigationController *navi3 = [[MLNavigationController alloc] initWithRootViewController:homeC3];
+    OSCForumC *forumC = [[OSCForumC alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *navi3 = [[UINavigationController alloc] initWithRootViewController:forumC];
     navi3.navigationBar.tintColor = [UIColor darkGrayColor];
     navi3.delegate = self;
-    if ([navi3 respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        navi3.interactivePopGestureRecognizer.enabled = NO;
-    }
     
-    TCHomeC *homeC4 = [[TCHomeC alloc] initWithStyle:UITableViewStylePlain];
-    MLNavigationController *navi4 = [[MLNavigationController alloc] initWithRootViewController:homeC4];
+    OSCMineC *mineC = [[OSCMineC alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *navi4 = [[UINavigationController alloc] initWithRootViewController:mineC];
     navi4.navigationBar.tintColor = [UIColor darkGrayColor];
     navi4.delegate = self;
-    if ([navi4 respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        navi4.interactivePopGestureRecognizer.enabled = NO;
-    }
-    
-    TCHomeC *homeC5 = [[TCHomeC alloc] initWithStyle:UITableViewStylePlain];
-    MLNavigationController *navi5 = [[MLNavigationController alloc] initWithRootViewController:homeC5];
-    navi5.navigationBar.tintColor = [UIColor darkGrayColor];
-    navi5.delegate = self;
-    if ([navi5 respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        navi5.interactivePopGestureRecognizer.enabled = NO;
-    }
     
     return [NSMutableArray arrayWithObjects:
-            navi1, navi2, navi3, navi4, navi5, nil];
+            navi1, navi2, navi3, navi4, nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -290,18 +269,15 @@
         NSString* title;
         switch (i) {
             case 0:
-                title = @"首页\r\nHome";
+                title = @"咨询\r\nNews";
                 break;
             case 1:
-                title = @"分类\r\nCate";
+                title = @"动弹\r\nTweet";
                 break;
             case 2:
-                title = @"搜索\r\nSearch";
+                title = @"社区\r\nForum";
                 break;
             case 3:
-                title = @"购物车\r\nCart";
-                break;
-            case 4:
                 title = @"我的\r\nMine";
                 break;
             default:
