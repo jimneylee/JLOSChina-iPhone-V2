@@ -320,7 +320,7 @@
 #pragma mark - RCQuickReplyDelegate
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didReplySuccessWithMyReply:(OSCReplyEntity*)replyEntity
+- (void)didReplySuccessWithMyReply:(OSCCommentEntity*)replyEntity
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     if (replyEntity) {

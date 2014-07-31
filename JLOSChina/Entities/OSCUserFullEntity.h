@@ -22,13 +22,14 @@
 //</user>
 
 @interface OSCUserFullEntity : OSCUserEntity
-@property (nonatomic, copy) NSString* tagline;
+
 @property (nonatomic, copy) NSString* location;
 @property (nonatomic, copy) NSString* joinTime;
 @property (nonatomic, copy) NSString* gender;
-@property (nonatomic, copy) NSString* developPlatform;
+@property (nonatomic, copy) NSString* platforms;
 @property (nonatomic, copy) NSString* expertise;
-@property (nonatomic, assign) unsigned long followersCount;
-@property (nonatomic, assign) unsigned long fansCount;
-@property (nonatomic, assign) unsigned long favoriteCount;
+@property (nonatomic, assign) long long followersCount;
+@property (nonatomic, assign) long long fansCount;
+@property (nonatomic, assign) long long favoriteCount;
+
 @end

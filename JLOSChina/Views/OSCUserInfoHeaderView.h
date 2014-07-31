@@ -7,6 +7,9 @@
 //
 
 @class OSCUserFullEntity;
+
 @interface OSCUserInfoHeaderView : UIView
+
 - (void)updateViewForUser:(OSCUserFullEntity*)user;
+
 @end

@@ -42,7 +42,6 @@
     NSString* path =
     [OSCAPIClient relativePathForUserActiveListWithUserId:self.userId
                                                orUsername:self.username
-                                            loginedUserId:[OSCGlobalConfig loginedUserEntity].authorId
                                               pageIndex:self.pageIndex
                                              pageSize:self.pageSize];
     return path;
@@ -70,7 +69,15 @@
 {
     [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
     
-    if ([elementName isEqualToString:self.detailItemElementName]) {
+    // osc 后台奇葩的user xml结构
+    //<user>
+    //<name><![CDATA[BigBang]]></name>
+    //?? <user>1174259</user>
+    // ...
+    //</user>
+    
+    // 因为user内嵌user标签，此处额外判断
+    if (!self.detailDictionary && [elementName isEqualToString:self.detailItemElementName]) {
         self.detailDictionary = [NSMutableDictionary dictionary];
         self.superElementName = self.detailItemElementName;
     }
@@ -102,16 +109,13 @@
     // TODO: dirty code: set uid -> authorid, name -> author
     // http://www.oschina.net/action/openapi/user_information?user=0&friend_name=%E7%BA%A2%E8%96%AF&pageIndex=1&pageSize=20&access_token=f0c2fcec-5fc6-4880-90f4-59b04748d912&dataType=xml
     NSMutableDictionary* dic = self.detailDictionary;
-    if (dic[@"uid"]) {
-        [dic setObject:dic[@"uid"] forKey:@"authorid"];
+    if (dic[@"user"]) {
+        [dic setObject:dic[@"user"] forKey:@"authorid"];
     }
     if (dic[@"name"]) {
         [dic setObject:dic[@"name"] forKey:@"author"];
     }
-    if (dic[@"from"]) {
-        [dic setObject:dic[@"from"] forKey:@"location"];
-    }
-    self.userEntity = [OSCUserFullEntity entityWithDictionary:self.detailDictionary];
+    self.userEntity = [OSCUserFullEntity entityWithDictionary:dic];
     [super parserDidEndDocument:parser];
 }
 

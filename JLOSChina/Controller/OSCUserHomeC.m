@@ -52,6 +52,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"他(她)的主页";
+        self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self

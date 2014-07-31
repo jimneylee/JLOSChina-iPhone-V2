@@ -12,13 +12,13 @@
 #import "UIView+findViewController.h"
 #import "OSCUserFullEntity.h"
 
-#define NAME_FONT_SIZE [UIFont boldSystemFontOfSize:22.f]
+#define NAME_FONT_SIZE [UIFont boldSystemFontOfSize:18.f]
 #define LOGIN_ID_FONT_SIZE [UIFont systemFontOfSize:16.f]
 #define TAG_LINE_ID_FONT_SIZE [UIFont systemFontOfSize:12.f]
 #define BUTTON_FONT_SIZE [UIFont boldSystemFontOfSize:15.f]
 
 #define HEAD_IAMGE_HEIGHT 60
-#define BUTTON_SIZE CGSizeMake(78.f, 40.f)//(104.f, 40.f)
+#define BUTTON_SIZE CGSizeMake(78.f, 30.f)
 
 @interface OSCUserInfoHeaderView()
 @property (nonatomic, strong) OSCUserFullEntity* user;
@@ -150,7 +150,7 @@
         }
         self.nameLabel.text = user.authorName;
         self.locationLabel.text = user.location;
-        self.tagLineLabel.text = @"TODO:api接口还未添加签名字段";//[NSString stringWithFormat:@"签名：%@", user.tagline.length ? user.tagline : @"这个人很懒，啥也没写"];
+        self.tagLineLabel.text = [NSString stringWithFormat:@"擅长平台：%@", user.platforms];
     }
 }
 

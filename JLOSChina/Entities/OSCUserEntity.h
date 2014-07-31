@@ -9,7 +9,9 @@
 #import "JLNimbusEntity.h"
 
 @interface OSCUserEntity : JLNimbusEntity
-@property (nonatomic, assign) unsigned long authorId;
-@property (nonatomic, copy) NSString* authorName;
-@property (nonatomic, copy) NSString* avatarUrl;
+
+@property (nonatomic, assign) long long authorId;
+@property (nonatomic, copy)   NSString* authorName;
+@property (nonatomic, copy)   NSString* avatarUrl;
+
 @end
