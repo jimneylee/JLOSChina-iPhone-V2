@@ -46,8 +46,8 @@
     self = [super initWithDictionary:dic];
     if (self) {
         self.location = [NSString stringFromValue:dic[@"location"]];//from
-        self.joinTime = [NSString stringFromValue:dic[@"jointime"]];
-        self.developPlatform = [NSString stringFromValue:dic[@"devplatform"]];
+        self.joinTime = [NSString stringFromValue:dic[@"joinTime"]];
+        self.developPlatform = [NSString stringFromValue:dic[@"platforms"]];
         self.expertise = [NSString stringFromValue:dic[@"expertise"]];
 
         // followers  fans  score
