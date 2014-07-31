@@ -14,8 +14,6 @@
 #import "JLNetworkSpy.h"
 #import "JASidePanelController.h"
 
-#import "OSCAccountEntity.h"
-#import "OSCLoginModel.h"
 #import "OSCTabBarC.h"
 #import "OSCHomeC.h"
 #import "OSCTweetC.h"
@@ -24,7 +22,7 @@
 #import "OSCMineC.h"
 
 @interface OSCAppDelegate()<RCNetworkSpyDelegate>
-@property (nonatomic, strong) OSCLoginModel *loginModel;
+//@property (nonatomic, strong) OSCAuthModel *loginModel;
 @end
 
 @implementation OSCAppDelegate
@@ -53,10 +51,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareAfterLaunching
 {
-    self.loginModel = [[OSCLoginModel alloc] init];
-    [self.loginModel loginWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-    }];
-    
     [[LTUpdate shared] update];
     
     [self appearanceChange];
