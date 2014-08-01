@@ -9,7 +9,8 @@
 #import "JLNimbusTableViewController.h"
 
 @interface OSCUserHomeC : JLNimbusTableViewController
-- (id)initWithUserId:(unsigned long)userId;
-// 暂时无用
+
+- (id)initWithUserId:(long long)userId;
 - (id)initWithUsername:(NSString*)username;
+
 @end

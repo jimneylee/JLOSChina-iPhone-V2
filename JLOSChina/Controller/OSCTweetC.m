@@ -124,26 +124,21 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)segmentedDidChange
 {
-    if (OSCTweetType_Mine == self.segmentedControl.selectedSegmentIndex
-        && ![OSCGlobalConfig loginedUserEntity]) {
-        [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
-    }
-    else {
-        // first cancel request operation
-        [self.model cancelRequstOperation];
-        
-        // scroll top
-        ((OSCTweetTimelineModel*)self.model).tweetType = self.segmentedControl.selectedSegmentIndex;
-        
-        // TODO:remove all, sometime crash, fix later on
-        //    if (self.model.sections.count > 0) {
-        //        [self.model removeSectionAtIndex:0];
-        //    }
-        
-        // after scrollToTopAnimated then pull down to refresh, performce perfect
-        [self scrollToTopAnimated:NO];
-        [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
-    }
+    // first cancel request operation
+    [self.model cancelRequstOperation];
+    
+    ((OSCTweetTimelineModel*)self.model).tweetType = self.segmentedControl.selectedSegmentIndex;
+    
+    // TODO:remove all, sometime crash, fix later on
+    // if (self.model.sections.count > 0) {
+    //     [self.model removeSectionAtIndex:0];
+    // }
+    
+    // scroll top
+    [self scrollToTopAnimated:NO];
+    
+    // after scrollToTopAnimated then pull down to refresh, performce perfect
+    [self performSelector:@selector(autoPullDownRefreshActionAnimation) withObject:self afterDelay:0.1f];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

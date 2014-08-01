@@ -21,7 +21,7 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Global Data
 
-+ (NSString *)getOAuthAccessToken
++ (NSString *)getAuthAccessToken
 {
     return s_accessToken;
 }

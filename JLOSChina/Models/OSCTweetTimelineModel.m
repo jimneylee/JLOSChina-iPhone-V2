@@ -43,24 +43,23 @@
     switch (self.tweetType) {
         case OSCTweetType_Latest:
             path = [OSCAPIClient relativePathForTweetListWithUserId:@"0"
-                                                        pageIndex:self.pageIndex
-                                                       pageSize:self.pageSize];
+                                                          pageIndex:self.pageIndex
+                                                           pageSize:self.pageSize];
             break;
             
         case OSCTweetType_Hot:
             path = [OSCAPIClient relativePathForTweetListWithUserId:@"-1"
-                                                        pageIndex:self.pageIndex
-                                                       pageSize:self.pageSize];
+                                                          pageIndex:self.pageIndex
+                                                           pageSize:self.pageSize];
             break;
             
         case OSCTweetType_Mine:
         {
-            if ([OSCGlobalConfig loginedUserEntity].authorId > 0) {
-                NSString* uid = [NSString stringWithFormat:@"%ld",
-                                 [OSCGlobalConfig loginedUserEntity].authorId];
-                path = [OSCAPIClient relativePathForTweetListWithUserId:uid//暂用红薯id=12测试
-                                                            pageIndex:self.pageIndex
-                                                           pageSize:self.pageSize];
+            if ([OSCGlobalConfig getAuthAccessToken].length > 0) {
+                NSString *str = @"其他";
+                path = [OSCAPIClient relativePathForTweetListWithUserId:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]//其他：我的动弹
+                                                              pageIndex:self.pageIndex
+                                                               pageSize:self.pageSize];
             }
 
             break;

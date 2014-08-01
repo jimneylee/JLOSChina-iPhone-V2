@@ -22,13 +22,13 @@
 #import "OSCTweetBodyView.h"
 
 // 布局字体
-#define TITLE_FONT_SIZE [UIFont systemFontOfSize:18.f]
+#define TITLE_FONT_SIZE [UIFont systemFontOfSize:16.f]
 #define SUBTITLE_FONT_SIZE [UIFont systemFontOfSize:12.f]
 #define BUTTON_FONT_SIZE [UIFont systemFontOfSize:14.f]
 
 // 本微博：字体 行高 文本色设置
-#define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:18.f]
-#define CONTENT_LINE_HEIGHT 24.f
+#define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:16.f]
+#define CONTENT_LINE_HEIGHT 22.f
 #define CONTENT_TEXT_COLOR RGBCOLOR(30, 30, 30)
 
 // 布局固定参数值

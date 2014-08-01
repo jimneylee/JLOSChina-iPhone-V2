@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, OSCMyActiveCatalogType) {
 @interface OSCGlobalConfig : NSObject
 
 //Global Data
-+ (NSString *)getOAuthAccessToken;
++ (NSString *)getAuthAccessToken;
 + (void)setOAuthAccessToken:(NSString *)accessToken;
 
 + (OSCUserFullEntity*)loginedUserEntity;

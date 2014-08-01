@@ -27,7 +27,7 @@
 #pragma mark - UIViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithUserId:(unsigned long)userId
+- (id)initWithUserId:(long long)userId
 {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {

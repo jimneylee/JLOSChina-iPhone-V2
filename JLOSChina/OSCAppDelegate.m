@@ -22,7 +22,7 @@
 #import "OSCMineC.h"
 
 @interface OSCAppDelegate()<RCNetworkSpyDelegate>
-//@property (nonatomic, strong) OSCAuthModel *loginModel;
+
 @end
 
 @implementation OSCAppDelegate
@@ -75,28 +75,6 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - RCNetworkSpyDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)didNetworkChangedReachable:(BOOL)reachable viaWifi:(BOOL)viaWifi
-{
-    NSString* title = @"网络未连接";
-    
-    if (!reachable) {
-        title = @"网络未连接";
-    }
-    else if (viaWifi) {
-        title = @"当前wifi已连接";
-    }
-    else {
-        title = @"当前2g/3g已连接";
-    }
-    // TODO: 4g is long long after
-    [OSCGlobalConfig HUDShowMessage:title addedToView:[UIApplication sharedApplication].keyWindow];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +147,28 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - RCNetworkSpyDelegate
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didNetworkChangedReachable:(BOOL)reachable viaWifi:(BOOL)viaWifi
+{
+    NSString* title = @"网络未连接";
+    
+    if (!reachable) {
+        title = @"网络未连接";
+    }
+    else if (viaWifi) {
+        title = @"当前wifi已连接";
+    }
+    else {
+        title = @"当前2g/3g已连接";
+    }
+    // TODO: 4g is long long after
+    [OSCGlobalConfig HUDShowMessage:title addedToView:[UIApplication sharedApplication].keyWindow];
 }
 
 @end
