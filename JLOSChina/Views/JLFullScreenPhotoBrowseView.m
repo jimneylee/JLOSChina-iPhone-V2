@@ -2,7 +2,7 @@
 //  SMFullScreenPhotoBrowseC.m
 //  SinaMBlogNimbus
 //
-//  Created by ccjoy-jimneylee on 14-1-6.
+//  Created by jimneylee on 14-1-6.
 //  Copyright (c) 2014年 SuperMaxDev. All rights reserved.
 //
 
