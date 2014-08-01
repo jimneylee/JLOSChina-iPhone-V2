@@ -8,10 +8,10 @@
 
 #import "OSCHomeC.h"
 #import "SDSegmentedControl.h"
-
 #import "OSCHomeTimelineModel.h"
 #import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
+#import "OSCSearchC.h"
 
 @interface OSCHomeC ()
 
@@ -32,6 +32,9 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"综合资讯";
+        self.navigationItem.leftBarButtonItem =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+                                                      target:self action:@selector(showSearchView)];
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
          [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
@@ -115,6 +118,13 @@
 {
     [self.tableView scrollRectToVisible:CGRectMake(0.f, 0.f, self.tableView.width, self.tableView.height)
                                animated:animated];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showSearchView
+{
+    OSCSearchC *searchC = [[OSCSearchC alloc] initWithStyle:UITableViewStylePlain];
+    [self.navigationController pushViewController:searchC animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
