@@ -11,8 +11,6 @@
 #import "OSCCommonCell.h"
 #import "OSCCommonEntity.h"
 
-#define XML_NOTICE @"notice"
-
 @interface OSCHomeTimelineModel()
 
 @end

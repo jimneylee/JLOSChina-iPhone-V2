@@ -11,8 +11,6 @@
 #import "OSCActivityEntity.h"
 #import "OSCActivityCell.h"
 
-#define XML_NOTICE @"notice"
-
 @interface OSCUserActiveTimelineModel()
 @property (nonatomic, copy) NSString* detailItemElementName;
 @property (nonatomic, strong) NSMutableDictionary* detailDictionary;

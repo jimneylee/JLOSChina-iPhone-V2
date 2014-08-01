@@ -11,8 +11,6 @@
 #import "OSCCommonCell.h"
 #import "OSCTopicEntity.h"
 
-#define XML_NOTICE @"notice"
-
 @interface OSCForumTimelineModel()
 
 @end

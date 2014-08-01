@@ -11,8 +11,6 @@
 #import "OSCActivityEntity.h"
 #import "OSCActivityCell.h"
 
-#define XML_NOTICE @"notice"
-
 @interface OSCMyActiveTimelineModel()
 @end
 

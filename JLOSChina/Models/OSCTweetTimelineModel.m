@@ -11,8 +11,6 @@
 #import "OSCTweetCell.h"
 #import "OSCTweetEntity.h"
 
-#define XML_NOTICE @"notice"
-
 @interface OSCTweetTimelineModel()
 
 @end
