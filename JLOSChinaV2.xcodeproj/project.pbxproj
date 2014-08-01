@@ -17,6 +17,12 @@
 		28105B681987D6C500C8A767 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28105B5F1987D6C500C8A767 /* SinaWeiboAuthorizeView.m */; };
 		28105B691987D6C500C8A767 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 28105B621987D6C500C8A767 /* SinaWeiboRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		28105B6A1987D6C500C8A767 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 28105B621987D6C500C8A767 /* SinaWeiboRequest.m */; };
+		281131B1198BD11A003DA98A /* OSCSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 281131B0198BD11A003DA98A /* OSCSearchDisplayController.m */; };
+		281131B2198BD11A003DA98A /* OSCSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 281131B0198BD11A003DA98A /* OSCSearchDisplayController.m */; };
+		281131B5198BD7AA003DA98A /* OSCSearchC.m in Sources */ = {isa = PBXBuildFile; fileRef = 281131B4198BD7AA003DA98A /* OSCSearchC.m */; };
+		281131B6198BD7AA003DA98A /* OSCSearchC.m in Sources */ = {isa = PBXBuildFile; fileRef = 281131B4198BD7AA003DA98A /* OSCSearchC.m */; };
+		281131B9198BDF38003DA98A /* OSCSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 281131B8198BDF38003DA98A /* OSCSearchResultModel.m */; };
+		281131BA198BDF38003DA98A /* OSCSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 281131B8198BDF38003DA98A /* OSCSearchResultModel.m */; };
 		281ACE37187CF41100067D9C /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE0D187CF41100067D9C /* 37x-Checkmark.png */; };
 		281ACE38187CF41100067D9C /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE0D187CF41100067D9C /* 37x-Checkmark.png */; };
 		281ACE3A187CF41100067D9C /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE0E187CF41100067D9C /* 37x-Checkmark@2x.png */; };
@@ -583,6 +589,12 @@
 		28105B601987D6C500C8A767 /* SinaWeiboConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboConstants.h; sourceTree = "<group>"; };
 		28105B611987D6C500C8A767 /* SinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboRequest.h; sourceTree = "<group>"; };
 		28105B621987D6C500C8A767 /* SinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboRequest.m; sourceTree = "<group>"; };
+		281131AF198BD11A003DA98A /* OSCSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSearchDisplayController.h; sourceTree = "<group>"; };
+		281131B0198BD11A003DA98A /* OSCSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSearchDisplayController.m; sourceTree = "<group>"; };
+		281131B3198BD7AA003DA98A /* OSCSearchC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSearchC.h; sourceTree = "<group>"; };
+		281131B4198BD7AA003DA98A /* OSCSearchC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSearchC.m; sourceTree = "<group>"; };
+		281131B7198BDF38003DA98A /* OSCSearchResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCSearchResultModel.h; sourceTree = "<group>"; };
+		281131B8198BDF38003DA98A /* OSCSearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCSearchResultModel.m; sourceTree = "<group>"; };
 		281ACE0D187CF41100067D9C /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		281ACE0E187CF41100067D9C /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		281ACE0F187CF41100067D9C /* head_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head_b.png; sourceTree = "<group>"; };
@@ -1444,6 +1456,10 @@
 				28CABA681886791700BFA036 /* OSCFriendsC.m */,
 				28CABA6B188679A400BFA036 /* OSCPostPhotoBrowseC.h */,
 				28CABA6C188679A400BFA036 /* OSCPostPhotoBrowseC.m */,
+				281131B3198BD7AA003DA98A /* OSCSearchC.h */,
+				281131B4198BD7AA003DA98A /* OSCSearchC.m */,
+				281131AF198BD11A003DA98A /* OSCSearchDisplayController.h */,
+				281131B0198BD11A003DA98A /* OSCSearchDisplayController.m */,
 				2832C2461883C019003E96F3 /* OSCAboutAppC.h */,
 				2832C2471883C019003E96F3 /* OSCAboutAppC.m */,
 				2832C2481883C019003E96F3 /* OSCAboutAppC.xib */,
@@ -1560,6 +1576,8 @@
 				28B3367A188E1AD800179302 /* OSCUserActiveTimelineModel.m */,
 				CEF6F3B81882360C0065F852 /* OSCCommonDetailModel.h */,
 				CEF6F3B91882360D0065F852 /* OSCCommonDetailModel.m */,
+				281131B7198BDF38003DA98A /* OSCSearchResultModel.h */,
+				281131B8198BDF38003DA98A /* OSCSearchResultModel.m */,
 				CEF6F3B0188220890065F852 /* OSCRepliesTimelineModel.h */,
 				CEF6F3B1188220890065F852 /* OSCRepliesTimelineModel.m */,
 				CEF6F3B4188221CF0065F852 /* OSCReplyModel.h */,
@@ -1829,7 +1847,7 @@
 		2897EEE91856BE94000BB6B9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = RC;
+				CLASSPREFIX = OSC;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = jimneylee;
 				TargetAttributes = {
@@ -2306,6 +2324,7 @@
 				CE5936FF187D7F4100DC3A55 /* JASidePanelController.m in Sources */,
 				2897EF5F1856C422000BB6B9 /* JLNimbusTableViewController.m in Sources */,
 				2852900A1989EDF100CB1BC2 /* TTGlobalCoreLocale.m in Sources */,
+				281131B1198BD11A003DA98A /* OSCSearchDisplayController.m in Sources */,
 				28D4EF81185826BF00C9C858 /* RCKeywordEntity.m in Sources */,
 				CEF6F3A418821FE00065F852 /* OSCCommonDetailEntity.m in Sources */,
 				28B33677188E1A7D00179302 /* OSCUserInfoHeaderView.m in Sources */,
@@ -2339,6 +2358,7 @@
 				CE9CA9C6188D63A500C9177C /* OSCMineC.m in Sources */,
 				CE543D781882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
 				28B33685188E668100179302 /* UIScrollView+ZoomToPoint.m in Sources */,
+				281131B9198BDF38003DA98A /* OSCSearchResultModel.m in Sources */,
 				28CABA9318867E8800BFA036 /* pinyin.c in Sources */,
 				2832C2381883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
 				28CABA8518867CF900BFA036 /* OSCFriendCell.m in Sources */,
@@ -2357,6 +2377,7 @@
 				28CABAAF18867F1B00BFA036 /* UIImage+fixOrientation.m in Sources */,
 				CE543D9E18840DD400D18D77 /* OSCErrorEntity.m in Sources */,
 				28D4EF7E1858266700C9C858 /* RCRegularParser.m in Sources */,
+				281131B5198BD7AA003DA98A /* OSCSearchC.m in Sources */,
 				CEF6F3BA1882360D0065F852 /* OSCCommonDetailModel.m in Sources */,
 				28CABA51188621D400BFA036 /* OSCBaseModel.m in Sources */,
 				2897EF721856C54B000BB6B9 /* OSCAPIClient.m in Sources */,
@@ -2423,6 +2444,7 @@
 				CE593700187D7F4100DC3A55 /* JASidePanelController.m in Sources */,
 				CE90A05E1872E6910030DB1E /* JLNimbusTableViewController.m in Sources */,
 				2852900B1989EDF100CB1BC2 /* TTGlobalCoreLocale.m in Sources */,
+				281131B2198BD11A003DA98A /* OSCSearchDisplayController.m in Sources */,
 				CE90A0601872E6910030DB1E /* RCKeywordEntity.m in Sources */,
 				CEF6F3A518821FE00065F852 /* OSCCommonDetailEntity.m in Sources */,
 				28B33678188E1A7D00179302 /* OSCUserInfoHeaderView.m in Sources */,
@@ -2456,6 +2478,7 @@
 				CE9CA9C7188D63A500C9177C /* OSCMineC.m in Sources */,
 				CE543D791882A89600D18D77 /* OSCForumTimelineModel.m in Sources */,
 				28B33686188E668100179302 /* UIScrollView+ZoomToPoint.m in Sources */,
+				281131BA198BDF38003DA98A /* OSCSearchResultModel.m in Sources */,
 				28CABA9418867E8800BFA036 /* pinyin.c in Sources */,
 				2832C2391883B6EE003E96F3 /* JLFullScreenPhotoBrowseView.m in Sources */,
 				28CABA8618867CF900BFA036 /* OSCFriendCell.m in Sources */,
@@ -2474,6 +2497,7 @@
 				28CABAB018867F1B00BFA036 /* UIImage+fixOrientation.m in Sources */,
 				CE543D9F18840DD400D18D77 /* OSCErrorEntity.m in Sources */,
 				CE90A0871872E6910030DB1E /* RCRegularParser.m in Sources */,
+				281131B6198BD7AA003DA98A /* OSCSearchC.m in Sources */,
 				CEF6F3BB1882360D0065F852 /* OSCCommonDetailModel.m in Sources */,
 				28CABA52188621D400BFA036 /* OSCBaseModel.m in Sources */,
 				CE90A08C1872E6910030DB1E /* OSCAPIClient.m in Sources */,
