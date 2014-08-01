@@ -91,7 +91,9 @@
         self.pageIndex = self.pageStartIndex;
     }
     NSString* relativePath = [self relativePath];
-    if ([[self apiSharedClient] respondsToSelector:@selector(GET:parameters:refresh:success:failure:)]) {
+    if (relativePath.length > 0
+        && [[self apiSharedClient] respondsToSelector:@selector(GET:parameters:refresh:success:failure:)]) {
+        
         [[self apiSharedClient] GET:relativePath parameters:[self generateParameters]  refresh:refresh
                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                     self.isLoading = NO;
@@ -120,7 +122,12 @@
                                 }];
     }
     else {
+        self.isLoading = NO;
         NSLog(@"Error: can not find method (getPath:parameters:refresh:success:failure:)");
+        if (block) {
+            NSError* error = [[NSError alloc] init];
+            block(nil, error);
+        }
     }
 }
 
