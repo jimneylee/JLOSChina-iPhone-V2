@@ -8,8 +8,6 @@
 
 #import "OSCMyInfoModel.h"
 #import "OSCAPIClient.h"
-//#import "AFJSONRequestOperation.h"
-#import "NSDataAdditions.h"
 
 @interface OSCMyInfoModel()
 
@@ -59,7 +57,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)relativePath
 {
-    return [OSCAPIClient relativePathForMyInfoWithLoginedUserId:[OSCGlobalConfig loginedUserEntity].authorId];
+    return [OSCAPIClient relativePathForMyInfo];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,7 +77,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishLoad
 {
-    if (ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
+    if (!self.errorEntity || ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
         self.returnBlock(self.userEntity, self.errorEntity);
     }
     else {
