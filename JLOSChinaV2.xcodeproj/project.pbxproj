@@ -59,6 +59,8 @@
 		281ACE68187CF41100067D9C /* MessageEntrySendButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE1E187CF41100067D9C /* MessageEntrySendButtonPressed.png */; };
 		281ACE6A187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE1F187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png */; };
 		281ACE6B187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 281ACE1F187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png */; };
+		2823F89F19964D4400F8BF17 /* OSCCommonBodyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2823F89E19964D4400F8BF17 /* OSCCommonBodyWebView.m */; };
+		2823F8A019964D4400F8BF17 /* OSCCommonBodyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2823F89E19964D4400F8BF17 /* OSCCommonBodyWebView.m */; };
 		2832C2281883A9E5003E96F3 /* OSCTweetC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2271883A9E5003E96F3 /* OSCTweetC.m */; };
 		2832C2291883A9E5003E96F3 /* OSCTweetC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C2271883A9E5003E96F3 /* OSCTweetC.m */; };
 		2832C22C1883AB51003E96F3 /* OSCTweetTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C22B1883AB51003E96F3 /* OSCTweetTimelineModel.m */; };
@@ -613,6 +615,8 @@
 		281ACE1D187CF41100067D9C /* MessageEntrySendButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntrySendButton@2x.png"; sourceTree = "<group>"; };
 		281ACE1E187CF41100067D9C /* MessageEntrySendButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MessageEntrySendButtonPressed.png; sourceTree = "<group>"; };
 		281ACE1F187CF41100067D9C /* MessageEntrySendButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MessageEntrySendButtonPressed@2x.png"; sourceTree = "<group>"; };
+		2823F89D19964D4400F8BF17 /* OSCCommonBodyWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCCommonBodyWebView.h; sourceTree = "<group>"; };
+		2823F89E19964D4400F8BF17 /* OSCCommonBodyWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCCommonBodyWebView.m; sourceTree = "<group>"; };
 		2832C2261883A9E5003E96F3 /* OSCTweetC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetC.h; sourceTree = "<group>"; };
 		2832C2271883A9E5003E96F3 /* OSCTweetC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTweetC.m; sourceTree = "<group>"; };
 		2832C22A1883AB51003E96F3 /* OSCTweetTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTweetTimelineModel.h; sourceTree = "<group>"; };
@@ -1531,6 +1535,8 @@
 				CE1C519C1880FD76000F216D /* OSCCommonCell.m */,
 				CEF6F3A818821FF20065F852 /* OSCCommonBodyView.h */,
 				CEF6F3A918821FF20065F852 /* OSCCommonBodyView.m */,
+				2823F89D19964D4400F8BF17 /* OSCCommonBodyWebView.h */,
+				2823F89E19964D4400F8BF17 /* OSCCommonBodyWebView.m */,
 				CEF6F3AA18821FF20065F852 /* OSCReplyCell.h */,
 				CEF6F3AB18821FF20065F852 /* OSCReplyCell.m */,
 				CE543D6E18829EF800D18D77 /* OSCRelativeCell.h */,
@@ -2309,6 +2315,7 @@
 			files = (
 				28B3367F188E1CC800179302 /* OSCUserHomeC.m in Sources */,
 				2852900C1989EDF100CB1BC2 /* TTGlobalUICommon.m in Sources */,
+				2823F89F19964D4400F8BF17 /* OSCCommonBodyWebView.m in Sources */,
 				28443D5E1988C44F00029E3B /* OSCTabBarC.m in Sources */,
 				2832C24B1883C019003E96F3 /* OSCAboutAppC.m in Sources */,
 				CE543D741882A5D000D18D77 /* OSCForumC.m in Sources */,
@@ -2429,6 +2436,7 @@
 			files = (
 				28B33680188E1CC800179302 /* OSCUserHomeC.m in Sources */,
 				2852900D1989EDF100CB1BC2 /* TTGlobalUICommon.m in Sources */,
+				2823F8A019964D4400F8BF17 /* OSCCommonBodyWebView.m in Sources */,
 				28443D5F1988C44F00029E3B /* OSCTabBarC.m in Sources */,
 				2832C24C1883C019003E96F3 /* OSCAboutAppC.m in Sources */,
 				CE543D751882A5D000D18D77 /* OSCForumC.m in Sources */,
