@@ -11,8 +11,8 @@
 typedef NS_ENUM(NSInteger, OSCSearchCatalogType) {
     OSCSearchCatalogType_News = 0,
     OSCSearchCatalogType_Blog = 1,
-    OSCSearchCatalogType_project = 2,
-    OSCSearchCatalogType_post = 3,
+    OSCSearchCatalogType_Project = 2,
+    OSCSearchCatalogType_Post = 3,
     OSCSearchCatalogType_Unknow
 };
 

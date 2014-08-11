@@ -86,11 +86,11 @@
             catalogName = @"blog";
             break;
             
-        case OSCSearchCatalogType_project:
+        case OSCSearchCatalogType_Project:
             catalogName = @"project";
             break;
             
-        case OSCSearchCatalogType_post:
+        case OSCSearchCatalogType_Post:
             catalogName = @"post";
             break;
             

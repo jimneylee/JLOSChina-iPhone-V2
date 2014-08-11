@@ -9,10 +9,13 @@
 #import "OSCSearchC.h"
 #import "OSCSearchResultModel.h"
 #import "OSCSearchDisplayController.h"
+#import "OSCCommonDetailC.h"
+#import "OSCCommonEntity.h"
 
 @interface OSCSearchC ()<OSCSearchDisplayDelegate>
 
 @property (nonatomic, strong) OSCSearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -45,6 +48,7 @@
                                                                                              contentsController:self];
     searchDisplayController.delegate = self;
     self.searchController = searchDisplayController;
+    self.searchBar = searchBar;
     self.tableView.tableHeaderView = searchBar;
     
     [searchBar becomeFirstResponder];
@@ -70,7 +74,37 @@
 - (NIActionBlock)tapAction
 {
     return ^BOOL(id object, id target, NSIndexPath* indexPath) {
-                return YES;
+        if ([object isKindOfClass:[OSCCommonEntity class]]) {
+            OSCCommonEntity* entity = (OSCCommonEntity *)object;
+            if (entity.newsId > 0) {
+                OSCContentType contentType = OSCContentType_LatestNews;
+                switch (((OSCSearchResultModel*)self.model).catalogType) {
+                    case OSCSearchCatalogType_News:
+                        contentType = OSCContentType_LatestNews;
+                        break;
+                        
+                    case OSCSearchCatalogType_Blog:
+                        contentType = OSCContentType_LatestBlog;
+                        break;
+                        
+                    case OSCSearchCatalogType_Post:
+                        contentType = OSCContentType_Forum;
+                        break;
+                        
+                    // TODO: soft
+                    default:
+                        break;
+                }
+                
+                OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
+                                                                      topicType:contentType];
+                [self.navigationController pushViewController:c animated:YES];
+            }
+            else {
+                [OSCGlobalConfig HUDShowMessage:@"不存在或已被删除！" addedToView:self.view];
+            } 
+        }
+        return YES;
     };
 }
 
@@ -101,11 +135,15 @@
 
 - (void)searchWithKeywords:(NSString *)keywords selectedScopeButtonIndex:(NSInteger)selectedScope
 {
-    // TODO: 软件Cell http://www.oschina.net/action/openapi/search_list?catalog=project&q=facebook&pageIndex=1&pageSize=20&access_token=4738091d-003c-4030-8176-4612e7c73879&dataType=xml
-    ((OSCSearchResultModel*)self.model).keywords = keywords;
-    ((OSCSearchResultModel*)self.model).catalogType = selectedScope;
-    
-    [self autoPullDownRefreshActionAnimation];
+    if (keywords.length > 0) {
+        // TODO: 软件Cell http://www.oschina.net/action/openapi/search_list?catalog=project&q=facebook&pageIndex=1&pageSize=20&access_token=4738091d-003c-4030-8176-4612e7c73879&dataType=xml
+        self.searchBar.text = keywords;
+        self.title = [NSString stringWithFormat:@"搜索%@", self.searchBar.scopeButtonTitles[selectedScope]];
+        ((OSCSearchResultModel*)self.model).keywords = keywords;
+        ((OSCSearchResultModel*)self.model).catalogType = selectedScope;
+        
+        [self autoPullDownRefreshActionAnimation];
+    }
 }
 
 @end
