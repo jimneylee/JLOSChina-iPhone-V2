@@ -21,12 +21,14 @@
 #define BUTTON_SIZE CGSizeMake(78.f, 40.f)//(104.f, 40.f)
 
 @interface OSCMyInfoHeaderView()
+
 @property (nonatomic, strong) OSCUserFullEntity* user;
 
 @property (nonatomic, strong) UIView* contentView;
 @property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel* loginIdLabel;
-@property (nonatomic, strong) UILabel* tagLineLabel;
+@property (nonatomic, strong) UILabel* platformsLabel;
+@property (nonatomic, strong) UILabel* expertiseLabel;
 @property (nonatomic, strong) NINetworkImageView* headView;
 
 @property (nonatomic, strong) UIButton* detailBtn;
@@ -70,11 +72,18 @@
         self.loginIdLabel = loginIdLabel;
         
         // introduce
-        UILabel* tagLineLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        tagLineLabel.font = TAG_LINE_ID_FONT_SIZE;
-        tagLineLabel.textColor = [UIColor blackColor];
-        [contentView addSubview:tagLineLabel];
-        self.tagLineLabel = tagLineLabel;
+        UILabel* platformsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        platformsLabel.font = TAG_LINE_ID_FONT_SIZE;
+        platformsLabel.textColor = [UIColor blackColor];
+        [contentView addSubview:platformsLabel];
+        self.platformsLabel = platformsLabel;
+        
+        // expertise
+        UILabel* expertiseLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        expertiseLabel.font = TAG_LINE_ID_FONT_SIZE;
+        expertiseLabel.textColor = [UIColor blackColor];
+        [contentView addSubview:expertiseLabel];
+        self.expertiseLabel = expertiseLabel;
         
         self.contentView.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
         self.contentView.layer.borderWidth = 1.0f;
@@ -83,7 +92,8 @@
         self.contentView.backgroundColor = [UIColor whiteColor];//CELL_CONTENT_VIEW_BG_COLOR;
         self.nameLabel.backgroundColor = [UIColor clearColor];
         self.loginIdLabel.backgroundColor = [UIColor clearColor];
-        self.tagLineLabel.backgroundColor = [UIColor clearColor];
+        self.platformsLabel.backgroundColor = [UIColor clearColor];
+        self.expertiseLabel.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -96,12 +106,11 @@
     CGFloat cellMargin = CELL_PADDING_4;
     CGFloat contentViewMarin = CELL_PADDING_10;
     CGFloat sideMargin = cellMargin + contentViewMarin;
-    CGFloat kContentMaxWidth = self.width - cellMargin * 2;
+    CGFloat kContentMaxWidth = self.width - sideMargin * 2;
     
     CGFloat height = sideMargin;
     self.contentView.frame = CGRectMake(cellMargin, cellMargin,
-                                        self.width - cellMargin * 2,
-                                        self.height - cellMargin * 2);
+                                        self.width - cellMargin * 2, 0.f);
     
     self.headView.left = contentViewMarin;
     self.headView.top = contentViewMarin;
@@ -119,9 +128,14 @@
                                             topWidth, self.loginIdLabel.font.lineHeight);
     
     // introduce
-    self.tagLineLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_4,
-                                         kContentMaxWidth, self.tagLineLabel.font.lineHeight);
-    height = height + self.tagLineLabel.height + CELL_PADDING_4;
+    self.platformsLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_4,
+                                           kContentMaxWidth, self.platformsLabel.font.lineHeight);
+    height = height + self.platformsLabel.height + CELL_PADDING_4;
+    
+    // expertise
+    self.expertiseLabel.frame = CGRectMake(self.platformsLabel.left, self.platformsLabel.bottom + CELL_PADDING_4,
+                                           kContentMaxWidth, self.expertiseLabel.font.lineHeight);
+    height = height + self.expertiseLabel.height + CELL_PADDING_4;
     
     // bottom margin
     height = height + sideMargin;
@@ -130,7 +144,7 @@
     height = height + BUTTON_SIZE.height;
     
     // content view
-    self.contentView.frame = CGRectMake(cellMargin, cellMargin, kContentMaxWidth, height - cellMargin * 2);
+    self.contentView.height = height - cellMargin * 2;
     
     // self height
     self.height = height;
@@ -159,7 +173,14 @@
         }
         self.nameLabel.text = user.authorName;
         self.loginIdLabel.text = user.location;
-        self.tagLineLabel.text = @"TODO:api接口还未添加签名字段";//[NSString stringWithFormat:@"签名：%@", user.tagline.length ? user.tagline : @"这个人很懒，啥也没写"];
+        self.platformsLabel.text = [NSString stringWithFormat:@"开发平台：%@", user.platforms];
+        self.expertiseLabel.text = [NSString stringWithFormat:@"专长领域：%@", user.expertise];
+        [self.favoriteBtn setTitle:[NSString stringWithFormat:@"收藏\r\n%lld", user.favoriteCount]
+                          forState:UIControlStateNormal];
+        [self.followersBtn setTitle:[NSString stringWithFormat:@"关注\r\n%lld", user.followersCount]
+                          forState:UIControlStateNormal];
+        [self.fansBtn setTitle:[NSString stringWithFormat:@"粉丝\r\n%lld", user.fansCount]
+                          forState:UIControlStateNormal];
     }
 }
 
@@ -244,6 +265,8 @@
         _favoriteBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.f, 0.f,
                                                                 BUTTON_SIZE.width, BUTTON_SIZE.height)];
         [_favoriteBtn.titleLabel setFont:BUTTON_FONT_SIZE];
+        [_favoriteBtn.titleLabel setNumberOfLines:2];
+        [_favoriteBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [_favoriteBtn setTitle:@"收藏" forState:UIControlStateNormal];
         [_favoriteBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_favoriteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
@@ -263,6 +286,8 @@
         _followersBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.f, 0.f,
                                                                       BUTTON_SIZE.width, BUTTON_SIZE.height)];
         [_followersBtn.titleLabel setFont:BUTTON_FONT_SIZE];
+        [_followersBtn.titleLabel setNumberOfLines:2];
+        [_followersBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [_followersBtn setTitle:@"关注" forState:UIControlStateNormal];
         [_followersBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_followersBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
@@ -282,6 +307,8 @@
         _fansBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.f, 0.f,
                                                                          BUTTON_SIZE.width, BUTTON_SIZE.height)];
         [_fansBtn.titleLabel setFont:BUTTON_FONT_SIZE];
+        [_fansBtn.titleLabel setNumberOfLines:2];
+        [_fansBtn.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [_fansBtn.titleLabel setTextColor:[UIColor grayColor]];
         [_fansBtn setTitle:@"粉丝" forState:UIControlStateNormal];
         [_fansBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

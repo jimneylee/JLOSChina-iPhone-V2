@@ -16,7 +16,6 @@ typedef void (^ReturnBlock)(OSCUserFullEntity* entity, OSCErrorEntity* errorEnti
 @property (nonatomic, strong) OSCUserFullEntity* userEntity;
 @property (nonatomic, strong) ReturnBlock returnBlock;
 
-- (void)loginWithUsername:(NSString*)username password:(NSString*)password
-                    block:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block;
+- (void)loadMyInfoWithBlock:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block;
 
 @end
