@@ -73,11 +73,14 @@
     }
     
     NSString* path = [self relativePath];
-    OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
-    [httpClient POST:path parameters:params
+    NSDictionary *baseParams = [self generateParameters];
+    NSMutableDictionary *fullParams = [NSMutableDictionary dictionaryWithDictionary:baseParams];
+    [fullParams addEntriesFromDictionary:params];
+    //OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
+    [[OSCAPIClient sharedClient] POST:path parameters:fullParams
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      if ([responseObject isKindOfClass:[NSXMLParser class]]) {
-                                         NSXMLParser* parser = (NSXMLParser*)responseObject;
+                                         NSXMLParser *parser = (NSXMLParser *)responseObject;
                                          [parser setShouldProcessNamespaces:YES];
                                          parser.delegate = self;
                                          [parser parse];
@@ -111,8 +114,14 @@
     }
     
     NSString* path = [self relativePath];
-    OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
-    [httpClient GET:path parameters:params
+    NSDictionary *baseParams = [self generateParameters];
+    NSMutableDictionary *fullParams = [NSMutableDictionary dictionaryWithDictionary:baseParams];
+    if (params.count > 0) {
+        [fullParams addEntriesFromDictionary:params];
+    }
+    
+    //OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
+    [[OSCAPIClient sharedClient] GET:path parameters:fullParams refresh:YES
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      if ([responseObject isKindOfClass:[NSXMLParser class]]) {
                          NSXMLParser* parser = (NSXMLParser*)responseObject;
@@ -234,7 +243,7 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
     // TODO: switch code value:
-    if (ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
+    if (self.dataDictionary) {//ERROR_CODE_SUCCESS == self.errorEntity.errorCode
         [self parseDataDictionary];
         [self didFinishLoad];
     }
