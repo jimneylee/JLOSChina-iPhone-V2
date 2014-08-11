@@ -55,7 +55,7 @@
         {
             if ([OSCGlobalConfig getAuthAccessToken].length > 0) {
                 NSString *str = @"其他";
-                path = [OSCAPIClient relativePathForTweetListWithUserId:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]//其他：我的动弹
+                path = [OSCAPIClient relativePathForTweetListWithUserId:@"121801"//[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]//其他：我的动弹
                                                               pageIndex:self.pageIndex
                                                                pageSize:self.pageSize];
             }

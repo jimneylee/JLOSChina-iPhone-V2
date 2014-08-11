@@ -38,8 +38,8 @@
         self.title = @"社区动弹";
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
-         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
-                                                        action:@selector(autoPullDownRefreshActionAnimation)],
+//         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
+//                                                        action:@selector(autoPullDownRefreshActionAnimation)],
          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                        target:self action:@selector(postNewTweetAction)],
          nil];
