@@ -13,12 +13,16 @@
 #import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
 #import "OSCMyInfoHeaderView.h"
+#import "OSCMyInfoModel.h"
 
 @interface OSCMineC ()
 
 @property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
 @property (nonatomic, strong) OSCMyInfoHeaderView* homepageHeaderView;
+
+@property (nonatomic, strong) OSCMyInfoModel *infoModel;
+@property (nonatomic, strong) OSCUserFullEntity* userEntity;
 
 @end
 
@@ -36,8 +40,7 @@
         self.title = @"我的主页";
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
-         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
-                                                       action:@selector(autoPullDownRefreshActionAnimation)],
+        [OSCGlobalConfig createBarButtonItemWithTitle:@"设置" target:self action:@selector(showSettingView)],
          nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
                                                      name:DID_LOGIN_NOTIFICATION object:nil];
@@ -56,7 +59,12 @@
     
     [self initSegmentedControl];
     ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex;
-    [self updateTopicHeaderView];
+    
+    self.infoModel = [[OSCMyInfoModel alloc] init];
+    [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
+        self.userEntity = entity;
+        [self updateTopicHeaderView];
+    }];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,7 +89,7 @@
     if (!_homepageHeaderView) {
         _homepageHeaderView = [[OSCMyInfoHeaderView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, 0.f)];
     }
-    [self.homepageHeaderView updateViewForUser:[OSCGlobalConfig loginedUserEntity]];
+    [self.homepageHeaderView updateViewForUser:self.userEntity];
     // call layoutSubviews at first to calculte view's height, dif from setNeedsLayout
     [self.homepageHeaderView layoutIfNeeded];
     if (!self.tableView.tableHeaderView) {
@@ -134,6 +142,11 @@
                                animated:animated];
 }
 
+- (void)showSettingView
+{
+    
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Override
@@ -156,11 +169,22 @@
                 [self.navigationController pushViewController:c animated:YES];
             }
             else {
-                [OSCGlobalConfig HUDShowMessage:@"帖子不存在或已被删除！" addedToView:self.view];
+                [OSCGlobalConfig HUDShowMessage:@"不存在或已被删除！" addedToView:self.view];
             }
         }
         return YES;
     };
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)didFinishLoadData
+{
+    [super didFinishLoadData];
+    
+    [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
+        self.userEntity = entity;
+        [self updateTopicHeaderView];
+    }];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

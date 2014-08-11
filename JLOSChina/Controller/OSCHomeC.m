@@ -32,14 +32,9 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"综合资讯";
-        self.navigationItem.leftBarButtonItem =
+        self.navigationItem.rightBarButtonItem =
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
                                                       target:self action:@selector(showSearchView)];
-        self.navigationItem.rightBarButtonItems =
-        [NSArray arrayWithObjects:
-         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
-                                                       action:@selector(autoPullDownRefreshActionAnimation)],
-         nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
                                                      name:DID_LOGIN_NOTIFICATION object:nil];
     }

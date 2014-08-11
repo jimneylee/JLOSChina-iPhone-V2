@@ -32,11 +32,11 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"社区讨论";
-        self.navigationItem.rightBarButtonItems =
-        [NSArray arrayWithObjects:
-         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
-                                                        action:@selector(autoPullDownRefreshActionAnimation)],
-         nil];
+//        self.navigationItem.rightBarButtonItems =
+//        [NSArray arrayWithObjects:
+//         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
+//                                                        action:@selector(autoPullDownRefreshActionAnimation)],
+//         nil];
     }
     return self;
 }
@@ -82,7 +82,7 @@
                     forControlEvents:UIControlEventValueChanged];
     }
     
-    NSArray* sectionNames = @[@"技术问答", @"技术分享", @"IT大杂烩", @"职业生涯", @"站务建议"];
+    NSArray* sectionNames = @[@"所有", @"技术", @"分享", @"灌水", @"站务", @"职业"];
     for (int i = 0; i < sectionNames.count; i++) {
         [self.segmentedControl insertSegmentWithTitle:sectionNames[i]
                                               atIndex:i
