@@ -19,7 +19,7 @@
 //#import "RCTopicActionModel.h"
 
 // 字体 行高 文本色设置
-#define TITLE_FONT_SIZE [UIFont boldSystemFontOfSize:18.f]
+#define TITLE_FONT_SIZE [UIFont boldSystemFontOfSize:16.f]
 #define NAME_FONT_SIZE [UIFont systemFontOfSize:15.f]
 #define DATE_FONT_SIZE [UIFont systemFontOfSize:12.f]
 #define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:18.f]
@@ -231,17 +231,19 @@
     self.nameLabel.text = topicDetailEntity.user.authorName;
     self.dateLabel.text = [NSString stringWithFormat:@"%@发布", [topicDetailEntity.createdAtDate formatRelativeTime]];
     
-//        NSString *author_str =
-//        [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%lu'>%@</a>&nbsp;发表于&nbsp;%@",
-//                                self.topicDetailEntity.user.authorId,
-//                                self.topicDetailEntity.user.authorName,
-//                                self.topicDetailEntity.createdAtDate];
-//        NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@</body>",
-//                          HTML_Style, self.topicDetailEntity.newsTitle,
-//                          author_str, self.topicDetailEntity.body,HTML_Bottom];
+#if 1
+    NSString *authorStr =
+    [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%lld'>%@</a>&nbsp;发表于&nbsp;%@",
+     self.topicDetailEntity.user.authorId, self.topicDetailEntity.user.authorName, self.topicDetailEntity.createdAtDate];
     
+    NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@</body>",
+                      HTML_Style, self.topicDetailEntity.title,
+                      authorStr, self.topicDetailEntity.body, HTML_Bottom];
+#else
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#FFFFFF'>%@<div id='oschina_body'>%@</div>%@</body>",
-                      HTML_Style, self.topicDetailEntity.body,HTML_Bottom];
+                      HTML_Style, self.topicDetailEntity.body, HTML_Bottom];
+#endif
+    
     [self.bodyWebView loadHTMLString:html baseURL:nil];
     
     if (self.topicDetailEntity.imageUrlsArray.count) {
