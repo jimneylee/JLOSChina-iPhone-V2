@@ -14,12 +14,18 @@
 
 @interface OSCBaseModel : NSObject<NSXMLParserDelegate>
 
+@property (nonatomic, copy) NSString* itemElementName;
+@property (nonatomic, copy) NSString* superElementName;
 @property (nonatomic, strong) NSArray* itemElementNamesArray;
+@property (nonatomic, strong) NSMutableDictionary *currentDictionary;
+@property (nonatomic, strong) NSMutableString* tmpInnerElementText;//mutable must retain->www.stackoverflow.com/questions/3686341/nsmutablestring-appendstring-generates-a-sigabrt
+
 @property (nonatomic, strong) OSCAccountEntity* accountEntity;
 @property (nonatomic, strong) OSCErrorEntity* errorEntity;
 @property (nonatomic, strong) OSCNoticeEntity* noticeEntiy;
 @property (nonatomic, strong) NSMutableDictionary* dataDictionary;
 
+- (NSDictionary*)generateParameters;
 - (void)postParams:(NSDictionary*)params errorBlock:(void(^)(OSCErrorEntity* errorEntity))block;
 - (void)getParams:(NSDictionary*)params errorBlock:(void(^)(OSCErrorEntity* errorEntity))errorBlock;
 - (void)parseDataDictionary;

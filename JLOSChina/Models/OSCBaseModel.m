@@ -12,11 +12,6 @@
 
 @interface OSCBaseModel()
 
-@property (nonatomic, copy) NSString* itemElementName;//TODO: itemElementNames array
-@property (nonatomic, copy) NSString* superElementName;
-@property (nonatomic, strong) NSMutableDictionary *currentDictionary;
-@property (nonatomic, strong) NSMutableString* tmpInnerElementText;//mutable must retain->www.stackoverflow.com/questions/3686341/nsmutablestring-appendstring-generates-a-sigabrt
-
 @end
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,6 +169,7 @@
     for (NSString* name in self.itemElementNamesArray) {
         if ([elementName isEqualToString:name]) {
             isEntityElement = YES;
+            break;
         }
     }
     if (isEntityElement) {
@@ -211,7 +207,9 @@
         if (!self.dataDictionary) {
             self.dataDictionary = [NSMutableDictionary dictionary];
         }
-        [self.dataDictionary setObject:self.currentDictionary forKey:self.itemElementName];
+        if (self.currentDictionary) {
+            [self.dataDictionary setObject:self.currentDictionary forKey:self.itemElementName];
+        }
         self.currentDictionary = nil;
         self.superElementName = nil;
     }
