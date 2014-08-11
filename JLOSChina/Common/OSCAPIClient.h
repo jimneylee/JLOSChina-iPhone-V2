@@ -105,17 +105,22 @@
                                        pageSize:(unsigned int)pageSize;
 
 // 活动状态：所有、@我、评论、我的
-+ (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)uid
++ (NSString*)relativePathForActiveListWithLoginedUserId:(long long)uid
                                       activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
                                               pageIndex:(unsigned int)pageIndex
                                                pageSize:(unsigned int)pageSize;
 
-+ (NSString*)relativePathForMyInfo;
-
-+ (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
++ (NSString*)relativePathForUserActiveListWithUserId:(long long)uid
                                           orUsername:(NSString*)username
                                            pageIndex:(unsigned int)pageIndex
                                             pageSize:(unsigned int)pageSize;
+
++ (NSString*)relativePathForMyInfo;
+
++ (NSString*)relativePathForUserInfoWithUserId:(long long)uid
+                                    orUsername:(NSString*)username;
+
++ (NSString*)relativePathForUpdateUserRelationship;
 
 //================================================================================
 // topic write

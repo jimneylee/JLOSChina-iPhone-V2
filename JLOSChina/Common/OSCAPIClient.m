@@ -121,13 +121,28 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 
 // 活动状态：所有、@我、评论、我的
 // catalog : 类别ID [ 0、1所有动态,2提到我的,3评论,4我自己 ]
-+ (NSString*)relativePathForActiveListWithLoginedUserId:(unsigned long)loginUserId
++ (NSString*)relativePathForActiveListWithLoginedUserId:(long long)uid
                                       activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
                                               pageIndex:(unsigned int)pageIndex
                                                pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"active_list?user=%ld&catalog=%u&pageIndex=%u&pageSize=%u",
-            loginUserId, activeCatalogType, pageIndex, pageSize];
+    return [NSString stringWithFormat:@"active_list?user=%lld&catalog=%u&pageIndex=%u&pageSize=%u",
+            uid, activeCatalogType, pageIndex, pageSize];
+}
+
++ (NSString*)relativePathForUserActiveListWithUserId:(long long)uid
+                                          orUsername:(NSString*)username
+                                           pageIndex:(unsigned int)pageIndex
+                                            pageSize:(unsigned int)pageSize
+{
+    if (username.length) {
+        return [NSString stringWithFormat:@"active_list?friend_name=%@&pageIndex=%u&pageSize=%u",
+                [username urlEncoded], pageIndex, pageSize];
+    }
+    else {
+        return [NSString stringWithFormat:@"active_list?friend=%lld&pageIndex=%u&pageSize=%u",
+                uid, pageIndex, pageSize];
+    }
 }
 
 + (NSString*)relativePathForMyInfo
@@ -135,19 +150,22 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
     return [NSString stringWithFormat:@"my_information"];
 }
 
-+ (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
-                                          orUsername:(NSString*)username
-                                           pageIndex:(unsigned int)pageIndex
-                                            pageSize:(unsigned int)pageSize
++ (NSString*)relativePathForUserInfoWithUserId:(long long)uid
+                                    orUsername:(NSString*)username
 {
     if (username.length) {
-        return [NSString stringWithFormat:@"user_information?friend_name=%@&pageIndex=%u&pageSize=%u",
-                [username urlEncoded], pageIndex, pageSize];
+        return [NSString stringWithFormat:@"user_information?friend_name=%@",
+                [username urlEncoded]];
     }
     else {
-        return [NSString stringWithFormat:@"user_information?friend=%ld&pageIndex=%u&pageSize=%u",
-                uid, pageIndex, pageSize];
+        return [NSString stringWithFormat:@"user_information?friend=%lld",
+                uid];
     }
+}
+
++ (NSString*)relativePathForUpdateUserRelationship
+{
+    return [NSString stringWithFormat:@"update_user_relation"];
 }
 
 //================================================================================
