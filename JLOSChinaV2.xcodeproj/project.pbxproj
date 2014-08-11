@@ -85,6 +85,10 @@
 		2832C24E1883C019003E96F3 /* OSCAboutAppC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2832C2481883C019003E96F3 /* OSCAboutAppC.xib */; };
 		2832C24F1883C019003E96F3 /* OSCMoreC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C24A1883C019003E96F3 /* OSCMoreC.m */; };
 		2832C2501883C019003E96F3 /* OSCMoreC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2832C24A1883C019003E96F3 /* OSCMoreC.m */; };
+		283B29BF1998D98C0018F2C8 /* OSCRelationshipActionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 283B29BE1998D98C0018F2C8 /* OSCRelationshipActionModel.m */; };
+		283B29C01998D98C0018F2C8 /* OSCRelationshipActionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 283B29BE1998D98C0018F2C8 /* OSCRelationshipActionModel.m */; };
+		283B29C31998E3270018F2C8 /* OSCUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 283B29C21998E3270018F2C8 /* OSCUserInfoModel.m */; };
+		283B29C41998E3270018F2C8 /* OSCUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 283B29C21998E3270018F2C8 /* OSCUserInfoModel.m */; };
 		28443D5E1988C44F00029E3B /* OSCTabBarC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28443D5D1988C44F00029E3B /* OSCTabBarC.m */; };
 		28443D5F1988C44F00029E3B /* OSCTabBarC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28443D5D1988C44F00029E3B /* OSCTabBarC.m */; };
 		285290021989EDF100CB1BC2 /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 28528FEE1989EDF100CB1BC2 /* NSDataAdditions.m */; };
@@ -636,6 +640,10 @@
 		2832C2481883C019003E96F3 /* OSCAboutAppC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSCAboutAppC.xib; sourceTree = "<group>"; };
 		2832C2491883C019003E96F3 /* OSCMoreC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMoreC.h; sourceTree = "<group>"; };
 		2832C24A1883C019003E96F3 /* OSCMoreC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMoreC.m; sourceTree = "<group>"; };
+		283B29BD1998D98C0018F2C8 /* OSCRelationshipActionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCRelationshipActionModel.h; sourceTree = "<group>"; };
+		283B29BE1998D98C0018F2C8 /* OSCRelationshipActionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCRelationshipActionModel.m; sourceTree = "<group>"; };
+		283B29C11998E3270018F2C8 /* OSCUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCUserInfoModel.h; sourceTree = "<group>"; };
+		283B29C21998E3270018F2C8 /* OSCUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCUserInfoModel.m; sourceTree = "<group>"; };
 		283F5D0D187FA319008ECE0E /* JLV2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JLV2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28443D5C1988C44F00029E3B /* OSCTabBarC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCTabBarC.h; sourceTree = "<group>"; };
 		28443D5D1988C44F00029E3B /* OSCTabBarC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCTabBarC.m; sourceTree = "<group>"; };
@@ -1578,8 +1586,14 @@
 				2832C22B1883AB51003E96F3 /* OSCTweetTimelineModel.m */,
 				CE9CA9C8188D641600C9177C /* OSCMyActiveTimelineModel.h */,
 				CE9CA9C9188D641600C9177C /* OSCMyActiveTimelineModel.m */,
+				28B33671188E0A1F00179302 /* OSCMyInfoModel.h */,
+				28B33672188E0A1F00179302 /* OSCMyInfoModel.m */,
+				283B29C11998E3270018F2C8 /* OSCUserInfoModel.h */,
+				283B29C21998E3270018F2C8 /* OSCUserInfoModel.m */,
 				28B33679188E1AD800179302 /* OSCUserActiveTimelineModel.h */,
 				28B3367A188E1AD800179302 /* OSCUserActiveTimelineModel.m */,
+				283B29BD1998D98C0018F2C8 /* OSCRelationshipActionModel.h */,
+				283B29BE1998D98C0018F2C8 /* OSCRelationshipActionModel.m */,
 				CEF6F3B81882360C0065F852 /* OSCCommonDetailModel.h */,
 				CEF6F3B91882360D0065F852 /* OSCCommonDetailModel.m */,
 				281131B7198BDF38003DA98A /* OSCSearchResultModel.h */,
@@ -1592,8 +1606,6 @@
 				28CABA581886763800BFA036 /* OSCTweetPostModel.m */,
 				28CABA7718867C3D00BFA036 /* OSCFriendsModel.h */,
 				28CABA7818867C3D00BFA036 /* OSCFriendsModel.m */,
-				28B33671188E0A1F00179302 /* OSCMyInfoModel.h */,
-				28B33672188E0A1F00179302 /* OSCMyInfoModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2385,6 +2397,7 @@
 				CE543D9E18840DD400D18D77 /* OSCErrorEntity.m in Sources */,
 				28D4EF7E1858266700C9C858 /* RCRegularParser.m in Sources */,
 				281131B5198BD7AA003DA98A /* OSCSearchC.m in Sources */,
+				283B29BF1998D98C0018F2C8 /* OSCRelationshipActionModel.m in Sources */,
 				CEF6F3BA1882360D0065F852 /* OSCCommonDetailModel.m in Sources */,
 				28CABA51188621D400BFA036 /* OSCBaseModel.m in Sources */,
 				2897EF721856C54B000BB6B9 /* OSCAPIClient.m in Sources */,
@@ -2398,6 +2411,7 @@
 				285290121989EDF100CB1BC2 /* UIViewAdditions.m in Sources */,
 				285290141989EDF100CB1BC2 /* UIWindowAdditions.m in Sources */,
 				28CABA8118867CDF00BFA036 /* OSCFriendListEntity.m in Sources */,
+				283B29C31998E3270018F2C8 /* OSCUserInfoModel.m in Sources */,
 				CE9CA9CE188D674100C9177C /* OSCActivityEntity.m in Sources */,
 				2832C2341883AC25003E96F3 /* OSCTweetCell.m in Sources */,
 				CE593702187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */,
@@ -2506,6 +2520,7 @@
 				CE543D9F18840DD400D18D77 /* OSCErrorEntity.m in Sources */,
 				CE90A0871872E6910030DB1E /* RCRegularParser.m in Sources */,
 				281131B6198BD7AA003DA98A /* OSCSearchC.m in Sources */,
+				283B29C01998D98C0018F2C8 /* OSCRelationshipActionModel.m in Sources */,
 				CEF6F3BB1882360D0065F852 /* OSCCommonDetailModel.m in Sources */,
 				28CABA52188621D400BFA036 /* OSCBaseModel.m in Sources */,
 				CE90A08C1872E6910030DB1E /* OSCAPIClient.m in Sources */,
@@ -2519,6 +2534,7 @@
 				285290131989EDF100CB1BC2 /* UIViewAdditions.m in Sources */,
 				285290151989EDF100CB1BC2 /* UIWindowAdditions.m in Sources */,
 				28CABA8218867CDF00BFA036 /* OSCFriendListEntity.m in Sources */,
+				283B29C41998E3270018F2C8 /* OSCUserInfoModel.m in Sources */,
 				CE9CA9CF188D674100C9177C /* OSCActivityEntity.m in Sources */,
 				2832C2351883AC25003E96F3 /* OSCTweetCell.m in Sources */,
 				CE593703187D7F4100DC3A55 /* UIViewController+JASidePanel.m in Sources */,
