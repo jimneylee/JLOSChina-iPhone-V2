@@ -53,11 +53,9 @@
     if (self) {
         self.title = @"他(她)的主页";
         self.hidesBottomBarWhenPushed = YES;
-        self.navigationItem.rightBarButtonItems =
-        [NSArray arrayWithObjects:
-         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
-                                                       action:@selector(autoPullDownRefreshActionAnimation)],
-         nil];
+        self.navigationItem.rightBarButtonItem = [OSCGlobalConfig createBarButtonItemWithTitle:@"详细信息"
+                                                                                        target:self
+                                                                                        action:@selector(showUserDetailInfo)];
     }
     return self;
 }
@@ -100,6 +98,11 @@
     if (!self.tableView.tableHeaderView) {
         self.tableView.tableHeaderView = self.homepageHeaderView;
     }
+}
+
+- (void)showUserDetailInfo
+{
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
