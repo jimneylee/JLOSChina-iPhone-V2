@@ -10,6 +10,7 @@
 #import "OSCCommonDetailModel.h"
 #import "OSCCommentEntity.h"
 #import "OSCCommonBodyView.h"
+#import "OSCCommonBodyWebView.h"
 #import "OSCReplyModel.h"
 #import "OSCQuickReplyC.h"
 #import "OSCCommonRepliesListC.h"
@@ -20,6 +21,8 @@
 @interface OSCCommonDetailC ()<RCQuickReplyDelegate, OSCCommonBodyViewDelegate>
 @property (nonatomic, strong) OSCCommonDetailEntity* topicDetailEntity;
 @property (nonatomic, strong) OSCCommonBodyView* topicBodyView;
+@property (nonatomic, strong) OSCCommonBodyWebView* topicBodyWebView;
+
 @property (nonatomic, strong) OSCQuickReplyC* quickReplyC;
 @property (nonatomic, strong) UIButton* scrollBtn;
 @end
@@ -73,6 +76,10 @@
 {
     [super viewDidLoad];
 
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.backgroundColor = TABLE_VIEW_BG_COLOR;
     self.tableView.backgroundView = nil;
@@ -131,6 +138,25 @@
     if (!self.tableView.tableHeaderView) {
         self.tableView.tableHeaderView = self.topicBodyView;
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)updateTopicHeaderWebView
+{
+    if (!_topicBodyWebView) {
+        _topicBodyWebView = [[OSCCommonBodyWebView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, self.view.height)];
+    }
+    [self.topicBodyWebView updateViewWithTopicDetailEntity:self.topicDetailEntity];
+    
+#if 0
+    // call layoutSubviews at first to calculte view's height, dif from setNeedsLayout
+    [self.topicBodyWebView layoutIfNeeded];
+    if (!self.tableView.tableHeaderView) {
+        self.tableView.tableHeaderView = self.topicBodyWebView;
+    }
+#else
+    [self.view addSubview:self.topicBodyWebView];
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,7 +284,11 @@
     [super didFinishLoadData];
     
     self.topicDetailEntity = ((OSCCommonDetailModel*)self.model).topicDetailEntity;
+#if 1
+    [self updateTopicHeaderWebView];
+#else
     [self updateTopicHeaderView];
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
