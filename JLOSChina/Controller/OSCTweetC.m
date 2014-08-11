@@ -249,6 +249,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didLoginNotification
 {
+#if 0// no use for oauth
     if (OSCTweetType_Mine == self.segmentedControl.selectedSegmentIndex
         && ![OSCGlobalConfig loginedUserEntity]) {
         // TODO:remove all, sometime crash, fix later on
@@ -257,6 +258,7 @@
         //    }
         [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
     }
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

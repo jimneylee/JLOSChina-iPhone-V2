@@ -22,7 +22,6 @@
 @property (nonatomic, strong) OSCMyInfoHeaderView* homepageHeaderView;
 
 @property (nonatomic, strong) OSCMyInfoModel *infoModel;
-@property (nonatomic, strong) OSCUserFullEntity* userEntity;
 
 @end
 
@@ -62,8 +61,7 @@
     
     self.infoModel = [[OSCMyInfoModel alloc] init];
     [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-        self.userEntity = entity;
-        [self updateTopicHeaderView];
+        [self updateHeaderViewWithUserEntity:entity];
     }];
 }
 
@@ -84,12 +82,13 @@
 #pragma mark - Private
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateTopicHeaderView
+- (void)updateHeaderViewWithUserEntity:(OSCUserFullEntity*)userEntity
 {
     if (!_homepageHeaderView) {
         _homepageHeaderView = [[OSCMyInfoHeaderView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, 0.f)];
     }
-    [self.homepageHeaderView updateViewForUser:self.userEntity];
+    [self.homepageHeaderView updateViewForUser:userEntity];
+    
     // call layoutSubviews at first to calculte view's height, dif from setNeedsLayout
     [self.homepageHeaderView layoutIfNeeded];
     if (!self.tableView.tableHeaderView) {
@@ -182,8 +181,7 @@
     [super didFinishLoadData];
     
     [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-        self.userEntity = entity;
-        [self updateTopicHeaderView];
+        [self updateHeaderViewWithUserEntity:entity];
     }];
 }
 
@@ -237,9 +235,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didLoginNotification
 {
-    // TODO: request user info
-    
-    [self updateTopicHeaderView];
+
 }
 
 @end
