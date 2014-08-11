@@ -11,6 +11,7 @@
 #import "UIImage+nimbusImageNamed.h"
 #import "UIView+findViewController.h"
 #import "OSCUserFullEntity.h"
+#import "OSCUserActiveTimelineModel.h"
 
 #define NAME_FONT_SIZE [UIFont boldSystemFontOfSize:18.f]
 #define LOGIN_ID_FONT_SIZE [UIFont systemFontOfSize:16.f]
@@ -26,13 +27,12 @@
 @property (nonatomic, strong) UIView* contentView;
 @property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel* locationLabel;
-@property (nonatomic, strong) UILabel* tagLineLabel;
+@property (nonatomic, strong) UILabel* platformsLabel;
+@property (nonatomic, strong) UILabel* expertiseLabel;
 @property (nonatomic, strong) NINetworkImageView* headView;
 
-@property (nonatomic, strong) UIButton* detailBtn;
-@property (nonatomic, strong) UIButton* favoriteBtn;
-@property (nonatomic, strong) UIButton* followersBtn;
-@property (nonatomic, strong) UIButton* fansBtn;
+@property (nonatomic, strong) UIButton* relationBtn;
+
 @end
 
 @implementation OSCUserInfoHeaderView
@@ -70,11 +70,18 @@
         self.locationLabel = locationLabel;
         
         // introduce
-        UILabel* tagLineLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        tagLineLabel.font = TAG_LINE_ID_FONT_SIZE;
-        tagLineLabel.textColor = [UIColor blackColor];
-        [contentView addSubview:tagLineLabel];
-        self.tagLineLabel = tagLineLabel;
+        UILabel* platformsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        platformsLabel.font = TAG_LINE_ID_FONT_SIZE;
+        platformsLabel.textColor = [UIColor blackColor];
+        [contentView addSubview:platformsLabel];
+        self.platformsLabel = platformsLabel;
+        
+        // expertise
+        UILabel* expertiseLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        expertiseLabel.font = TAG_LINE_ID_FONT_SIZE;
+        expertiseLabel.textColor = [UIColor blackColor];
+        [contentView addSubview:expertiseLabel];
+        self.expertiseLabel = expertiseLabel;
         
         self.contentView.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
         self.contentView.layer.borderWidth = 1.0f;
@@ -83,7 +90,8 @@
         self.contentView.backgroundColor = [UIColor whiteColor];//CELL_CONTENT_VIEW_BG_COLOR;
         self.nameLabel.backgroundColor = [UIColor clearColor];
         self.locationLabel.backgroundColor = [UIColor clearColor];
-        self.tagLineLabel.backgroundColor = [UIColor clearColor];
+        self.platformsLabel.backgroundColor = [UIColor clearColor];
+        self.expertiseLabel.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
@@ -96,12 +104,11 @@
     CGFloat cellMargin = CELL_PADDING_4;
     CGFloat contentViewMarin = CELL_PADDING_10;
     CGFloat sideMargin = cellMargin + contentViewMarin;
-    CGFloat kContentMaxWidth = self.width - cellMargin * 2;
+    CGFloat kContentMaxWidth = self.width - sideMargin * 2;
     
     CGFloat height = sideMargin;
     self.contentView.frame = CGRectMake(cellMargin, cellMargin,
-                                        self.width - cellMargin * 2,
-                                        self.height - cellMargin * 2);
+                                        self.width - cellMargin * 2, 0.f);
     
     self.headView.left = contentViewMarin;
     self.headView.top = contentViewMarin;
@@ -119,22 +126,27 @@
                                          topWidth, self.locationLabel.font.lineHeight);
     
     // introduce
-    self.tagLineLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_4,
-                                         kContentMaxWidth, self.tagLineLabel.font.lineHeight);
-    height = height + self.tagLineLabel.height + CELL_PADDING_4;
+    self.platformsLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_4,
+                                         kContentMaxWidth, self.platformsLabel.font.lineHeight);
+    height = height + self.platformsLabel.height + CELL_PADDING_4;
+    
+    // expertise
+    self.expertiseLabel.frame = CGRectMake(self.platformsLabel.left, self.platformsLabel.bottom + CELL_PADDING_4,
+                                         kContentMaxWidth, self.expertiseLabel.font.lineHeight);
+    height = height + self.expertiseLabel.height + CELL_PADDING_4;
     
     // bottom margin
     height = height + sideMargin;
     
     // content view
-    self.contentView.frame = CGRectMake(cellMargin, cellMargin, kContentMaxWidth, height - cellMargin * 2);
+    self.contentView.height = height - cellMargin * 2;
     
     // self height
     self.height = height;
     
     // detail btn
-    self.detailBtn.right = self.contentView.width;
-    self.detailBtn.centerY = self.contentView.height / 2;
+    self.relationBtn.right = self.contentView.width;
+    self.relationBtn.centerY = self.contentView.height / 3;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,7 +162,15 @@
         }
         self.nameLabel.text = user.authorName;
         self.locationLabel.text = user.location;
-        self.tagLineLabel.text = [NSString stringWithFormat:@"擅长平台：%@", user.platforms];
+        self.platformsLabel.text = [NSString stringWithFormat:@"开发平台：%@", user.platforms];
+        self.expertiseLabel.text = [NSString stringWithFormat:@"专长领域：%@", user.expertise];
+        
+        if (user.relationshipType == OSCRelationshipType_NotAttation) {
+            [self.relationBtn setTitle:@"加关注" forState:UIControlStateNormal];
+        }
+        else {
+            [self.relationBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -159,10 +179,17 @@
 #pragma mark - UIButton Action
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showDetailAction
+- (void)doRelationAction
 {
-    // TODO:
-    [OSCGlobalConfig HUDShowMessage:@"to do it!"
+    if (self.user.relationshipType == OSCRelationshipType_NotAttation) {
+        [self.relationBtn setTitle:@"加关注" forState:UIControlStateNormal];
+        
+    }
+    else {
+        [self.relationBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+    }
+
+    [OSCGlobalConfig HUDShowMessage:[self.relationBtn titleForState:UIControlStateNormal]
                         addedToView:[UIApplication sharedApplication].keyWindow];
 }
 
@@ -171,23 +198,22 @@
 #pragma mark - View init
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (UIButton*)detailBtn
+- (UIButton*)relationBtn
 {
-    if (!_detailBtn) {
-        _detailBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.f, 0.f,
+    if (!_relationBtn) {
+        _relationBtn = [[UIButton alloc] initWithFrame:CGRectMake(0.f, 0.f,
                                                                   BUTTON_SIZE.width, BUTTON_SIZE.height)];
-        [_detailBtn.titleLabel setFont:BUTTON_FONT_SIZE];
-        [_detailBtn setTitle:@"详细资料" forState:UIControlStateNormal];
-        [_detailBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_detailBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-        [_detailBtn setBackgroundColor:TABLE_VIEW_BG_COLOR];
-        [_detailBtn addTarget:self action:@selector(showDetailAction)
+        [_relationBtn.titleLabel setFont:BUTTON_FONT_SIZE];
+        [_relationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_relationBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+        [_relationBtn setBackgroundColor:TABLE_VIEW_BG_COLOR];
+        [_relationBtn addTarget:self action:@selector(doRelationAction)
                forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:_detailBtn];
-        _detailBtn.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
-        _detailBtn.layer.borderWidth = 1.0f;
+        [self.contentView addSubview:_relationBtn];
+        _relationBtn.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
+        _relationBtn.layer.borderWidth = 1.0f;
     }
-    return _detailBtn;
+    return _relationBtn;
 }
 
 @end
