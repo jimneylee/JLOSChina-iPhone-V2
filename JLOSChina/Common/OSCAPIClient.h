@@ -95,7 +95,7 @@
                                          pageSize:(unsigned int)pageSize;
 
 // 社区分类列表
-+ (NSString*)relativePathForForumListWithForumType:(OSCForumTopicType)type
++ (NSString*)relativePathForForumListWithCatalogId:(NSString *)catalogId
                                          pageIndex:(unsigned int)pageIndex
                                           pageSize:(unsigned int)pageSize;
 
@@ -110,7 +110,7 @@
                                               pageIndex:(unsigned int)pageIndex
                                                pageSize:(unsigned int)pageSize;
 
-+ (NSString*)relativePathForMyInfoWithLoginedUserId:(unsigned long)uid;
++ (NSString*)relativePathForMyInfo;
 
 + (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
                                           orUsername:(NSString*)username

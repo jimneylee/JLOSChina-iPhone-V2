@@ -102,12 +102,12 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
             blogId, pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForForumListWithForumType:(OSCForumTopicType)type
++ (NSString*)relativePathForForumListWithCatalogId:(NSString *)catalogId
                                          pageIndex:(unsigned int)pageIndex
                                           pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"post_list?catalog=%u&pageIndex=%u&pageSize=%u",
-            type+1, pageIndex, pageSize];
+    return [NSString stringWithFormat:@"post_list?catalog=%@&pageIndex=%u&pageSize=%u",
+            catalogId, pageIndex, pageSize];
 }
 
 //用户ID [ 0：最新动弹，-1：热门动弹，其他：我的动弹 ]
@@ -130,9 +130,9 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
             loginUserId, activeCatalogType, pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForMyInfoWithLoginedUserId:(unsigned long)loginUserId
++ (NSString*)relativePathForMyInfo
 {
-    return [NSString stringWithFormat:@"my_information?uid=%ld", loginUserId];
+    return [NSString stringWithFormat:@"my_information"];
 }
 
 + (NSString*)relativePathForUserActiveListWithUserId:(unsigned long)uid
@@ -154,6 +154,7 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 // topic write
 //================================================================================
 
+#pragma mark - Post
 
 + (NSString*)relativePathForPostNewTweet
 {
