@@ -7,6 +7,8 @@
 //
 
 #define ERROR_CODE_SUCCESS 1
+#define ERROR_CODE_SUCCESS_200 200
+
 @interface OSCErrorEntity : NSObject
 @property (nonatomic, assign) NSUInteger errorCode;
 @property (nonatomic, copy) NSString* errorMessage;
