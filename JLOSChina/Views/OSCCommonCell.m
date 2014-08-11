@@ -17,7 +17,7 @@
 //#import "RCForumTopicsC.h"
 #import "OSCUserHomeC.h"
 
-#define TITLE_FONT_SIZE [UIFont systemFontOfSize:16.f]
+#define TITLE_FONT_SIZE [UIFont systemFontOfSize:15.f]
 #define CREATED_FONT_SIZE [UIFont systemFontOfSize:13.f]
 #define REPLIES_COUNT_FONT_SIZE [UIFont boldSystemFontOfSize:16.f]
 
