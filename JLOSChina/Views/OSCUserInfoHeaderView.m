@@ -12,6 +12,7 @@
 #import "UIView+findViewController.h"
 #import "OSCUserFullEntity.h"
 #import "OSCUserActiveTimelineModel.h"
+#import "OSCRelationshipActionModel.h"
 
 #define NAME_FONT_SIZE [UIFont boldSystemFontOfSize:18.f]
 #define LOGIN_ID_FONT_SIZE [UIFont systemFontOfSize:16.f]
@@ -22,6 +23,7 @@
 #define BUTTON_SIZE CGSizeMake(78.f, 30.f)
 
 @interface OSCUserInfoHeaderView()
+
 @property (nonatomic, strong) OSCUserFullEntity* user;
 
 @property (nonatomic, strong) UIView* contentView;
@@ -30,7 +32,6 @@
 @property (nonatomic, strong) UILabel* platformsLabel;
 @property (nonatomic, strong) UILabel* expertiseLabel;
 @property (nonatomic, strong) NINetworkImageView* headView;
-
 @property (nonatomic, strong) UIButton* relationBtn;
 
 @end
@@ -182,15 +183,32 @@
 - (void)doRelationAction
 {
     if (self.user.relationshipType == OSCRelationshipType_NotAttation) {
-        [self.relationBtn setTitle:@"加关注" forState:UIControlStateNormal];
         
+        [[OSCRelationshipActionModel sharedModel] followUserId:self.user.authorId
+                                                         block:^(OSCErrorEntity *errorEntity) {
+                                                             if (errorEntity.errorCode == ERROR_CODE_SUCCESS_200) {
+                                                                 [self.relationBtn setTitle:@"取消关注"
+                                                                                   forState:UIControlStateNormal];
+                                                             }
+                                                             else {
+                                                                 [OSCGlobalConfig HUDShowMessage:errorEntity.errorMessage
+                                                                                     addedToView:[UIApplication sharedApplication].keyWindow];
+                                                             }
+                                                         }];
     }
     else {
-        [self.relationBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+        [[OSCRelationshipActionModel sharedModel] unfollowUserId:self.user.authorId
+                                                         block:^(OSCErrorEntity *errorEntity) {
+                                                             if (errorEntity.errorCode == ERROR_CODE_SUCCESS_200) {
+                                                                 [self.relationBtn setTitle:@"添加关注"
+                                                                                   forState:UIControlStateNormal];
+                                                             }
+                                                             else {
+                                                                 [OSCGlobalConfig HUDShowMessage:errorEntity.errorMessage
+                                                                                     addedToView:[UIApplication sharedApplication].keyWindow];
+                                                             }
+                                                         }];
     }
-
-    [OSCGlobalConfig HUDShowMessage:[self.relationBtn titleForState:UIControlStateNormal]
-                        addedToView:[UIApplication sharedApplication].keyWindow];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

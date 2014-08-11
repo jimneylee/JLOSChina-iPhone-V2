@@ -12,11 +12,16 @@
 #import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
 #import "OSCUserInfoHeaderView.h"
+#import "OSCUserInfoModel.h"
 
 @interface OSCUserHomeC ()
 
 @property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, strong) OSCUserInfoHeaderView* homepageHeaderView;
+
+@property (nonatomic, strong) OSCUserInfoModel *infoModel;
+@property (nonatomic, assign) long long userId;
+@property (nonatomic, copy) NSString* username;
 
 @end
 
@@ -31,6 +36,7 @@
 {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
+        self.userId = userId;
         ((OSCUserActiveTimelineModel*)self.model).userId = userId;
     }
     return self;
@@ -41,7 +47,9 @@
 {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
-        ((OSCUserActiveTimelineModel*)self.model).username = username;
+        self.username = username;
+        ((OSCUserActiveTimelineModel*)self.model).userId = NSNotFound;
+        self.userId = NSNotFound;
     }
     return self;
 }
@@ -68,6 +76,19 @@
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.backgroundColor = TABLE_VIEW_BG_COLOR;
     self.tableView.backgroundView = nil;
+    
+    self.infoModel = [[OSCUserInfoModel alloc] init];
+    [self.infoModel loadUserInfoWithUserId:self.userId orUsername:self.username
+                                     block:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
+                                         {
+                                             [self updateHeaderViewWithUserEntity:entity];
+                                             
+//                                             if (((OSCUserActiveTimelineModel*)self.model).userId == NSNotFound) {
+//                                                 ((OSCUserActiveTimelineModel*)self.model).userId = entity.authorId;
+//                                                 [self refreshData:YES];
+//                                             }
+                                         }
+    }];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,12 +108,13 @@
 #pragma mark - Private
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)updateTopicHeaderViewWithUserEntity:(OSCUserFullEntity*)userEntity
+- (void)updateHeaderViewWithUserEntity:(OSCUserFullEntity*)userEntity
 {
     if (!_homepageHeaderView) {
         _homepageHeaderView = [[OSCUserInfoHeaderView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.width, 0.f)];
     }
     [self.homepageHeaderView updateViewForUser:userEntity];
+    
     // call layoutSubviews at first to calculte view's height, dif from setNeedsLayout
     [self.homepageHeaderView layoutIfNeeded];
     if (!self.tableView.tableHeaderView) {
@@ -139,7 +161,6 @@
 - (void)didFinishLoadData
 {
     [super didFinishLoadData];
-    [self updateTopicHeaderViewWithUserEntity:((OSCUserActiveTimelineModel*)self.model).userEntity];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -37,11 +37,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)relativePath
 {
+    return nil;
+    
     NSString* path =
     [OSCAPIClient relativePathForUserActiveListWithUserId:self.userId
-                                               orUsername:self.username
-                                              pageIndex:self.pageIndex
-                                             pageSize:self.pageSize];
+                                                orUsername:self.username
+                                                pageIndex:self.pageIndex
+                                                 pageSize:self.pageSize];
     return path;
 }
 
