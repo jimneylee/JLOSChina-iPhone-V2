@@ -7,7 +7,6 @@
 //
 
 #import "OSCUserFullEntity.h"
-#import "NSString+stringFromValue.h"
 
 @implementation OSCUserFullEntity
 //  <user>
@@ -45,17 +44,17 @@
     
     self = [super initWithDictionary:dic];
     if (self) {
-        self.location = [NSString stringWithFormat:@"%@%@",
-                         [NSString stringFromValue:dic[@"province"]],
-                         [NSString stringFromValue:dic[@"city"]]];
-        self.joinTime = [NSString stringFromValue:dic[@"joinTime"]];
-        self.platforms = [NSString stringFromValue:dic[@"platforms"]];
-        self.expertise = [NSString stringFromValue:dic[@"expertise"]];
-
+        self.location = [NSString stringWithFormat:@"%@%@", dic[@"province"], dic[@"city"]];
+        self.joinTime = dic[@"joinTime"];
+        self.platforms = dic[@"platforms"];
+        self.expertise = dic[@"expertise"];
+        self.gender = dic[@"gender"];
+        self.relationshipType = [dic[@"relation"] integerValue];
+        
         // followers  fans  score
-        self.followersCount = [dic[@"followerscount"] longLongValue];//followers
-        self.fansCount = [dic[@"fanscount"] longLongValue];//fans
-        self.favoriteCount = [dic[@"favoritecount"] longLongValue];
+        self.followersCount = [dic[@"followersCount"] longLongValue];
+        self.fansCount = [dic[@"fansCount"] longLongValue];
+        self.favoriteCount = [dic[@"favoriteCount"] longLongValue];
     }
     return self;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "OSCUserEntity.h"
+
 //view-source:http://www.oschina.net/action/api/my_information?uid=121801
 //<user>
 //    <name><![CDATA[jimney]]></name>
@@ -21,6 +22,14 @@
 //    <followerscount>0</followerscount>
 //</user>
 
+// 好友关系 关注情况：1-已关注（对方未关注我）2-相互关注 3-未关注
+typedef NS_ENUM(NSInteger, OSCRelationshipType) {
+    OSCRelationshipType_AttationFromMe = 1, //1-已关注（对方未关注我）
+    OSCRelationshipType_AttationEachOther = 2,//2-相互关注
+    OSCRelationshipType_NotAttation = 3,      //3-未关注
+    OSCRelationshipType_Unknown
+};
+
 @interface OSCUserFullEntity : OSCUserEntity
 
 @property (nonatomic, copy) NSString* location;
@@ -28,6 +37,8 @@
 @property (nonatomic, copy) NSString* gender;
 @property (nonatomic, copy) NSString* platforms;
 @property (nonatomic, copy) NSString* expertise;
+@property (nonatomic, assign) OSCRelationshipType relationshipType;
+
 @property (nonatomic, assign) long long followersCount;
 @property (nonatomic, assign) long long fansCount;
 @property (nonatomic, assign) long long favoriteCount;
