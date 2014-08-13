@@ -10,10 +10,11 @@
 #import "SDSegmentedControl.h"
 
 #import "OSCMyActiveTimelineModel.h"
+#import "OSCMyInfoModel.h"
 #import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
 #import "OSCMyInfoHeaderView.h"
-#import "OSCMyInfoModel.h"
+#import "OSCMoreC.h"
 
 @interface OSCMineC ()
 
@@ -141,9 +142,11 @@
                                animated:animated];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showSettingView
 {
-    
+    OSCMoreC *c = [[OSCMoreC alloc] init];
+    [self.navigationController pushViewController:c animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
