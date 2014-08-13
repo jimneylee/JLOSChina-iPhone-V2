@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JASidePanelController.h"
 #import "OSCTabBarC.h"
 
 @interface OSCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) JASidePanelController *sidePanelController;
 @property (strong, nonatomic) OSCTabBarC *tabBarC;
 
 @end

@@ -12,14 +12,9 @@
 #import "MTStatusBarOverlay.h"
 #import "LTUpdate.h"
 #import "JLNetworkSpy.h"
-#import "JASidePanelController.h"
 
 #import "OSCTabBarC.h"
-#import "OSCHomeC.h"
-#import "OSCTweetC.h"
-#import "OSCLeftMenuC.h"
-#import "OSCTweetPostC.h"
-#import "OSCMineC.h"
+#import "OSCAboutAppC.h"
 
 @interface OSCAppDelegate()<RCNetworkSpyDelegate>
 
@@ -90,21 +85,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 1
     
-#if 0
-    OSCHomeC *forumTopics = [[OSCHomeC alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:forumTopics];
-    nav.navigationBar.translucent = NO;
-    OSCLeftMenuC *leftSideC = [[OSCLeftMenuC alloc] initWithStyle:UITableViewStylePlain];
-    self.sidePanelController = [[JASidePanelController alloc] init];
-    self.sidePanelController.leftGapPercentage = LEFT_GAP_PERCENTAGE;
-    self.sidePanelController.centerPanel = nav;
-    self.sidePanelController.leftPanel = leftSideC;
-    self.window.rootViewController = self.sidePanelController;
-#else
     self.tabBarC = [[OSCTabBarC alloc] init];
     self.window.rootViewController = self.tabBarC;
-#endif
-    
     [self.window makeKeyAndVisible];
     
     [self prepareAfterLaunching];
