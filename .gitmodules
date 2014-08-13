@@ -4,6 +4,3 @@
 [submodule "Vendor/JLNimbusTime"]
 	path = Vendor/JLNimbusTime
 	url = https://github.com/jimneylee/JLNimbusTimeline.git
-[submodule "vendor/320Categories"]
-	path = vendor/320Categories
-	url = https://github.com/jimneylee/320Categories.git
