@@ -1,5 +1,5 @@
 ##JLOSChina-iPhone
-开源中国客户端V2版本，参考[新的OpenAPI接口](http://www.oschina.net/openapi)，目前已兼容主要的接口，还有一些需要继续完善，由于时间和精力有限，希望感兴趣的童鞋一起参与。
+开源中国客户端V2版本，参考[新的OpenAPI接口](http://www.oschina.net/openapi)，目前已兼容主要的接口，还有一些需要继续完善，希望感兴趣的童鞋一起参与。
 
 
 ## 开发环境
