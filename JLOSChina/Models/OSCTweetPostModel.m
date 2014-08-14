@@ -9,7 +9,6 @@
 #import "OSCTweetPostModel.h"
 #import "OSCAPIClient.h"
 #import "AFHTTPRequestOperation.h"
-//#import "AFXMLRequestOperation.h"
 
 @implementation OSCTweetPostModel
 
@@ -33,7 +32,7 @@
     if (body.length) {
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:body forKey:@"msg"];
-        [params setObject:[NSNumber numberWithLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
                    forKey:@"uid"];
         [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
             if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
@@ -67,41 +66,45 @@
     else if (body.length) {
         NSString* path = [self relativePath];
         
-#if 0
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:body forKey:@"msg"];
-        [params setObject:[NSNumber numberWithLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
                    forKey:@"uid"];
+        
+        NSDictionary *baseParams = [self generateParameters];
+        NSMutableDictionary *fullParams = [NSMutableDictionary dictionaryWithDictionary:baseParams];
+        if (params.count > 0) {
+            [fullParams addEntriesFromDictionary:params];
+        }
+        
         NSData* imageData = UIImageJPEGRepresentation(image, 1.0);
-        NSMutableURLRequest *request = [[OSCAPIClient sharedClient] multipartFormRequestWithMethod:@"POST" path:path parameters:params
-                                                        constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+        
+        AFHTTPRequestOperation *operation = [[OSCAPIClient sharedClient] POST:path parameters:fullParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             [formData appendPartWithFileData:imageData name:@"img" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ([responseObject isKindOfClass:[NSXMLParser class]]) {
+                NSXMLParser* parser = (NSXMLParser*)responseObject;
+                [parser setShouldProcessNamespaces:YES];
+                parser.delegate = self;
+                [parser parse];
+            }
+            else {
+                if (failure) {
+                    OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
+                    failure(errorEntity);
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            if (failure) {
+                OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
+                failure(errorEntity);
+            }
         }];
-        AFXMLRequestOperation* operation =
-        [AFXMLRequestOperation XMLParserRequestOperationWithRequest:request
-                                                            success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser) {
-                                                                if ([XMLParser isKindOfClass:[NSXMLParser class]]) {
-                                                                    NSXMLParser* parser = (NSXMLParser*)XMLParser;
-                                                                    [parser setShouldProcessNamespaces:YES];
-                                                                    parser.delegate = self;
-                                                                    [parser parse];
-                                                                }
-                                                                else {
-                                                                    if (failure) {
-                                                                        OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
-                                                                        failure(errorEntity);
-                                                                    }
-                                                                }
-                                                            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLParser *XMLParser) {
-                                                                if (failure) {
-                                                                    OSCErrorEntity* errorEntity = [[OSCErrorEntity alloc] init];
-                                                                    failure(errorEntity);
-                                                                }
-        }];
+        
         [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
             NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
         }];
-        [operation start];
     }
     else {
         if (failure) {
@@ -109,7 +112,6 @@
             errorEntity.errorMessage = @"啥动弹也没写";
             failure(errorEntity);
         }
-#endif
     }
 }
 
@@ -132,7 +134,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishLoad
 {
-    if (ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
+    if (ERROR_CODE_SUCCESS_200 == self.errorEntity.errorCode) {
         self.successBlock();
     }
     else {

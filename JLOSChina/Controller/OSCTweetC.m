@@ -36,6 +36,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"社区动弹";
+        self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
 //         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self

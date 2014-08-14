@@ -21,6 +21,7 @@ typedef void (^FailureBlock)(OSCErrorEntity* errorEntity);
 - (void)postNewTweetWithBody:(NSString*)body
                      success:(void(^)())success
                      failure:(void(^)(OSCErrorEntity *error))failure;
+
 // maybe post with image
 - (void)postNewTweetWithBody:(NSString*)body
                        image:(UIImage*)image
