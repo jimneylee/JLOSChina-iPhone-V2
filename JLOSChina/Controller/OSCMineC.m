@@ -44,6 +44,10 @@
          nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
                                                      name:DID_LOGIN_NOTIFICATION object:nil];
+        self.infoModel = [[OSCMyInfoModel alloc] init];
+        [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
+            [OSCGlobalConfig setLoginedUserEntity:entity];
+        }];
     }
     return self;
 }
@@ -60,10 +64,9 @@
     [self initSegmentedControl];
     ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex;
     
-    self.infoModel = [[OSCMyInfoModel alloc] init];
-    [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-        [self updateHeaderViewWithUserEntity:entity];
-    }];
+    if ([OSCGlobalConfig loginedUserEntity]) {
+        [self updateHeaderViewWithUserEntity:[OSCGlobalConfig loginedUserEntity]];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,6 +188,7 @@
     
     [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
         [self updateHeaderViewWithUserEntity:entity];
+        [OSCGlobalConfig setLoginedUserEntity:entity];
     }];
 }
 
