@@ -235,11 +235,9 @@
     // TODO: switch code value:
     if (self.listDataArray) {//ERROR_CODE_SUCCESS == self.errorEntity.errorCode
         [self parseDataToIndexPaths];
-        [self didFinishLoad];
     }
-    else {
-        [self didFailLoad];
-    }
+    
+    [self didFinishLoad];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

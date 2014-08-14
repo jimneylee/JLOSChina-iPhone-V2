@@ -246,14 +246,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    // TODO: switch code value:
-    if (self.dataDictionary) {//ERROR_CODE_SUCCESS == self.errorEntity.errorCode
+    if (self.dataDictionary) {
         [self parseDataDictionary];
-        [self didFinishLoad];
     }
-    else {
-        [self didFailLoad];
-    }
+
+    [self didFinishLoad];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
