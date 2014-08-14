@@ -50,7 +50,7 @@
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:[NSNumber numberWithInt:catalogType]
                    forKey:@"catalog"];
-        [params setObject:[NSNumber numberWithLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
                    forKey:@"uid"];
         [params setObject:body forKey:@"content"];
         
@@ -95,7 +95,7 @@
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:[NSNumber numberWithInt:catalogType]
                    forKey:@"catalog"];
-        [params setObject:[NSNumber numberWithLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
                    forKey:@"uid"];
         [params setObject:[NSNumber numberWithLong:topicId]
                    forKey:@"id"];
@@ -145,7 +145,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishLoad
 {
-    if (ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
+    if (ERROR_CODE_SUCCESS_200 == self.errorEntity.errorCode) {
         self.successBlock(self.replyEntity);
     }
     else {
