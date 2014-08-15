@@ -54,38 +54,17 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)clearAccountDataWhenLogout
+{
+    [OSCAccountEntity deleteStoredUserAccount];
+    [OSCGlobalConfig setLoginedUserEntity:nil];
+    [OSCGlobalConfig setOAuthAccessToken:nil];
+    [OSCAuthModel releaseSharedAuthModel];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - App Info
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// code from old version
-+ (NSString *)getIOSGuid
-{
-    NSUserDefaults * settings = [NSUserDefaults standardUserDefaults];
-    NSString * value = [settings objectForKey:@"guid"];
-    if (value && [value isEqualToString:@""] == NO) {
-        return value;
-    }
-    else
-    {
-        CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-        NSString * uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
-        CFRelease(uuid);
-        [settings setObject:uuidString forKey:@"guid"];
-        [settings synchronize];
-        return uuidString;
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// code from old version
-+ (NSString *)getOSVersion
-{
-    return [NSString stringWithFormat:@"OSChina.NET/%@/%@/%@/%@",APP_VERSION,
-            [UIDevice currentDevice].systemName,
-            [UIDevice currentDevice].systemVersion,
-            [UIDevice currentDevice].model];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (OSCCatalogType)catalogTypeForContentType:(OSCContentType)contentType
