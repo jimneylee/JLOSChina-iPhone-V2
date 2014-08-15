@@ -45,9 +45,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
                                                      name:DID_LOGIN_NOTIFICATION object:nil];
         self.infoModel = [[OSCMyInfoModel alloc] init];
-        [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-            [OSCGlobalConfig setLoginedUserEntity:entity];
-        }];
     }
     return self;
 }
@@ -148,7 +145,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showSettingView
 {
-    OSCMoreC *c = [[OSCMoreC alloc] init];
+    OSCMoreC *c = [[OSCMoreC alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:c animated:YES];
 }
 
@@ -187,8 +184,8 @@
     [super didFinishLoadData];
     
     [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-        [self updateHeaderViewWithUserEntity:entity];
         [OSCGlobalConfig setLoginedUserEntity:entity];
+        [self updateHeaderViewWithUserEntity:entity];
     }];
 }
 
@@ -242,7 +239,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didLoginNotification
 {
-
+    if ([OSCGlobalConfig getAuthAccessToken]) {
+        [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
+            [OSCGlobalConfig setLoginedUserEntity:entity];
+            [self updateHeaderViewWithUserEntity:entity];
+            [self autoPullDownRefreshActionAnimation];
+        }];
+    }
 }
 
 @end
