@@ -56,6 +56,9 @@
 // 左侧菜单栏可视宽度比
 #define LEFT_GAP_PERCENTAGE 0.55f
 
+// group头部高度
+#define GROUP_SECTION_HEADER_HEIGHT 20.f
+
 #define KEY_WINDOW [UIApplication sharedApplication].keyWindow
 
 // 自定义链接协议
