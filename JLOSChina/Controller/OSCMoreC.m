@@ -8,7 +8,6 @@
 
 #import "OSCMoreC.h"
 #import "LTUpdate.h"
-#import "OSCAccountEntity.h"
 #import "OSCAboutAppC.h"
 
 #define ACTION_SHEET_TAG_LOGOUT 1000
@@ -16,22 +15,31 @@
 #define ACTION_SHEET_TAG_RATE_APP 1002
 
 #define LOGOUT_TITLE @"注销登录"
+#define NOT_LOGIN_TITLE @"未登录"
 #define LOGIN_TITLE @"登录"
 
 @interface OSCMoreC ()<UIActionSheetDelegate>
+
 @property (nonatomic, readwrite, retain) NITableViewModel* model;
 @property (nonatomic, readwrite, retain) NITableViewActions* actions;
 @property (nonatomic, readwrite, retain) NICellFactory* cellFactory;
 @property (nonatomic, readwrite, retain) NITextCell* logoutLoginCell;
+
 @end
 
 @implementation OSCMoreC
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark UIViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         self.title = @"更多设置";
+        self.hidesBottomBarWhenPushed = YES;
+        
         _actions = [[NITableViewActions alloc] initWithTarget:self];
         NIActionBlock tapClearCacheAction = ^BOOL(id object, id target, NSIndexPath* indexPath) {
             [self showClearCaceActionSheet];
@@ -41,9 +49,9 @@
             if ([OSCGlobalConfig loginedUserEntity]) {
                 [self showLogoutActionSheet];
             }
-            else {
-                [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
-            }
+//            else {
+//                [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
+//            }
             return YES;
         };
         NIActionBlock tapCheckLatestVersionAction = ^BOOL(id object, id target, NSIndexPath* indexPath) {
@@ -63,7 +71,7 @@
             [self showAboutView];
             return YES;
         };
-        NSString* logoutLoginCellTitle = [OSCGlobalConfig loginedUserEntity] ? LOGOUT_TITLE : LOGIN_TITLE;
+        NSString* logoutLoginCellTitle = [OSCGlobalConfig loginedUserEntity] ? LOGOUT_TITLE : NOT_LOGIN_TITLE;
         NSArray* tableContents =
         [NSArray arrayWithObjects:
          [_actions attachToObject:[NITitleCellObject objectWithTitle:@"清除缓存"]
@@ -92,10 +100,6 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark UIViewController
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -109,9 +113,11 @@
     self.tableView.dataSource = self.model;
     self.tableView.delegate = [self.actions forwardingTo:self];
     
-    self.tableView.separatorColor = [UIColor lightGrayColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = TABLE_VIEW_BG_COLOR;
     self.tableView.backgroundView = nil;
+    self.tableView.sectionHeaderHeight = GROUP_SECTION_HEADER_HEIGHT;
+    self.tableView.sectionFooterHeight = 0.f;
 }
 
 - (void)didReceiveMemoryWarning
@@ -172,12 +178,13 @@
 - (void)logout
 {
     if ([OSCGlobalConfig loginedUserEntity]) {
-        [OSCAccountEntity deleteStoredUserAccount];
-        [OSCGlobalConfig setLoginedUserEntity:nil];
+        
+        [OSCGlobalConfig clearAccountDataWhenLogout];
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGOUT_NOTIFICATION object:nil];
         [OSCGlobalConfig HUDShowMessage:@"注销成功" addedToView:self.view];
-        self.logoutLoginCell.textLabel.text = LOGIN_TITLE;
-        self.logoutLoginCell.backgroundColor = APP_THEME_COLOR;
+        self.logoutLoginCell.textLabel.text = NOT_LOGIN_TITLE;
+        self.logoutLoginCell.backgroundColor = [UIColor lightGrayColor];
     }
 }
 
@@ -249,20 +256,32 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     if ([cell isKindOfClass:[NITextCell class]]) {
         NITextCell* textCell = (NITextCell *)cell;
         if ([textCell.textLabel.text isEqualToString:LOGOUT_TITLE]
-            || [textCell.textLabel.text isEqualToString:LOGIN_TITLE]) {
+            || [textCell.textLabel.text isEqualToString:NOT_LOGIN_TITLE]) {
             textCell.textLabel.textAlignment = NSTextAlignmentCenter;
             textCell.textLabel.font = [UIFont boldSystemFontOfSize:20.f];
             textCell.textLabel.textColor = [UIColor whiteColor];
             self.logoutLoginCell = textCell;
             
             if ([textCell.textLabel.text isEqualToString:LOGOUT_TITLE]) {
-                textCell.backgroundColor = APP_NAME_GREEN_COLOR;
-            }
-            else if ([textCell.textLabel.text isEqualToString:LOGIN_TITLE]) {
                 textCell.backgroundColor = APP_THEME_COLOR;
+            }
+            else if ([textCell.textLabel.text isEqualToString:NOT_LOGIN_TITLE]) {
+                textCell.backgroundColor = [UIColor lightGrayColor];
             }
         }
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return GROUP_SECTION_HEADER_HEIGHT;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, tableView.width, GROUP_SECTION_HEADER_HEIGHT)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 @end
