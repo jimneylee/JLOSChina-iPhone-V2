@@ -35,6 +35,11 @@
                   ||[[[UIDevice currentDevice] model] isEqualToString:@"iPhone Simulator"])
 #define IS_IPHONE5 (IS_IPHONE && IS_WIDESCREEN)
 
+// OSC OAuth
+#define kAppKey             @"pMGiaTIsGseV4hoL7Qgb"
+#define kAppSecret          @"qYlSXyRf0DjY3uLyQ5Fd4m3QBOUjbGVy"
+#define kAppRedirectURL     @"http://www.oschina.net/default.html"
+
 // 标签plist
 #define EMOTION_PLIST @"emotion_icons.plist"
 
