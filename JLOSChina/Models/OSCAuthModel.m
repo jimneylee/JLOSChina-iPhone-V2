@@ -11,29 +11,40 @@
 #import "NSDataAdditions.h"
 #import "SinaWeibo.h"
 
-#define kAppKey             @"pMGiaTIsGseV4hoL7Qgb"
-#define kAppSecret          @"qYlSXyRf0DjY3uLyQ5Fd4m3QBOUjbGVy"
-#define kAppRedirectURL     @"http://www.oschina.net/default.html"
-
 @interface OSCAuthModel()<SinaWeiboDelegate>
 
 @property (nonatomic, strong) SinaWeibo *sinaWeibo;
+
 @end
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation OSCAuthModel
 
+static OSCAuthModel* _sharedAuthModel = nil;
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 + (OSCAuthModel*)sharedAuthModel
 {
-    static OSCAuthModel* _sharedAuthModel = nil;
+#if 0// 因为此处单例会被多次创建，故不用dispatch_once_t，后面再深入考虑
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedAuthModel = [[OSCAuthModel alloc] init];
     });
-    
+#else
+    _sharedAuthModel = [[OSCAuthModel alloc] init];
     return _sharedAuthModel;
+#endif
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
++ (void)releaseSharedAuthModel
+{
+    if (_sharedAuthModel) {
+        _sharedAuthModel = nil;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

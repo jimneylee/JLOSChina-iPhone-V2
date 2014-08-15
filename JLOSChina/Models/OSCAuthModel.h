@@ -17,6 +17,8 @@
 @property (nonatomic, strong) OSCUserFullEntity* userEntity;
 
 + (OSCAuthModel*)sharedAuthModel;
++ (void)releaseSharedAuthModel;
+
 - (BOOL)checkAuthValid;
 
 @end
