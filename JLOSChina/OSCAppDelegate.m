@@ -37,16 +37,17 @@
     
     // AFNetworking
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    
-    // Spy network
-    [[JLNetworkSpy sharedNetworkSpy] spyNetwork];
-    [JLNetworkSpy sharedNetworkSpy].spyDelegate = self;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)prepareAfterLaunching
 {
+    // New version check
     [[LTUpdate shared] update];
+    
+    // Spy network
+    [[JLNetworkSpy sharedNetworkSpy] spyNetwork];
+    [JLNetworkSpy sharedNetworkSpy].spyDelegate = self;
     
     [self appearanceChange];
 }
