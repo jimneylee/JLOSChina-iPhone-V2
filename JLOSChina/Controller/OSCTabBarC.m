@@ -55,14 +55,14 @@
         
         self.badgeView.text = @"2";
 #else
-        self.badgeView = [JSCustomBadge customBadgeWithString:@""
-                                                 withStringColor:[UIColor whiteColor]
-                                                  withInsetColor:[UIColor redColor]
-                                                  withBadgeFrame:YES
-                                             withBadgeFrameColor:[UIColor redColor]
-                                                       withScale:.8f
-                                                     withShining:NO];
-        [self addSubview:self.badgeView];
+//        self.badgeView = [JSCustomBadge customBadgeWithString:nil
+//                                                 withStringColor:[UIColor whiteColor]
+//                                                  withInsetColor:[UIColor redColor]
+//                                                  withBadgeFrame:YES
+//                                             withBadgeFrameColor:[UIColor redColor]
+//                                                       withScale:.8f
+//                                                     withShining:NO];
+//        [self addSubview:self.badgeView];
 #endif
     }
     
@@ -158,11 +158,7 @@
     [self hideRealTabBar:self.view];
     
 	self.currentSelectedIndex = 0;
-    
-    [self setBadgeValue:@"2" forTabIndex:0];
-    [self setBadgeValue:@"5" forTabIndex:1];
-    [self setBadgeValue:@"7" forTabIndex:2];
-    [self setBadgeValue:@"4" forTabIndex:3];
+//    [self setBadgeValue:@"4" forTabIndex:3];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
