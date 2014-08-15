@@ -94,13 +94,16 @@
     RCKeywordEntity* keyworkEntity = nil;
     if (o.emotionRanges.count) {
         NSString* emotionImageName = nil;
+        NSData *imageData = nil;
+
         // replace emotion from nail to head, so range's location is right. it's very important, good idea!
-        for (int i = 0; i < o.emotionRanges.count; i++) {
+        for (int i = o.emotionRanges.count - 1; i >= 0; i--) {
             keyworkEntity = (RCKeywordEntity*)o.emotionRanges[i];
             if (i < o.emotionImageNames.count) {
                 emotionImageName = o.emotionImageNames[i];
                 if (emotionImageName.length) {
-                    [contentLabel insertImage:[UIImage nimbusImageNamed:emotionImageName]
+                    imageData = UIImagePNGRepresentation([UIImage imageNamed:emotionImageName]);
+                    [contentLabel insertImage:[UIImage imageWithData:imageData scale:2.5f]
                                       atIndex:keyworkEntity.range.location];
                 }
             }
