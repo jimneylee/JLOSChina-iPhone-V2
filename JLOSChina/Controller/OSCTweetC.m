@@ -162,7 +162,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)postNewTweetAction
 {
-    if ([OSCGlobalConfig loginedUserEntity]) {
+    if ([OSCGlobalConfig getAuthUserID]) {
         OSCTweetPostC* postC = [[OSCTweetPostC alloc] init];
         [self.navigationController pushViewController:postC animated:YES];
     }
@@ -251,7 +251,7 @@
 {
 #if 0// no use for oauth
     if (OSCTweetType_Mine == self.segmentedControl.selectedSegmentIndex
-        && ![OSCGlobalConfig loginedUserEntity]) {
+        && ![OSCGlobalConfig getAuthUserID]) {
         // TODO:remove all, sometime crash, fix later on
         //    if (self.model.sections.count > 0) {
         //        [self.model removeSectionAtIndex:0];

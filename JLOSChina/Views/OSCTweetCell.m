@@ -385,7 +385,7 @@
 #if 1
     UIViewController* superviewC = self.viewController;
     
-    if ([OSCGlobalConfig loginedUserEntity]) {
+    if ([OSCGlobalConfig getAuthUserID]) {
         if ([superviewC isKindOfClass:[OSCTweetC class]]) {
             
             OSCTweetC* tweetC = (OSCTweetC*)superviewC;

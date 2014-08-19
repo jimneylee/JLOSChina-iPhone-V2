@@ -50,7 +50,7 @@
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:[NSNumber numberWithInt:catalogType]
                    forKey:@"catalog"];
-        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[OSCGlobalConfig getAuthUserID]
                    forKey:@"uid"];
         [params setObject:body forKey:@"content"];
         
@@ -95,7 +95,7 @@
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:[NSNumber numberWithInt:catalogType]
                    forKey:@"catalog"];
-        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[OSCGlobalConfig getAuthUserID]
                    forKey:@"uid"];
         [params setObject:[NSNumber numberWithLong:topicId]
                    forKey:@"id"];

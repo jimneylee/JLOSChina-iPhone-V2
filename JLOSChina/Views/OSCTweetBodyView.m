@@ -384,7 +384,7 @@
     // if logined, and do reply action
     if (0 == self.tweetEntity.repliesCount) {
         UIViewController* superviewC = self.viewController;
-        if ([OSCGlobalConfig loginedUserEntity]) {
+        if ([OSCGlobalConfig getAuthUserID]) {
             if ([superviewC isKindOfClass:[OSCTweetC class]]) {
                 OSCTweetC* tweetC = (OSCTweetC*)superviewC;
                 [tweetC showReplyAsInputAccessoryViewWithTweetId:self.tweetEntity.tweetId];
