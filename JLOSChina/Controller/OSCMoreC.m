@@ -46,7 +46,7 @@
             return YES;
         };
         NIActionBlock tapLogoutLoginAction = ^BOOL(id object, id target, NSIndexPath* indexPath) {
-            if ([OSCGlobalConfig loginedUserEntity]) {
+            if ([OSCGlobalConfig getAuthUserID]) {
                 [self showLogoutActionSheet];
             }
 //            else {
@@ -71,7 +71,7 @@
             [self showAboutView];
             return YES;
         };
-        NSString* logoutLoginCellTitle = [OSCGlobalConfig loginedUserEntity] ? LOGOUT_TITLE : NOT_LOGIN_TITLE;
+        NSString* logoutLoginCellTitle = [OSCGlobalConfig getAuthUserID] ? LOGOUT_TITLE : NOT_LOGIN_TITLE;
         NSArray* tableContents =
         [NSArray arrayWithObjects:
          [_actions attachToObject:[NITitleCellObject objectWithTitle:@"清除缓存"]
@@ -177,7 +177,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)logout
 {
-    if ([OSCGlobalConfig loginedUserEntity]) {
+    if ([OSCGlobalConfig getAuthUserID]) {
         
         [OSCGlobalConfig clearAccountDataWhenLogout];
         
