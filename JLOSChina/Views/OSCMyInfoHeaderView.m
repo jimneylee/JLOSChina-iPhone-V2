@@ -191,11 +191,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showFavoritedTopicsAction
 {
-    UIViewController* superviewC = self.viewController;
-    //    if (superviewC) {
-    //        RCForumTopicsC* c = [[RCForumTopicsC alloc] initForFavoritedWithUserLoginId:self.user.loginId];
-    //        [superviewC.navigationController pushViewController:c animated:YES];
-    //    }
+//    UIViewController* superviewC = self.viewController;
+//    if (superviewC) {
+//        RCForumTopicsC* c = [[RCForumTopicsC alloc] initForFavoritedWithUserLoginId:self.user.loginId];
+//        [superviewC.navigationController pushViewController:c animated:YES];
+//    }
     // TODO:
     [OSCGlobalConfig HUDShowMessage:@"to do it!"
                         addedToView:[UIApplication sharedApplication].keyWindow];
@@ -204,7 +204,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showFollowersAction
 {
-    UIViewController* superviewC = self.viewController;
+//    UIViewController* superviewC = self.viewController;
 //    if (superviewC) {
 //        RCForumTopicsC* c = [[RCForumTopicsC alloc] initWithUserLoginId:self.user.loginId];
 //        [superviewC.navigationController pushViewController:c animated:YES];
@@ -217,11 +217,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showFansAction
 {
-    UIViewController* superviewC = self.viewController;
-    //    if (superviewC) {
-    //        RCForumTopicsC* c = [[RCForumTopicsC alloc] initWithUserLoginId:self.user.loginId];
-    //        [superviewC.navigationController pushViewController:c animated:YES];
-    //    }
+//    UIViewController* superviewC = self.viewController;
+//    if (superviewC) {
+//        RCForumTopicsC* c = [[RCForumTopicsC alloc] initWithUserLoginId:self.user.loginId];
+//        [superviewC.navigationController pushViewController:c animated:YES];
+//    }
     // TODO:
     [OSCGlobalConfig HUDShowMessage:@"to do it!"
                         addedToView:[UIApplication sharedApplication].keyWindow];
