@@ -12,8 +12,8 @@
 @interface OSCCommonEntity : JLNimbusEntity
 
 @property (nonatomic, strong) OSCUserEntity* user;
-@property (nonatomic, assign) unsigned long newsId;
+@property (nonatomic, assign) long long newsId;
 @property (nonatomic, strong) NSDate* createdAtDate;
-@property (nonatomic, assign) unsigned long repliesCount;
+@property (nonatomic, assign) long long repliesCount;
 
 @end

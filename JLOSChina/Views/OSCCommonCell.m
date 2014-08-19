@@ -183,7 +183,7 @@
     if ([object isKindOfClass:[OSCCommonEntity class]]) {
         OSCCommonEntity* o = (OSCCommonEntity*)object;
         self.topicEntity = o;
-        self.repliesCountLabel.text = [NSString stringWithFormat:@"%lu", o.repliesCount];
+        self.repliesCountLabel.text = [NSString stringWithFormat:@"%lld", o.repliesCount];
         self.textLabel.text = o.title;
 
         self.createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",
