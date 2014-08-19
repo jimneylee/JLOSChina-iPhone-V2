@@ -30,7 +30,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSString*)relativePath
 {
-    return [OSCAPIClient relativePathForFriendsListWithUserId:[OSCGlobalConfig loginedUserEntity].authorId
+    return [OSCAPIClient relativePathForFriendsListWithUserId:[[OSCGlobalConfig getAuthUserID] integerValue]
                                                   pageIndex:self.pageStartIndex//default just get one page and sort them
                                                  pageSize:self.pageSize];
 }
