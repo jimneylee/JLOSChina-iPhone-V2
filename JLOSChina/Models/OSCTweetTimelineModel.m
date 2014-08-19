@@ -53,8 +53,7 @@
             
         case OSCTweetType_Mine:
         {
-            NSString *idStr = [NSString stringWithFormat:@"%lld", [OSCGlobalConfig loginedUserEntity].authorId];
-            path = [OSCAPIClient relativePathForTweetListWithUserId:idStr
+            path = [OSCAPIClient relativePathForTweetListWithUserId:[OSCGlobalConfig getAuthUserID]
                                                           pageIndex:self.pageIndex
                                                            pageSize:self.pageSize];
 

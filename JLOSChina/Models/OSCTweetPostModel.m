@@ -32,7 +32,7 @@
     if (body.length) {
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:body forKey:@"msg"];
-        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[OSCGlobalConfig getAuthUserID]
                    forKey:@"uid"];
         [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
             if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
@@ -68,7 +68,7 @@
         
         NSMutableDictionary* params = [NSMutableDictionary dictionary];
         [params setObject:body forKey:@"msg"];
-        [params setObject:[NSNumber numberWithLongLong:[OSCGlobalConfig loginedUserEntity].authorId]
+        [params setObject:[OSCGlobalConfig getAuthUserID]
                    forKey:@"uid"];
         
         NSDictionary *baseParams = [self generateParameters];
