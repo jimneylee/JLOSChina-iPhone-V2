@@ -9,7 +9,6 @@
 #import "OSCHomeC.h"
 #import "SDSegmentedControl.h"
 #import "OSCHomeTimelineModel.h"
-#import "OSCMyInfoModel.h"
 #import "OSCCommonEntity.h"
 #import "OSCCommonDetailC.h"
 #import "OSCSearchC.h"
@@ -18,8 +17,6 @@
 
 @property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
-
-@property (nonatomic, strong) OSCMyInfoModel *infoModel;
 
 @end
 
@@ -55,14 +52,6 @@
     
     [self initSegmentedControl];
     ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
-    
-    // 放在此处获取登录用户信息，主要是为了兼顾到我的动弹需要uid获取信息
-    self.infoModel = [[OSCMyInfoModel alloc] init];
-    if ([OSCGlobalConfig getAuthAccessToken]) {
-        [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-            [OSCGlobalConfig setLoginedUserEntity:entity];
-        }];
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
