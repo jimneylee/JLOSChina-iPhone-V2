@@ -44,7 +44,6 @@
          nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didLoginNotification)
                                                      name:DID_LOGIN_NOTIFICATION object:nil];
-        self.infoModel = [[OSCMyInfoModel alloc] init];
     }
     return self;
 }
@@ -61,8 +60,12 @@
     [self initSegmentedControl];
     ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex;
     
-    if ([OSCGlobalConfig loginedUserEntity]) {
-        [self updateHeaderViewWithUserEntity:[OSCGlobalConfig loginedUserEntity]];
+    self.infoModel = [[OSCMyInfoModel alloc] init];
+    if ([OSCGlobalConfig getAuthAccessToken]) {
+        [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
+//            [OSCGlobalConfig setLoginedUserEntity:entity];
+            [self updateHeaderViewWithUserEntity:entity];
+        }];
     }
 }
 
@@ -182,11 +185,6 @@
 - (void)didFinishLoadData
 {
     [super didFinishLoadData];
-    
-    [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-        [OSCGlobalConfig setLoginedUserEntity:entity];
-        [self updateHeaderViewWithUserEntity:entity];
-    }];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -241,8 +239,9 @@
 {
     if ([OSCGlobalConfig getAuthAccessToken]) {
         [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-            [OSCGlobalConfig setLoginedUserEntity:entity];
+//            [OSCGlobalConfig setLoginedUserEntity:entity];
             [self updateHeaderViewWithUserEntity:entity];
+            
             [self autoPullDownRefreshActionAnimation];
         }];
     }
