@@ -171,7 +171,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replyTopicAction
 {
-    if ([OSCGlobalConfig loginedUserEntity]) {
+    if ([OSCGlobalConfig getAuthUserID]) {
         [self showReplyAsInputAccessoryView];
         if (!self.navigationController.navigationBarHidden) {
             [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -241,7 +241,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)replyTopicWithFloorAtSomeone:(NSString*)floorAtsomeoneString
 {
-    if ([OSCGlobalConfig loginedUserEntity]) {
+    if ([OSCGlobalConfig getAuthUserID]) {
         [self replyTopicAction];
         [self.quickReplyC appendString:floorAtsomeoneString];
     }
