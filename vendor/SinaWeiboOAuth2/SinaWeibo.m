@@ -187,19 +187,19 @@
 
 - (void)logInDidFinishWithAuthInfo:(NSDictionary *)authInfo
 {
-#if 0
+#if 0// sina
     NSString *access_token = [authInfo objectForKey:@"access_token"];
     NSString *uid = [authInfo objectForKey:@"uid"];
     NSString *remind_in = [authInfo objectForKey:@"remind_in"];
     NSString *refresh_token = [authInfo objectForKey:@"refresh_token"];
-#else
+#else// oschina
     NSString *access_token = [authInfo objectForKey:@"access_token"];
+    NSString *uid = [authInfo objectForKey:@"uid"];
     NSString *remind_in = [authInfo objectForKey:@"expires_in"];
     NSString *refresh_token = [authInfo objectForKey:@"refresh_token"];
 #endif
     
-    //if (access_token && uid)
-    if (access_token)
+    if (access_token && uid)
     {
         if (remind_in != nil)
         {
@@ -215,7 +215,7 @@
         } 
         
         self.accessToken = access_token;
-        //self.userID = uid;
+        self.userID = uid;
         self.refreshToken = refresh_token;
         
         if ([delegate respondsToSelector:@selector(sinaweiboDidLogIn:)])

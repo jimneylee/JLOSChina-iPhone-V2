@@ -63,6 +63,7 @@ static OSCAuthModel* _sharedAuthModel = nil;
         OSCAccountEntity *account = [OSCAccountEntity loadStoredUserAccount];
         if (account) {
             sinaWeibo.accessToken = account.accessToken;
+            sinaWeibo.userID = account.userID;
             sinaWeibo.expirationDate = account.expiresIn;
             sinaWeibo.refreshToken = account.refreshToken;
         }
@@ -86,26 +87,30 @@ static OSCAuthModel* _sharedAuthModel = nil;
     }
     else {
         // 已登录过，不用再次登录
-        [OSCGlobalConfig setOAuthAccessToken:self.sinaWeibo.accessToken];
-        //[[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGIN_NOTIFICATION object:nil];
+        [OSCGlobalConfig setAuthUserID:self.sinaWeibo.userID];
+        [OSCGlobalConfig setAuthAccessToken:self.sinaWeibo.accessToken];
     }
+    
     return authValid;
 }
 
 #pragma mark - SinaWeiboDelegate
-- (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo
+- (void)sinaweiboDidLogIn:(SinaWeibo *)sinaWeibo
 {
-    NSLog(@"accessToken = %@\expirationDate = %@\refreshToken = %@\n",
-          sinaweibo.accessToken, sinaweibo.expirationDate, sinaweibo.refreshToken);
+    NSLog(@"accessToken = %@\nuid = %@\nexpirationDate = %@\nrefreshToken = %@\n",
+          sinaWeibo.accessToken, sinaWeibo.userID,sinaWeibo.expirationDate, sinaWeibo.refreshToken);
     
-    if (sinaweibo.accessToken.length && sinaweibo.expirationDate && sinaweibo.refreshToken.length) {
-        [OSCAccountEntity storeAccessToken:sinaweibo.accessToken
-                                 expiresIn:sinaweibo.expirationDate
-                              refreshToken:sinaweibo.refreshToken];
+    if (sinaWeibo.accessToken.length && sinaWeibo.userID
+        && sinaWeibo.expirationDate && sinaWeibo.refreshToken.length) {
         
+        [OSCAccountEntity storeAccessToken:sinaWeibo.accessToken
+                                    userID:sinaWeibo.userID
+                                 expiresIn:sinaWeibo.expirationDate
+                              refreshToken:sinaWeibo.refreshToken];
         
         // 登录成功
-        [OSCGlobalConfig setOAuthAccessToken:sinaweibo.accessToken];
+        [OSCGlobalConfig setAuthUserID:sinaWeibo.userID];
+        [OSCGlobalConfig setAuthAccessToken:sinaWeibo.accessToken];
         [[NSNotificationCenter defaultCenter] postNotificationName:DID_LOGIN_NOTIFICATION object:nil];
     }
     else {

@@ -12,21 +12,24 @@
 NSString* kDefaultForumService = @"DefaultForumService";
 
 static NSString* kAccessTokenKey = @"AccessTokenKey";
+static NSString* kUserIDKey = @"UserIDKey";
 static NSString* kExpiresInKey = @"ExpiresInKey";
 static NSString* kRefreshTokenKey = @"RefreshTokenKey";
 
 @implementation OSCAccountEntity
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (OSCAccountEntity*)loadStoredUserAccount
++ (OSCAccountEntity *)loadStoredUserAccount
 {
-    NSString* accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessTokenKey];
-    NSDate* expiresIn = [[NSUserDefaults standardUserDefaults] objectForKey:kExpiresInKey];
-    NSString* refreshToken = [[NSUserDefaults standardUserDefaults] objectForKey:kRefreshTokenKey];
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessTokenKey];
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:kUserIDKey];
+    NSDate *expiresIn = [[NSUserDefaults standardUserDefaults] objectForKey:kExpiresInKey];
+    NSString *refreshToken = [[NSUserDefaults standardUserDefaults] objectForKey:kRefreshTokenKey];
 
-    if (accessToken && expiresIn && refreshToken) {
+    if (accessToken && userID && expiresIn && refreshToken) {
         OSCAccountEntity* account = [[OSCAccountEntity alloc] init];
         account.accessToken = accessToken;
+        account.userID = userID;
         account.expiresIn = expiresIn;
         account.refreshToken = refreshToken;
         return account;
@@ -35,9 +38,11 @@ static NSString* kRefreshTokenKey = @"RefreshTokenKey";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (void)storeAccessToken:(NSString *)accessToken expiresIn:(NSDate *)expiresIn refreshToken:(NSString *)refreshToken
++ (void)storeAccessToken:(NSString *)accessToken userID:(NSString *)userID
+               expiresIn:(NSDate *)expiresIn refreshToken:(NSString *)refreshToken
 {
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:kAccessTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:kUserIDKey];
     [[NSUserDefaults standardUserDefaults] setObject:expiresIn forKey:kExpiresInKey];
     [[NSUserDefaults standardUserDefaults] setObject:refreshToken forKey:kRefreshTokenKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -47,6 +52,7 @@ static NSString* kRefreshTokenKey = @"RefreshTokenKey";
 + (void)deleteStoredUserAccount
 {
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kAccessTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kUserIDKey];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kExpiresInKey];
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kRefreshTokenKey];
     [[NSUserDefaults standardUserDefaults] synchronize];

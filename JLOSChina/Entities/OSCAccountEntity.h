@@ -11,11 +11,13 @@
 @interface OSCAccountEntity : NSObject
 
 @property (nonatomic, copy) NSString* accessToken;
+@property (nonatomic, copy) NSString* userID;
 @property (nonatomic, copy) NSDate* expiresIn;
 @property (nonatomic, copy) NSString* refreshToken;
 
 + (OSCAccountEntity*)loadStoredUserAccount;
-+ (void)storeAccessToken:(NSString *)accessToken expiresIn:(NSDate *)expiresIn refreshToken:(NSString *)refreshToken;
++ (void)storeAccessToken:(NSString *)accessToken userID:(NSString *)userID
+               expiresIn:(NSDate *)expiresIn refreshToken:(NSString *)refreshToken;
 + (void)deleteStoredUserAccount;
 
 @end
