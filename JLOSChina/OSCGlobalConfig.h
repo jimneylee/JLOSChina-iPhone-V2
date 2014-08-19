@@ -55,10 +55,13 @@ typedef NS_ENUM(NSInteger, OSCMyActiveCatalogType) {
 
 //Global Data
 + (NSString *)getAuthAccessToken;
-+ (void)setOAuthAccessToken:(NSString *)accessToken;
++ (void)setAuthAccessToken:(NSString *)accessToken;
 
-+ (OSCUserFullEntity*)loginedUserEntity;
-+ (void)setLoginedUserEntity:(OSCUserFullEntity*)userEntity;
++ (NSString *)getAuthUserID;
++ (void)setAuthUserID:(NSString *)userID;
+
+//+ (OSCUserFullEntity*)loginedUserEntity;
+//+ (void)setLoginedUserEntity:(OSCUserFullEntity*)userEntity;
 
 + (BOOL)checkAuthValid;
 + (void)clearAccountDataWhenLogout;

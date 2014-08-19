@@ -13,6 +13,7 @@
 // emotion
 static NSArray* emotionsArray = nil;
 static NSString  *s_accessToken = nil;
+static NSString  *s_userID = nil;
 static OSCUserFullEntity* loginedUserEntity = nil;
 
 @implementation OSCGlobalConfig
@@ -26,9 +27,19 @@ static OSCUserFullEntity* loginedUserEntity = nil;
     return s_accessToken;
 }
 
-+ (void)setOAuthAccessToken:(NSString *)accessToken
++ (void)setAuthAccessToken:(NSString *)accessToken
 {
     s_accessToken = [accessToken copy];
+}
+
++ (NSString *)getAuthUserID
+{
+    return s_userID;
+}
+
++ (void)setAuthUserID:(NSString *)userID
+{
+    s_userID = [userID copy];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +69,8 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 {
     [OSCAccountEntity deleteStoredUserAccount];
     [OSCGlobalConfig setLoginedUserEntity:nil];
-    [OSCGlobalConfig setOAuthAccessToken:nil];
+    [OSCGlobalConfig setAuthUserID:nil];
+    [OSCGlobalConfig setAuthAccessToken:nil];
     [OSCAuthModel releaseSharedAuthModel];
 }
 
