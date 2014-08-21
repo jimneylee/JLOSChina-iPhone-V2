@@ -37,10 +37,11 @@ typedef NS_ENUM(NSInteger, OSCTweetType) {
 
 // 分类类型
 typedef NS_ENUM(NSInteger, OSCCatalogType) {
-    OSCCatalogType_News = 1,
+    OSCCatalogType_News  = 1,
     OSCCatalogType_Forum = 2,
     OSCCatalogType_Tweet = 3,
-    OSCCatalogType_Blog = -1
+    OSCCatalogType_Blog  = 4, //-1 之前为什么设置成-1
+    OSCCatalogType_Other = 0
 };
 
 // 我的活动类型

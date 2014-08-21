@@ -126,7 +126,7 @@
     // first cancel request operation
     [self.model cancelRequstOperation];
     
-    ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex + 1;
     
     // remove all, sometime crash, fix later on
 //    if (self.model.sections.count > 0) {
