@@ -14,7 +14,6 @@
 #import "UIView+findViewController.h"
 #import "UIImage+nimbusImageNamed.h"
 #import "OSCCommonEntity.h"
-//#import "RCForumTopicsC.h"
 #import "OSCUserHomeC.h"
 
 #define TITLE_FONT_SIZE [UIFont systemFontOfSize:15.f]
@@ -98,8 +97,8 @@
         self.createdLabel.autoDetectLinks = YES;
         self.createdLabel.delegate = self;
         self.createdLabel.attributesForLinks =
-        @{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
-        self.createdLabel.highlightedLinkBackgroundColor = RGBCOLOR(26, 162, 233);
+        @{(NSString *)kCTForegroundColorAttributeName:(id)APP_THEME_BLUE_COLOR.CGColor};//APP_THEME_BLUE_COLOR
+        self.createdLabel.highlightedLinkBackgroundColor = APP_THEME_BLUE_COLOR;//APP_THEME_BLUE_COLOR;
         [self.contentView addSubview:self.createdLabel];
         
         self.contentView.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
@@ -110,7 +109,7 @@
         self.contentView.backgroundColor = CELL_CONTENT_VIEW_BG_COLOR;
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.detailTextLabel.backgroundColor = [UIColor clearColor];
-        self.repliesCountLabel.backgroundColor = RGBCOLOR(27, 128, 219);//[UIColor clearColor];
+        self.repliesCountLabel.backgroundColor = APP_THEME_BLUE_COLOR;//[UIColor clearColor];
         self.textLabel.backgroundColor = [UIColor clearColor];
         self.createdLabel.backgroundColor = [UIColor clearColor];
     }

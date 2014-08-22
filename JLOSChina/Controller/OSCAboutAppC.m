@@ -120,7 +120,7 @@
     self.siteUrlLabel.delegate = self;
     self.siteUrlLabel.autoDetectLinks = YES;
     self.siteUrlLabel.linksHaveUnderlines = YES;
-    self.siteUrlLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
+    self.siteUrlLabel.attributesForLinks = @{(NSString *)kCTForegroundColorAttributeName:(id)APP_THEME_BLUE_COLOR.CGColor};
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@
     self.devIntroduceLabel.delegate = self;
     self.devIntroduceLabel.autoDetectLinks = YES;
     self.devIntroduceLabel.linksHaveUnderlines = YES;
-    self.devIntroduceLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
+    self.devIntroduceLabel.attributesForLinks = @{(NSString *)kCTForegroundColorAttributeName:(id)APP_THEME_BLUE_COLOR.CGColor};
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
