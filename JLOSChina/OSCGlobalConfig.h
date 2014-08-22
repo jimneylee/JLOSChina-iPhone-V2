@@ -52,6 +52,16 @@ typedef NS_ENUM(NSInteger, OSCMyActiveCatalogType) {
     OSCMyActiveCatalogType_Mine = 4
 };
 
+// 客户端来源类型
+// 客户端类型：1-WEB、2-WAP、3-Android、4-IOS、5-WP
+typedef NS_ENUM(NSInteger, OSCAppClientType) {
+    OSCAppClientType_WEB        = 1,
+    OSCAppClientType_WAP        = 2,
+    OSCAppClientType_Android    = 3,
+    OSCAppClientType_IOS        = 4,
+    OSCAppClientType_WP         = 5
+};
+
 @interface OSCGlobalConfig : NSObject
 
 //Global Data
@@ -69,6 +79,7 @@ typedef NS_ENUM(NSInteger, OSCMyActiveCatalogType) {
 
 // App Info
 + (OSCCatalogType)catalogTypeForContentType:(OSCContentType)contentType;
++ (NSString *)getNameFromAppClientType:(OSCAppClientType)appClientType;
 
 // Global UI
 + (MBProgressHUD*)HUDShowMessage:(NSString*)msg addedToView:(UIView*)view;

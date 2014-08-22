@@ -108,6 +108,37 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSString *)getNameFromAppClientType:(OSCAppClientType)appClientType
+{
+    NSString *appClientName = @"WEB";
+    switch (appClientType) {
+        case OSCAppClientType_WEB:
+            appClientName = @"WEB";
+            break;
+            
+        case OSCAppClientType_WAP:
+            appClientName = @"WAP";
+            break;
+            
+        case OSCAppClientType_Android:
+            appClientName = @"Android";
+            break;
+            
+        case OSCAppClientType_IOS:
+            appClientName = @"iPhone";
+            break;
+            
+        case OSCAppClientType_WP:
+            appClientName = @"WinPhone";
+            break;
+            
+        default:
+            break;
+    }
+    return appClientName;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Global UI
 
