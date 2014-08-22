@@ -26,6 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"选择好友";
+        self.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }
