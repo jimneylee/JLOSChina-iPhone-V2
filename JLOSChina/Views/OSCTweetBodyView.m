@@ -225,8 +225,8 @@
         self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.contentLabel.autoDetectLinks = YES;
         self.contentLabel.delegate = self;
-        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
-        self.contentLabel.highlightedLinkBackgroundColor = RGBCOLOR(26, 162, 233);
+        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)APP_THEME_BLUE_COLOR.CGColor};
+        self.contentLabel.highlightedLinkBackgroundColor = APP_THEME_BLUE_COLOR;
         [self.contentView addSubview:self.contentLabel];
         
         // content image
