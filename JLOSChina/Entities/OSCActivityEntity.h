@@ -15,10 +15,10 @@
 //20-职位评论、21-翻译评论、32-职位评论、100-动弹、101-动弹回复
 
 typedef NS_ENUM(NSInteger, OSCActiveObjectType) {
-    OSCActiveObjectType_Project                 = 1,    //开源软件
+    OSCActiveObjectType_Project                 = 1,    // 开源软件
     OSCActiveObjectType_Forum                   = 2,    // 帖子
     OSCActiveObjectType_Blog                    = 3,    // 博客
-    OSCActiveObjectType_News                    = 4,    //新闻
+    OSCActiveObjectType_News                    = 4,    // 新闻
     OSCActiveObjectType_Code                    = 5,    // 代码
     OSCActiveObjectType_Job                     = 6,    // 职位
     OSCActiveObjectType_ArticleTranslation      = 7,    // 翻译文章
@@ -66,10 +66,14 @@ typedef NS_ENUM(NSInteger, OSCActiveObjectType) {
 @property (nonatomic, assign) OSCActiveObjectType objectType;
 @property (nonatomic, copy)   NSString *objectTitle;
 @property (nonatomic, copy)   NSString *objectContent;
-@property (nonatomic, copy)   NSDate *pubDate;
+@property (nonatomic, copy)   NSDate   *pubDate;
 @property (nonatomic, copy)   NSString *objectReplyAuthorName;
 @property (nonatomic, copy)   NSString *objectReplyBody;
 @property (nonatomic, copy)   NSString *tweetImageUrl;
+@property (nonatomic, copy)   NSString *commentCount;
+@property (nonatomic, copy)   NSString *appClientName;
+@property (nonatomic, copy)   NSString *fullTitle;
+@property (nonatomic, strong)   NSAttributedString *fullTitleAttributedString;
 
 @property (nonatomic, strong) NSArray* atPersonRanges;
 @property (nonatomic, strong) NSArray* sharpSoftwareRanges;

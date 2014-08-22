@@ -22,9 +22,9 @@
 #import "OSCTweetBodyView.h"
 
 // 布局字体
-#define TITLE_FONT_SIZE [UIFont systemFontOfSize:16.f]
-#define SUBTITLE_FONT_SIZE [UIFont systemFontOfSize:12.f]
-#define BUTTON_FONT_SIZE [UIFont systemFontOfSize:14.f]
+#define TITLE_FONT_SIZE [UIFont systemFontOfSize:14.f]
+#define SUBTITLE_FONT_SIZE [UIFont systemFontOfSize:11.f]
+#define BUTTON_FONT_SIZE [UIFont systemFontOfSize:13.f]
 
 // 本微博：字体 行高 文本色设置
 #define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:16.f]
@@ -97,7 +97,7 @@
         NSData *imageData = nil;
         
         // replace emotion from nail to head, so range's location is right. it's very important, good idea!
-        for (int i = o.emotionRanges.count - 1; i >= 0; i--) {
+        for (NSInteger i = o.emotionRanges.count - 1; i >= 0; i--) {
             keyworkEntity = (RCKeywordEntity*)o.emotionRanges[i];
             if (i < o.emotionImageNames.count) {
                 emotionImageName = o.emotionImageNames[i];
@@ -153,7 +153,7 @@
         
         // head image
         height = height + HEAD_IAMGE_HEIGHT;
-        height = height + CELL_PADDING_10;
+        height = height + CELL_PADDING_4;
         
         // content
         OSCActivityEntity* o = (OSCActivityEntity*)object;
@@ -174,6 +174,10 @@
             height = height + CONTENT_IMAGE_HEIGHT;
         }
         
+        // from date
+        height = height + CELL_PADDING_10;
+        height = height + SUBTITLE_FONT_SIZE.lineHeight;
+
         height = height + sideMargin;
         
         return height;
@@ -196,6 +200,7 @@
         
         // name
         self.textLabel.font = TITLE_FONT_SIZE;
+        self.textLabel.numberOfLines = 2;
         self.textLabel.textColor = [UIColor blackColor];
         self.textLabel.highlightedTextColor = self.textLabel.textColor;
         
@@ -213,8 +218,8 @@
         self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.contentLabel.autoDetectLinks = YES;
         self.contentLabel.delegate = self;
-        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
-        self.contentLabel.highlightedLinkBackgroundColor = RGBCOLOR(26, 162, 233);
+        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)APP_THEME_BLUE_COLOR.CGColor};
+        self.contentLabel.highlightedLinkBackgroundColor = APP_THEME_BLUE_COLOR;
         [self.contentView addSubview:self.contentLabel];
         
         // content image
@@ -286,7 +291,7 @@
     // name
     self.textLabel.frame = CGRectMake(self.headView.right + CELL_PADDING_10, self.headView.top,
                                       self.width - sideMargin * 2 - (self.headView.right + CELL_PADDING_10),
-                                      self.textLabel.font.lineHeight);
+                                      TITLE_FONT_SIZE.lineHeight * 2);
     
     // source from & date
     self.detailTextLabel.frame = CGRectMake(self.textLabel.left, self.textLabel.bottom,
@@ -295,7 +300,7 @@
     
     // status content
     CGFloat kContentLength = self.contentView.width - contentViewMarin * 2;
-    self.contentLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_10,
+    self.contentLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_4,
                                          kContentLength, 0.f);
     [self.contentLabel sizeToFit];
     
@@ -314,7 +319,10 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // layout buttons
     self.commentBtn.right = self.contentView.width;// - contentViewMarin * 2;
-    self.commentBtn.top = contentViewMarin * 2;
+    self.commentBtn.bottom = self.height - sideMargin;//contentViewMarin * 2;
+    
+    self.detailTextLabel.left = self.contentLabel.left;
+    self.detailTextLabel.bottom = self.height - sideMargin - CELL_PADDING_6;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -332,17 +340,19 @@
             [self.headView setPathToNetworkImage:nil];
         }
         
-        self.textLabel.text = o.user.authorName;
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%@",
-                                     [o.pubDate formatRelativeTime]];// 解决动态计算时间
-//        if (o.repliesCount > 0) {
-//            [self.commentBtn setTitle:[NSString stringWithFormat:@"%ld回复", o.repliesCount]
-//                             forState:UIControlStateNormal];
-//        }
-//        else {
-//            [self.commentBtn setTitle:[NSString stringWithFormat:@"回复"]
-//                             forState:UIControlStateNormal];
-//        }
+        //self.textLabel.text = o.fullTitle;//o.user.authorName;
+        self.textLabel.attributedText = o.fullTitleAttributedString;
+        
+        self.detailTextLabel.text = [NSString stringWithFormat:@"%@   来自 %@",
+                                     [o.pubDate formatRelativeTime], o.appClientName];// 解决动态计算时间
+        if (o.commentCount > 0) {
+            [self.commentBtn setTitle:[NSString stringWithFormat:@"%@回复", o.commentCount]
+                             forState:UIControlStateNormal];
+        }
+        else {
+            [self.commentBtn setTitle:[NSString stringWithFormat:@"回复"]
+                             forState:UIControlStateNormal];
+        }
         
         self.contentLabel.text = o.objectContent;
         
@@ -363,6 +373,10 @@
     }
     return YES;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)visitUserHomepage
@@ -464,7 +478,7 @@
         [_commentBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [_commentBtn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
         [_commentBtn setBackgroundColor:TABLE_VIEW_BG_COLOR];
-        [_commentBtn addTarget:self action:@selector(commentAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_commentBtn addTarget:self action:@selector(commentAction) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_commentBtn];
         _commentBtn.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
         _commentBtn.layer.borderWidth = 1.0f;

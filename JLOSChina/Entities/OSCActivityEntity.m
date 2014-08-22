@@ -52,7 +52,7 @@
                        @"authorid" : [NSString stringFromValue:dic[@"authorid"]],
                        @"portrait" : [NSString stringFromValue:dic[@"portrait"]]}];
         self.activityId = dic[@"id"];
-        self.catalogType = [dic[@"author"] intValue];
+        self.catalogType = [dic[@"objectcatalog"] intValue];//貌似这个值暂时不准确，后面跟osfox确认
 
         self.objectId = dic[@"objectID"];
         self.objectType = [dic[@"objecttype"] intValue];
@@ -65,6 +65,12 @@
         self.objectReplyBody = dic[@"objectbody"];
         
         self.tweetImageUrl = dic[@"tweetimage"];
+        self.commentCount = dic[@"commentCount"];
+        
+        NSString *appClient = dic[@"appclient"];
+        self.appClientName = [OSCGlobalConfig getNameFromAppClientType:[appClient intValue]];
+        
+        [self createFullTitle];
         
         [self parseAllKeywords];
     }
@@ -117,6 +123,123 @@
             self.objectContent = @" ";
         }
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)createFullTitle
+{
+    // 拼凑活动标题
+    // TODO:考虑着色
+    NSString *fullTitle = nil;
+    NSMutableAttributedString *attributedString = nil;
+    NSString *catagoryName = [self getCatagoryNameFromType:self.objectType];
+
+    switch (self.objectType) {
+        case OSCActiveObjectType_Blog:
+        case OSCActiveObjectType_News:
+        case OSCActiveObjectType_Forum:
+            fullTitle = [NSString stringWithFormat:@"%@ 发表了%@：%@",
+                         self.user.authorName, catagoryName, self.objectTitle];
+            attributedString = [[NSMutableAttributedString alloc] initWithString:fullTitle];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor],
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(0,fullTitle.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(0, self.user.authorName.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(fullTitle.length - self.objectTitle.length,
+                                                        self.objectTitle.length)];// for 博客标题
+            break;
+            
+        case OSCActiveObjectType_BlogComment:
+        case OSCActiveObjectType_NewsComment:
+        case OSCActiveObjectType_ForumComment:
+            fullTitle = [NSString stringWithFormat:@"%@ 在%@ %@ 发表评论",
+                         self.user.authorName, catagoryName, self.objectTitle];
+            attributedString = [[NSMutableAttributedString alloc] initWithString:fullTitle];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor],
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(0,fullTitle.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(0, self.user.authorName.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(self.user.authorName.length + 5,
+                                                        self.objectTitle.length)];// for 博客标题
+            break;
+            
+        case OSCActiveObjectType_Tweet:
+            fullTitle = [NSString stringWithFormat:@"%@ 更新了动态", self.user.authorName];
+            attributedString = [[NSMutableAttributedString alloc] initWithString:fullTitle];
+            attributedString = [[NSMutableAttributedString alloc] initWithString:fullTitle];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor],
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(0,fullTitle.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(0, self.user.authorName.length)];
+            break;
+        
+        case OSCActiveObjectType_TweetComment:
+            fullTitle = [NSString stringWithFormat:@"%@回复了%@的动态：%@",
+                         self.user.authorName, self.objectReplyAuthorName, self.objectReplyBody];
+            attributedString = [[NSMutableAttributedString alloc] initWithString:fullTitle];
+             attributedString = [[NSMutableAttributedString alloc] initWithString:fullTitle];
+             [attributedString addAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor],
+                                               NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                       range:NSMakeRange(0,fullTitle.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(0, self.user.authorName.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(self.user.authorName.length + 3,
+                                                        self.objectReplyAuthorName.length)];
+            [attributedString addAttributes:@{NSForegroundColorAttributeName : APP_THEME_BLUE_COLOR,
+                                              NSFontAttributeName : [UIFont systemFontOfSize:14]}
+                                      range:NSMakeRange(fullTitle.length - self.objectReplyBody.length,
+                                                        self.objectReplyBody.length)];// for 博客标题
+            break;
+            
+        // TODO:
+            
+        default:
+            break;
+    }
+    
+    self.fullTitle = fullTitle;
+    self.fullTitleAttributedString = attributedString;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString *)getCatagoryNameFromType:(OSCActiveObjectType)type
+{
+    NSString *catagoryName = nil;
+    
+    switch (type) {
+        case OSCActiveObjectType_Blog:
+        case OSCActiveObjectType_BlogComment:
+            catagoryName = @"博客";
+            break;
+            
+        case OSCActiveObjectType_News:
+        case OSCActiveObjectType_NewsComment:
+            catagoryName = @"新闻";
+            break;
+            
+        case OSCActiveObjectType_Forum:
+        case OSCActiveObjectType_ForumComment:
+            catagoryName = @"帖子";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return catagoryName;
 }
 
 @end
