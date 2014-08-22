@@ -265,7 +265,7 @@
         NSString* title;
         switch (i) {
             case 0:
-                title = @"咨询\r\nNews";
+                title = @"资讯\r\nNews";
                 break;
             case 1:
                 title = @"动弹\r\nTweet";
@@ -399,11 +399,16 @@
     else if (!isPreviousHidden && isNextHidden)
         [self hideTabBarAnimated:animated];
     
-    else if (isPreviousHidden && !isNextHidden)
+    else if (isPreviousHidden && !isNextHidden) {
         [self showTabBarAnimated:animated];
-    
+    }
     else if (isPreviousHidden && isNextHidden)
         return;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    NSLog(@"didShowViewController");
 }
 
 @end
