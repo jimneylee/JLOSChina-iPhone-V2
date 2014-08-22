@@ -22,9 +22,9 @@
 #import "OSCTweetBodyView.h"
 
 // 布局字体
-#define TITLE_FONT_SIZE [UIFont systemFontOfSize:16.f]
-#define SUBTITLE_FONT_SIZE [UIFont systemFontOfSize:12.f]
-#define BUTTON_FONT_SIZE [UIFont systemFontOfSize:14.f]
+#define TITLE_FONT_SIZE [UIFont systemFontOfSize:14.f]
+#define SUBTITLE_FONT_SIZE [UIFont systemFontOfSize:11.f]
+#define BUTTON_FONT_SIZE [UIFont systemFontOfSize:13.f]
 
 // 本微博：字体 行高 文本色设置
 #define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:16.f]
@@ -153,7 +153,7 @@
         
         // head image
         height = height + HEAD_IAMGE_HEIGHT;
-        height = height + CELL_PADDING_10;
+        height = height + CELL_PADDING_4;
         
         // content
         OSCTweetEntity* o = (OSCTweetEntity*)object;
@@ -173,7 +173,7 @@
             height = height + CELL_PADDING_10;
             height = height + CONTENT_IMAGE_HEIGHT;
         }
-        
+                
         height = height + sideMargin;
         
         return height;
@@ -213,8 +213,8 @@
         self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.contentLabel.autoDetectLinks = YES;
         self.contentLabel.delegate = self;
-        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
-        self.contentLabel.highlightedLinkBackgroundColor = RGBCOLOR(26, 162, 233);
+        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)APP_THEME_BLUE_COLOR.CGColor};
+        self.contentLabel.highlightedLinkBackgroundColor = APP_THEME_BLUE_COLOR;
         [self.contentView addSubview:self.contentLabel];
         
         // content image
@@ -295,7 +295,7 @@
     
     // status content
     CGFloat kContentLength = self.contentView.width - contentViewMarin * 2;
-    self.contentLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_10,
+    self.contentLabel.frame = CGRectMake(self.headView.left, self.headView.bottom + CELL_PADDING_4,
                                          kContentLength, 0.f);
     [self.contentLabel sizeToFit];
     

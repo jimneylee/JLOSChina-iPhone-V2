@@ -20,10 +20,10 @@
 
 #define NAME_FONT_SIZE [UIFont systemFontOfSize:15.f]
 #define DATE_FONT_SIZE [UIFont systemFontOfSize:12.f]
-#define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:18.f]
+#define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:16.f]
 #define BUTTON_FONT_SIZE [UIFont boldSystemFontOfSize:13.f]
 
-#define CONTENT_LINE_HEIGHT 24.f
+#define CONTENT_LINE_HEIGHT 22.f
 #define HEAD_IAMGE_HEIGHT 34
 #define BUTTON_SIZE CGSizeMake(40.f, 22.f)
 #define CONTENT_IMAGE_HEIGHT 160
@@ -220,8 +220,8 @@
         self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.contentLabel.autoDetectLinks = YES;
         self.contentLabel.delegate = self;
-        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)RGBCOLOR(6, 89, 155).CGColor};
-        self.contentLabel.highlightedLinkBackgroundColor = RGBCOLOR(26, 162, 233);
+        self.contentLabel.attributesForLinks =@{(NSString *)kCTForegroundColorAttributeName:(id)APP_THEME_BLUE_COLOR.CGColor};
+        self.contentLabel.highlightedLinkBackgroundColor = APP_THEME_BLUE_COLOR;
         [self.contentView addSubview:self.contentLabel];
         
         // content view border
