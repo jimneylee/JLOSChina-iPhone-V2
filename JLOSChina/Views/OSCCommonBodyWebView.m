@@ -49,11 +49,11 @@
      self.topicDetailEntity.user.authorId, self.topicDetailEntity.user.authorName, self.topicDetailEntity.createdAtDate];
     
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@</body>",
-                      HTML_Style, self.topicDetailEntity.title,
-                      authorStr, self.topicDetailEntity.body, HTML_Bottom];
+                      HTML_STYLE, self.topicDetailEntity.title,
+                      authorStr, self.topicDetailEntity.body, HTML_BOTTOM];
 #else
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#FFFFFF'>%@<div id='oschina_body'>%@</div>%@</body>",
-                      HTML_Style, self.topicDetailEntity.body, HTML_Bottom];
+                      HTML_STYLE, self.topicDetailEntity.body, HTML_BOTTOM];
 #endif
     
     [self.bodyWebView loadHTMLString:html baseURL:nil];

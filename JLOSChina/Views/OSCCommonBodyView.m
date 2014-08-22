@@ -22,10 +22,10 @@
 #define TITLE_FONT_SIZE [UIFont boldSystemFontOfSize:16.f]
 #define NAME_FONT_SIZE [UIFont systemFontOfSize:15.f]
 #define DATE_FONT_SIZE [UIFont systemFontOfSize:12.f]
-#define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:18.f]
+#define CONTENT_FONT_SIZE [UIFont fontWithName:@"STHeitiSC-Light" size:16.f]
 #define BUTTON_FONT_SIZE [UIFont boldSystemFontOfSize:15.f]
 
-#define CONTENT_LINE_HEIGHT 21.f
+#define CONTENT_LINE_HEIGHT 22.f
 #define HEAD_IAMGE_HEIGHT 34
 #define BUTTON_SIZE CGSizeMake(104.f, 30.f)
 #define CONTENT_IMAGE_HEIGHT 160
@@ -237,11 +237,11 @@
      self.topicDetailEntity.user.authorId, self.topicDetailEntity.user.authorName, self.topicDetailEntity.createdAtDate];
     
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@</body>",
-                      HTML_Style, self.topicDetailEntity.title,
-                      authorStr, self.topicDetailEntity.body, HTML_Bottom];
+                      HTML_STYLE, self.topicDetailEntity.title,
+                      authorStr, self.topicDetailEntity.body, HTML_BOTTOM];
 #else
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#FFFFFF'>%@<div id='oschina_body'>%@</div>%@</body>",
-                      HTML_Style, self.topicDetailEntity.body, HTML_Bottom];
+                      HTML_STYLE, self.topicDetailEntity.body, HTML_BOTTOM];
 #endif
     
     [self.bodyWebView loadHTMLString:html baseURL:nil];
