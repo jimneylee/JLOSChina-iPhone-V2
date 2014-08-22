@@ -185,7 +185,7 @@
         self.repliesCountLabel.text = [NSString stringWithFormat:@"%lld", o.repliesCount];
         self.textLabel.text = o.title;
 
-        self.createdLabel.text = [NSString stringWithFormat:@"%@发表于%@",
+        self.createdLabel.text = [NSString stringWithFormat:@"%@ 发表于%@",
                                           o.user.authorName, [o.createdAtDate formatRelativeTime]];
         NSString* atSomeoneUrl = [NSString stringWithFormat:@"%@%@",
                                       PROTOCOL_AT_SOMEONE, [o.user.authorName urlEncoded]];
