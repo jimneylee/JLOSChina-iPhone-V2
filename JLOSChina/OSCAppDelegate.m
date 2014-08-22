@@ -14,6 +14,10 @@
 #import "JLNetworkSpy.h"
 
 #import "OSCTabBarC.h"
+#import "OSCHomeC.h"
+#import "OSCTweetC.h"
+#import "OSCForumC.h"
+#import "OSCMineC.h"
 #import "OSCAboutAppC.h"
 
 @interface OSCAppDelegate()<RCNetworkSpyDelegate>
@@ -57,14 +61,11 @@
 {
     [[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-//    if (IOS_IS_AT_LEAST_7) {
-//        [[UINavigationBar appearance] setBarTintColor:APP_THEME_COLOR];
-//    }
 
-    // MTStatusBarOverlay change to white, maybe better
     UIView* bgView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
-    bgView.backgroundColor = [UIColor whiteColor];//APP_THEME_COLOR;
-    [[MTStatusBarOverlay sharedOverlay] addSubviewToBackgroundView:bgView atIndex:1];// above statusBarBackgroundImageView
+    bgView.backgroundColor = [UIColor whiteColor];
+    // above statusBarBackgroundImageView
+    [[MTStatusBarOverlay sharedOverlay] addSubviewToBackgroundView:bgView atIndex:1];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,8 +87,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 1
     
-    self.tabBarC = [[OSCTabBarC alloc] init];
-    self.window.rootViewController = self.tabBarC;
+    UITabBarController *tabbarC = [[UITabBarController alloc] init];
+    tabbarC.viewControllers = [self generateViewContrllers];
+    self.window.rootViewController = tabbarC;
     [self.window makeKeyAndVisible];
     
     [self prepareAfterLaunching];
@@ -98,6 +100,33 @@
     [self.window makeKeyAndVisible];
 #endif
     return YES;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSMutableArray *)generateViewContrllers
+{
+    OSCHomeC *homeC = [[OSCHomeC alloc] initWithStyle:UITableViewStylePlain];
+    homeC.tabBarItem.image = [UIImage imageNamed:@"tab_info.png"];
+    UINavigationController *navi1 = [[UINavigationController alloc] initWithRootViewController:homeC];
+    navi1.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    OSCTweetC *tweetC = [[OSCTweetC alloc] initWithStyle:UITableViewStylePlain];
+    tweetC.tabBarItem.image = [UIImage imageNamed:@"tab_tweet.png"];
+    UINavigationController *navi2 = [[UINavigationController alloc] initWithRootViewController:tweetC];
+    navi2.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    OSCForumC *forumC = [[OSCForumC alloc] initWithStyle:UITableViewStylePlain];
+    forumC.tabBarItem.image = [UIImage imageNamed:@"tab_answer.png"];
+    UINavigationController *navi3 = [[UINavigationController alloc] initWithRootViewController:forumC];
+    navi3.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    OSCMineC *mineC = [[OSCMineC alloc] initWithStyle:UITableViewStylePlain];
+    mineC.tabBarItem.image = [UIImage imageNamed:@"tab_active.png"];
+    UINavigationController *navi4 = [[UINavigationController alloc] initWithRootViewController:mineC];
+    navi4.navigationBar.tintColor = [UIColor darkGrayColor];
+    
+    return [NSMutableArray arrayWithObjects:
+            navi1, navi2, navi3, navi4, nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
