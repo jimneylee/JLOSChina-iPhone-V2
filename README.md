@@ -6,8 +6,11 @@
 XCode5 iOS6+
 
 ## 下载安装使用，无须越狱
+
 蒲公英下载地址：http://www.pgyer.com/jhrA
+
 二维码扫描
+
 ![](http://www.pgyer.com/app/qrcode/54708615384f436c1f25e190d3ddffec)
 
 ## 编译安装
