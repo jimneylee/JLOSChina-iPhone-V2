@@ -13,6 +13,7 @@ XCode5 iOS6+
 * 1、submodule依赖
 
 ``` bash
+$ git submodule init
 $ git submodule update
 ```
 
