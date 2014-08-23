@@ -89,7 +89,7 @@
         self.contentView.layer.borderWidth = 1.0f;
         
         self.backgroundColor = [UIColor clearColor];
-        self.contentView.backgroundColor = [UIColor whiteColor];//CELL_CONTENT_VIEW_BG_COLOR;
+        self.contentView.backgroundColor = CELL_CONTENT_VIEW_BG_COLOR;
         self.nameLabel.backgroundColor = [UIColor clearColor];
         self.loginIdLabel.backgroundColor = [UIColor clearColor];
         self.platformsLabel.backgroundColor = [UIColor clearColor];
