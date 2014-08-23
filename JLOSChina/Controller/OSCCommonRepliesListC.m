@@ -59,8 +59,8 @@
         self.hidesBottomBarWhenPushed = YES;
         self.navigationItem.rightBarButtonItems =
         [NSArray arrayWithObjects:
-         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
-                                                       action:@selector(autoPullDownRefreshActionAnimation)],
+//         [OSCGlobalConfig createRefreshBarButtonItemWithTarget:self
+//                                                       action:@selector(autoPullDownRefreshActionAnimation)],
          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply
                                                        target:self action:@selector(replyTopicAction)],
          nil];
