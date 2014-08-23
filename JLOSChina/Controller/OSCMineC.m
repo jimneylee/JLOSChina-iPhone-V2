@@ -12,9 +12,14 @@
 #import "OSCMyActiveTimelineModel.h"
 #import "OSCMyInfoModel.h"
 #import "OSCCommonEntity.h"
+#import "OSCActivityEntity.h"
+#import "OSCTweetEntity.h"
+
+#import "OSCTweetBodyView.h"
 #import "OSCCommonDetailC.h"
 #import "OSCMyInfoHeaderView.h"
 #import "OSCMoreC.h"
+#import "OSCCommonRepliesListC.h"
 
 @interface OSCMineC ()
 
@@ -166,12 +171,63 @@
 - (NIActionBlock)tapAction
 {
     return ^BOOL(id object, id target, NSIndexPath* indexPath) {
-        if ([object isKindOfClass:[OSCCommonEntity class]]) {
-            OSCCommonEntity* entity = (OSCCommonEntity*)object;
-            if (entity.newsId > 0) {
-                OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
-                                                                  topicType:self.segmentedControl.selectedSegmentIndex];
-                [self.navigationController pushViewController:c animated:YES];
+        if ([object isKindOfClass:[OSCActivityEntity class]]) {
+            OSCActivityEntity* entity = (OSCActivityEntity*)object;
+            if (entity.activityId > 0) {
+                switch (entity.objectType) {
+                    case OSCActiveObjectType_Blog:
+                    case OSCActiveObjectType_BlogComment:
+                    {
+                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:[entity.objectId integerValue]
+                                                                              topicType:OSCContentType_LatestBlog];
+                        [self.navigationController pushViewController:c animated:YES];
+                        break;
+                    }
+                        
+                    case OSCActiveObjectType_News:
+                    case OSCActiveObjectType_NewsComment:
+                    {
+                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:[entity.objectId integerValue]
+                                                                              topicType:OSCContentType_LatestNews];
+                        [self.navigationController pushViewController:c animated:YES];
+                        break;
+                    }
+                        
+                    case OSCActiveObjectType_Forum:
+                    case OSCActiveObjectType_ForumComment:
+                    {
+                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:[entity.objectId integerValue]
+                                                                              topicType:OSCContentType_Forum];
+                        [self.navigationController pushViewController:c animated:YES];
+                        break;
+                    }
+                        
+                    case OSCActiveObjectType_Tweet:
+                    case OSCActiveObjectType_TweetComment:
+                    {
+                        OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:[entity.objectId integerValue]
+                                                                                        topicType:OSCContentType_Tweet
+                                                                                     repliesCount:[entity.commentCount integerValue]];
+                        [self.navigationController pushViewController:c animated:YES];
+                        
+                        
+                        // table header view with body
+                        OSCTweetEntity *tweetEntity = [[OSCTweetEntity alloc] init];
+                        tweetEntity.user = entity.user;
+                        tweetEntity.tweetId = [entity.objectId integerValue];
+                        tweetEntity.body = entity.objectContent;
+                        tweetEntity.smallImageUrl = entity.tweetImageUrl;
+                        tweetEntity.createdAtDate = entity.pubDate;
+                        OSCTweetBodyView* bodyView = [[OSCTweetBodyView alloc] initWithFrame:self.view.bounds];
+                        bodyView.height = [OSCTweetBodyView heightForObject:tweetEntity withViewWidth:self.view.width];
+                        [bodyView shouldUpdateCellWithObject:tweetEntity];
+                        c.tableView.tableHeaderView = bodyView;
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
             }
             else {
                 [OSCGlobalConfig HUDShowMessage:@"不存在或已被删除！" addedToView:self.view];
