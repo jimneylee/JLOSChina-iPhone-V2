@@ -2669,7 +2669,7 @@
 					"/Users/jimney/Desktop/Source/Github_jimney/RubyChina/JLRubyChina-iPhone/vendor/TestFlightSDK",
 				);
 				PRODUCT_NAME = JLOSChinaV2;
-				PROVISIONING_PROFILE = "65985176-8AC2-4678-AB64-6CC40BAD2708";
+				PROVISIONING_PROFILE = "6683c4aa-6e70-4a4f-814d-0657e59344e6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2690,7 +2690,7 @@
 					"/Users/jimney/Desktop/Source/Github_jimney/RubyChina/JLRubyChina-iPhone/vendor/TestFlightSDK",
 				);
 				PRODUCT_NAME = JLOSChinaV2;
-				PROVISIONING_PROFILE = "65985176-8AC2-4678-AB64-6CC40BAD2708";
+				PROVISIONING_PROFILE = "6683c4aa-6e70-4a4f-814d-0657e59344e6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

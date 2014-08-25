@@ -287,7 +287,7 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self popDownReplyView];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -319,7 +319,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReplySuccessWithMyReply:(OSCCommentEntity*)replyEntity
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if (replyEntity) {
         // nothing to do
     }
@@ -334,7 +334,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReplyCancel
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 @end

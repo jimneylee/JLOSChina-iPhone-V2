@@ -111,9 +111,6 @@
     if (self.scrollBtn.superview) {
         [self.scrollBtn removeFromSuperview];
     }
-    if (self.navigationController.navigationBarHidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,9 +137,6 @@
 {
     if ([OSCGlobalConfig getAuthUserID]) {
         [self showReplyAsInputAccessoryView];
-        if (!self.navigationController.navigationBarHidden) {
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
-        }
     }
     else {
         [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
@@ -294,7 +288,6 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self popDownReplyView];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,8 +297,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReplySuccessWithMyReply:(OSCCommentEntity*)replyEntity
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
     if (replyEntity) {
         if (self.model.sections.count) {
             NITableViewModelSection *section = [self.model.sections objectAtIndex:0];
@@ -336,7 +327,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReplyCancel
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

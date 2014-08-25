@@ -93,6 +93,10 @@
     self.scrollBtn.bottom = keyWindow.height - CELL_PADDING_8;
     [self.scrollBtn addTarget:self action:@selector(scrollToBottomOrTopAction)
              forControlEvents:UIControlEventTouchUpInside];
+    
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                                 action:@selector(showNavigationBar)];
+//    [self.view addGestureRecognizer:tapGesture];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,9 +118,6 @@
     }
     if (self.scrollBtn.superview) {
         [self.scrollBtn removeFromSuperview];
-    }
-    if (self.navigationController.navigationBarHidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
 }
 
@@ -173,9 +174,6 @@
 {
     if ([OSCGlobalConfig getAuthUserID]) {
         [self showReplyAsInputAccessoryView];
-        if (!self.navigationController.navigationBarHidden) {
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
-        }
     }
     else {
         [OSCGlobalConfig showLoginControllerFromNavigationController:self.navigationController];
@@ -232,6 +230,13 @@
 {
     [self.tableView scrollRectToVisible:CGRectMake(0.f, 0.f,
                                                    self.tableView.width, self.tableView.height) animated:animated];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)showNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -345,8 +350,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReplySuccessWithMyReply:(OSCCommentEntity*)replyEntity
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
     if (replyEntity) {
         // nothing to do
     }
@@ -361,7 +364,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didReplyCancel
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
