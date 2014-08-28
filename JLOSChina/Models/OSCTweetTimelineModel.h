@@ -11,6 +11,5 @@
 @interface OSCTweetTimelineModel : OSCBaseTableModel
 
 @property (nonatomic, assign) OSCTweetType tweetType;
-@property (nonatomic, assign) unsigned int catalogType;
 
 @end

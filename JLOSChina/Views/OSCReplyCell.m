@@ -360,7 +360,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)showMoreImages
 {
-    UIViewController* superviewC = self.viewController;
+//    UIViewController* superviewC = self.viewController;
 //    if (superviewC) {
 //        RCContentPhotoBrowerC* c = [[RCContentPhotoBrowerC alloc] initWithPhotoUrls:self.replyEntity.imageUrlsArray];
 //        [superviewC.navigationController pushViewController:c animated:YES];

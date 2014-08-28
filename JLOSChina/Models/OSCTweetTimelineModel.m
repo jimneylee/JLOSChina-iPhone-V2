@@ -80,18 +80,4 @@
     return [OSCTweetCell class];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSXMLParserDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:@"catalog"]) {
-        self.catalogType = [self.tmpInnerElementText integerValue];
-    }
-    // super will set nil to self.tmpInnerElementText
-    [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
-}
-
 @end
