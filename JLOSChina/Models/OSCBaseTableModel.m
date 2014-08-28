@@ -232,12 +232,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    // TODO: switch code value:
-    if (self.listDataArray) {//ERROR_CODE_SUCCESS == self.errorEntity.errorCode
+    if (!self.errorEntity || self.errorEntity.errorCode == ERROR_CODE_SUCCESS_200) {
         [self parseDataToIndexPaths];
+        [self didFinishLoad];
     }
-    
-    [self didFinishLoad];
+    else {
+        NSError* error = [[NSError alloc] init];
+        if (self.showIndexPathsBlock) {
+            self.showIndexPathsBlock(nil, error);//TODO: error -> error entity
+        }
+        [self didFailLoad];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
