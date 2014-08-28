@@ -22,7 +22,7 @@
     self = [super initWithDictionary:dic];
     if (self) {
         
-        self.newsId = [dic[XML_ID] longLongValue];
+        self.newsId = dic[XML_ID];
         self.title = dic[XML_TITLE];
         
         self.createdAtDate = [NSDate normalFormatDateFromString:dic[@"pubDate"]];

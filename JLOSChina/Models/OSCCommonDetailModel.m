@@ -42,19 +42,18 @@
 {
     NSString* path = nil;
     
-    switch (self.contentType) {
-        case OSCContentType_LatestNews:
+    switch (self.type) {
+        case OSCCatalogType_News:
             path = [OSCAPIClient relativePathForNewsDetailWithId:self.topicId];
             self.detailItemElementName = @"news";
             break;
             
-        case OSCContentType_LatestBlog:
-        case OSCContentType_RecommendBlog:
+        case OSCCatalogType_Blog:
             path = [OSCAPIClient relativePathForBlogDetailWithId:self.topicId];
             self.detailItemElementName = @"blog";
             break;
             
-        case OSCContentType_Forum:
+        case OSCCatalogType_Forum:
             path = [OSCAPIClient relativePathForTopicDetailWithId:self.topicId];
             self.detailItemElementName = @"post";
             break;

@@ -11,9 +11,9 @@
 // TODO:楼层调转
 @interface OSCCommonRepliesListC : JLNimbusTableViewController
 
-- (id)initWithTopicId:(unsigned long)topicId
-            topicType:(OSCContentType)topicType
-         repliesCount:(unsigned long)repliedCount;
+- (id)initWithTopicId:(NSString *)topicId
+            topicType:(OSCCatalogType)topicType
+         repliesCount:(long long)repliedCount;
 
 - (void)replyTopicWithFloorAtSomeone:(NSString*)floorAtsomeoneString;
 

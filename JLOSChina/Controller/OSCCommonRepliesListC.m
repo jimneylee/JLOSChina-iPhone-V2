@@ -21,20 +21,20 @@
 @property (nonatomic, strong) OSCCommonBodyView* topicBodyView;
 @property (nonatomic, strong) OSCQuickReplyC* quickReplyC;
 @property (nonatomic, strong) UIButton* scrollBtn;
-@property (nonatomic, assign) unsigned long repliesCount;
+@property (nonatomic, assign) long long repliesCount;
 @end
 
 @implementation OSCCommonRepliesListC
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTopicId:(unsigned long)topicId
-            topicType:(OSCContentType)topicType
-         repliesCount:(unsigned long)repliedCount
+- (id)initWithTopicId:(NSString *)topicId
+            topicType:(OSCCatalogType)topicType
+         repliesCount:(long long)repliedCount
 {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         ((OSCRepliesTimelineModel*)self.model).topicId = topicId;
-        ((OSCRepliesTimelineModel*)self.model).contentType = topicType;
+        ((OSCRepliesTimelineModel*)self.model).type = topicType;
         self.repliesCount = repliedCount;
     }
     return self;
@@ -162,9 +162,8 @@
 - (OSCQuickReplyC*)quickReplyC
 {
     if (!_quickReplyC) {
-        OSCCatalogType catalogType = [OSCGlobalConfig catalogTypeForContentType:((OSCRepliesTimelineModel*)self.model).contentType];
         _quickReplyC = [[OSCQuickReplyC alloc] initWithTopicId:((OSCRepliesTimelineModel*)self.model).topicId
-                                                     catalogType:catalogType];
+                                                     catalogType:((OSCRepliesTimelineModel*)self.model).type];
         _quickReplyC.replyDelegate = self;
     }
     return _quickReplyC;
