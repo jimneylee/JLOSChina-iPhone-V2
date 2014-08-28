@@ -77,7 +77,7 @@
     NSDictionary *baseParams = [self generateParameters];
     NSMutableDictionary *fullParams = [NSMutableDictionary dictionaryWithDictionary:baseParams];
     [fullParams addEntriesFromDictionary:params];
-    //OSCAPIClient *httpClient = [[OSCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kAPIBaseURLString]];
+
     [[OSCAPIClient sharedClient] POST:path parameters:fullParams
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                      if ([responseObject isKindOfClass:[NSXMLParser class]]) {
