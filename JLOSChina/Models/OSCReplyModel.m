@@ -37,7 +37,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //TODO: repost
-- (void)replyContentId:(unsigned long)topicId
+- (void)replyContentId:(NSString *)topicId
          catalogType:(OSCCatalogType)catalogType
                 body:(NSString*)body
              success:(void(^)(OSCCommentEntity* replyEntity))success
@@ -56,11 +56,11 @@
         
         // api is so dirty, make me crazy! hold on...
         if (OSCCatalogType_Blog == self.catalogType) {
-            [params setObject:[NSNumber numberWithLong:topicId]
+            [params setObject:topicId
                        forKey:@"blog"];
         }
         else {
-            [params setObject:[NSNumber numberWithLong:topicId]
+            [params setObject:topicId
                        forKey:@"id"];
             //TODO: repost
             [params setObject:@"0"
@@ -80,8 +80,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //TODO: repost
-- (void)replyCommentId:(unsigned long)commentId
-             contentId:(unsigned long)topicId
+- (void)replyCommentId:(NSString *)commentId
+             contentId:(NSString *)topicId
            catalogType:(OSCCatalogType)catalogType
                   body:(NSString*)body
                success:(void(^)(OSCCommentEntity* replyEntity))success
@@ -97,9 +97,9 @@
                    forKey:@"catalog"];
         [params setObject:[OSCGlobalConfig getAuthUserID]
                    forKey:@"uid"];
-        [params setObject:[NSNumber numberWithLong:topicId]
+        [params setObject:topicId
                    forKey:@"id"];
-        [params setObject:[NSNumber numberWithLong:commentId]
+        [params setObject:commentId
                    forKey:@"replyid"];
         [params setObject:body forKey:@"content"];
         //TODO: repost
