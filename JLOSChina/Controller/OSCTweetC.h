@@ -9,5 +9,7 @@
 #import "JLNimbusTableViewController.h"
 
 @interface OSCTweetC : JLNimbusTableViewController
-- (void)showReplyAsInputAccessoryViewWithTweetId:(unsigned long)tweetId;
+
+- (void)showReplyAsInputAccessoryViewWithTweetId:(NSString *)tweetId;
+
 @end

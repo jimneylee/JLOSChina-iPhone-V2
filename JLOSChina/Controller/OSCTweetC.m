@@ -81,7 +81,7 @@
 #pragma mark - Public
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showReplyAsInputAccessoryViewWithTweetId:(unsigned long)tweetId
+- (void)showReplyAsInputAccessoryViewWithTweetId:(NSString *)tweetId
 {
     if (![self.quickReplyC.textView.internalTextView isFirstResponder]) {
         self.quickReplyC.topicId = tweetId;
@@ -175,7 +175,7 @@
 - (void)showRepliesListViewWithTweetEntity:(OSCTweetEntity*)tweetEntity
 {
     OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:tweetEntity.tweetId
-                                                                    topicType:OSCContentType_Tweet
+                                                                    topicType:OSCCatalogType_Tweet
                                                                  repliesCount:tweetEntity.repliesCount];
     [self.navigationController pushViewController:c animated:YES];
     

@@ -77,18 +77,18 @@
         if ([object isKindOfClass:[OSCCommonEntity class]]) {
             OSCCommonEntity* entity = (OSCCommonEntity *)object;
             if (entity.newsId > 0) {
-                OSCContentType contentType = OSCContentType_LatestNews;
+                OSCCatalogType type = OSCCatalogType_News;
                 switch (((OSCSearchResultModel*)self.model).catalogType) {
                     case OSCSearchCatalogType_News:
-                        contentType = OSCContentType_LatestNews;
+                        type = OSCCatalogType_News;
                         break;
                         
                     case OSCSearchCatalogType_Blog:
-                        contentType = OSCContentType_LatestBlog;
+                        type = OSCCatalogType_Blog;
                         break;
                         
                     case OSCSearchCatalogType_Post:
-                        contentType = OSCContentType_Forum;
+                        type = OSCCatalogType_Forum;
                         break;
                         
                     // TODO: soft
@@ -97,7 +97,7 @@
                 }
                 
                 OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
-                                                                      topicType:contentType];
+                                                                      topicType:type];
                 [self.navigationController pushViewController:c animated:YES];
             }
             else {

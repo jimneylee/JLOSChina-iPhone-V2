@@ -24,7 +24,7 @@
     
     self = [super initWithDictionary:dic];
     if (self) {
-        self.tweetId = [dic[XML_ID] longLongValue];
+        self.tweetId = dic[XML_ID];
         self.body = [NSString stringFromValue:dic[XML_BODY]];
         self.createdAtDate = [NSDate normalFormatDateFromString:dic[@"pubDate"]];
         self.repliesCount = [dic[@"commentCount"] longLongValue];

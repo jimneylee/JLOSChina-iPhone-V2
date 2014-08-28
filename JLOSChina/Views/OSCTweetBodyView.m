@@ -333,7 +333,7 @@
         self.detailTextLabel.text = [NSString stringWithFormat:@"%@",
                                      [o.createdAtDate formatRelativeTime]];// 解决动态计算时间
         if (o.repliesCount > 0) {
-            [self.commentBtn setTitle:[NSString stringWithFormat:@"%ld回复", o.repliesCount]
+            [self.commentBtn setTitle:[NSString stringWithFormat:@"%lld回复", o.repliesCount]
                              forState:UIControlStateNormal];
         }
         else {

@@ -12,10 +12,10 @@
 @interface OSCTweetEntity : JLNimbusEntity
 
 @property (nonatomic, strong) OSCUserEntity* user;
-@property (nonatomic, assign) unsigned long  tweetId;
+@property (nonatomic, copy)   NSString *tweetId;
 @property (nonatomic, copy)   NSString*      body;
 @property (nonatomic, strong) NSDate*        createdAtDate;
-@property (nonatomic, assign) unsigned long  repliesCount;
+@property (nonatomic, assign) long long  repliesCount;
 @property (nonatomic, copy)   NSString*      smallImageUrl;
 @property (nonatomic, copy)   NSString*      bigImageUrl;
 
