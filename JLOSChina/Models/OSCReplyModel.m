@@ -68,7 +68,7 @@
         }
         
         [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
-            if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+            if (!errorEntity || ERROR_CODE_SUCCESS_200 == errorEntity.errorCode) {
                 success(self.replyEntity);
             }
             else {
@@ -105,7 +105,7 @@
         //TODO: repost
         [params setObject:@"0" forKey:@"isPostToMyZone"];
         [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
-            if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+            if (!errorEntity || ERROR_CODE_SUCCESS_200 == errorEntity.errorCode) {
                 success(self.replyEntity);
             }
             else {

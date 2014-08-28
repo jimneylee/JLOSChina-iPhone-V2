@@ -35,7 +35,7 @@
         [params setObject:[OSCGlobalConfig getAuthUserID]
                    forKey:@"uid"];
         [self postParams:params errorBlock:^(OSCErrorEntity *errorEntity) {
-            if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+            if (!errorEntity || ERROR_CODE_SUCCESS_200 == errorEntity.errorCode) {
                 success();
             }
             else {

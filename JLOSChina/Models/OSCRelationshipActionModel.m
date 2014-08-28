@@ -58,7 +58,7 @@
                                  @"relation" : @"1"};
     
     [self getParams:parameters errorBlock:^(OSCErrorEntity *errorEntity) {
-        if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+        if (!errorEntity || ERROR_CODE_SUCCESS_200 == errorEntity.errorCode) {
             block(nil);
         }
         else {
@@ -77,7 +77,7 @@
                                  @"relation" : @"0"};
     
     [self getParams:parameters errorBlock:^(OSCErrorEntity *errorEntity) {
-        if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+        if (!errorEntity || ERROR_CODE_SUCCESS_200 == errorEntity.errorCode) {
             block(nil);
         }
         else {
@@ -99,12 +99,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishLoad
 {
-    if (!self.errorEntity || ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
-        self.returnBlock(self.errorEntity);
-    }
-    else {
-        self.returnBlock(self.errorEntity);
-    }
+    self.returnBlock(self.errorEntity);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

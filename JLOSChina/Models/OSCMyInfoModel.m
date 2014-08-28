@@ -41,7 +41,7 @@
     self.returnBlock = block;
     
     [self getParams:nil errorBlock:^(OSCErrorEntity *errorEntity) {
-        if (ERROR_CODE_SUCCESS == errorEntity.errorCode) {
+        if (!errorEntity || ERROR_CODE_SUCCESS_200 == errorEntity.errorCode) {
             block(self.userEntity, errorEntity);
         }
         else {
@@ -77,7 +77,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)didFinishLoad
 {
-    if (!self.errorEntity || ERROR_CODE_SUCCESS == self.errorEntity.errorCode) {
+    if (!self.errorEntity || ERROR_CODE_SUCCESS_200 == self.errorEntity.errorCode) {
         self.returnBlock(self.userEntity, self.errorEntity);
     }
     else {
