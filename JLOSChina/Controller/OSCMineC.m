@@ -23,7 +23,6 @@
 
 @interface OSCMineC ()
 
-@property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
 @property (nonatomic, strong) OSCMyInfoHeaderView* homepageHeaderView;
 
@@ -177,8 +176,8 @@
                     case OSCActiveObjectType_Blog:
                     case OSCActiveObjectType_BlogComment:
                     {
-                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:[entity.objectId integerValue]
-                                                                              topicType:OSCContentType_LatestBlog];
+                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.objectId
+                                                                              topicType:OSCCatalogType_Blog];
                         [self.navigationController pushViewController:c animated:YES];
                         break;
                     }
@@ -186,8 +185,8 @@
                     case OSCActiveObjectType_News:
                     case OSCActiveObjectType_NewsComment:
                     {
-                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:[entity.objectId integerValue]
-                                                                              topicType:OSCContentType_LatestNews];
+                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.objectId
+                                                                              topicType:OSCCatalogType_News];
                         [self.navigationController pushViewController:c animated:YES];
                         break;
                     }
@@ -195,8 +194,8 @@
                     case OSCActiveObjectType_Forum:
                     case OSCActiveObjectType_ForumComment:
                     {
-                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:[entity.objectId integerValue]
-                                                                              topicType:OSCContentType_Forum];
+                        OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.objectId
+                                                                              topicType:OSCCatalogType_Forum];
                         [self.navigationController pushViewController:c animated:YES];
                         break;
                     }
@@ -204,8 +203,8 @@
                     case OSCActiveObjectType_Tweet:
                     case OSCActiveObjectType_TweetComment:
                     {
-                        OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:[entity.objectId integerValue]
-                                                                                        topicType:OSCContentType_Tweet
+                        OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:entity.objectId
+                                                                                        topicType:OSCCatalogType_Tweet
                                                                                      repliesCount:[entity.commentCount integerValue]];
                         [self.navigationController pushViewController:c animated:YES];
                         
@@ -213,7 +212,7 @@
                         // table header view with body
                         OSCTweetEntity *tweetEntity = [[OSCTweetEntity alloc] init];
                         tweetEntity.user = entity.user;
-                        tweetEntity.tweetId = [entity.objectId integerValue];
+                        tweetEntity.tweetId = entity.objectId;
                         tweetEntity.body = entity.objectContent;
                         tweetEntity.smallImageUrl = entity.tweetImageUrl;
                         tweetEntity.createdAtDate = entity.pubDate;
@@ -294,9 +293,8 @@
 {
     if ([OSCGlobalConfig getAuthAccessToken]) {
         [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-//            [OSCGlobalConfig setLoginedUserEntity:entity];
-            [self updateHeaderViewWithUserEntity:entity];
             
+            [self updateHeaderViewWithUserEntity:entity];
             [self autoPullDownRefreshActionAnimation];
         }];
     }

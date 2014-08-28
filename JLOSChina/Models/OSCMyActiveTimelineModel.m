@@ -35,10 +35,10 @@
 - (NSString*)relativePath
 {
     NSString* path =
-    [OSCAPIClient relativePathForActiveListWithLoginedUserId:[[OSCGlobalConfig getAuthUserID] integerValue]
+    [OSCAPIClient relativePathForActiveListWithLoginedUserId:[OSCGlobalConfig getAuthUserID]
                                            activeCatalogType:self.activeCatalogType
-                                                 pageIndex:self.pageIndex
-                                                pageSize:self.pageSize];
+                                                   pageIndex:self.pageIndex
+                                                    pageSize:self.pageSize];
     return path;
 }
 
