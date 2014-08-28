@@ -15,7 +15,7 @@
 {
     self = [super init];
     if (self) {
-        self.errorCode = 0;
+        self.errorCode = ERROR_CODE_DEFAULT_FAILURE;
         self.errorMessage = @"未知错误";
     }
     return self;
