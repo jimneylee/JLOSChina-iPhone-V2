@@ -131,18 +131,12 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 }
 
 + (NSString*)relativePathForUserActiveListWithUserId:(long long)uid
-                                          orUsername:(NSString*)username
+                                   activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
                                            pageIndex:(unsigned int)pageIndex
                                             pageSize:(unsigned int)pageSize
 {
-    if (username.length) {
-        return [NSString stringWithFormat:@"active_list?friend_name=%@&pageIndex=%u&pageSize=%u",
-                [username urlEncoded], pageIndex, pageSize];
-    }
-    else {
-        return [NSString stringWithFormat:@"active_list?friend=%lld&pageIndex=%u&pageSize=%u",
-                uid, pageIndex, pageSize];
-    }
+    return [NSString stringWithFormat:@"active_list?friend=%lld&catalog=%u&&pageIndex=%u&pageSize=%u",
+            uid, activeCatalogType, pageIndex, pageSize];
 }
 
 + (NSString*)relativePathForMyInfo
