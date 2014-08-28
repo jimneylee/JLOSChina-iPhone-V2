@@ -51,7 +51,6 @@
     self.tableView.backgroundView = nil;
     
     [self initSegmentedControl];
-    ((OSCForumTimelineModel*)self.model).topicType = self.segmentedControl.selectedSegmentIndex;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,11 +81,12 @@
                     forControlEvents:UIControlEventValueChanged];
     }
     
-    NSArray* sectionNames = @[@"所有", @"技术", @"分享", @"灌水", @"站务", @"职业"];
-    for (int i = 0; i < sectionNames.count; i++) {
-        [self.segmentedControl insertSegmentWithTitle:sectionNames[i]
-                                              atIndex:i
-                                             animated:NO];
+    NSString *title = nil;
+    for (int i = 0; i < ((OSCForumTimelineModel *)self.model).segmentedDataArray.count; i++) {
+        title =  [((OSCForumTimelineModel *)self.model) getTitleForSegmentedIndex:i];
+        [_segmentedControl insertSegmentWithTitle:title
+                                          atIndex:i
+                                         animated:NO];
     }
 }
 
@@ -96,7 +96,7 @@
     // first cancel request operation
     [self.model cancelRequstOperation];
     
-    ((OSCForumTimelineModel*)self.model).topicType = self.segmentedControl.selectedSegmentIndex;
+    [((OSCForumTimelineModel*)self.model) setTypeForSegmentedIndex:self.segmentedControl.selectedSegmentIndex];
     
     // remove all, sometime crash, fix later on
     //    if (self.model.sections.count > 0) {
@@ -134,7 +134,7 @@
             OSCCommonEntity* entity = (OSCCommonEntity*)object;
             if (entity.newsId > 0) {
                 OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
-                                                                  topicType:OSCContentType_Forum];
+                                                                  topicType:OSCCatalogType_Forum];
                 [self.navigationController pushViewController:c animated:YES];
             }
             else {

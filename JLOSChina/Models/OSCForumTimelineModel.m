@@ -13,6 +13,8 @@
 
 @interface OSCForumTimelineModel()
 
+@property (nonatomic, assign) OSCForumTopicType type;
+
 @end
 
 @implementation OSCForumTimelineModel
@@ -28,6 +30,17 @@
 	if (self) {
         self.listElementName = @"posts";
         self.itemElementName = @"post";
+        
+        // 定义此结构，不用担心以后随时调整顺序
+        self.segmentedDataArray = @[
+                                    @{@"title" : @"所有", @"type" : @"0"},
+                                    @{@"title" : @"技术", @"type" : @"1"},
+                                    @{@"title" : @"分享", @"type" : @"2"},
+                                    @{@"title" : @"灌水", @"type" : @"3"},
+                                    @{@"title" : @"站务", @"type" : @"4"},
+                                    @{@"title" : @"职业", @"type" : @"100"},
+                                    ];
+        [self setTypeForSegmentedIndex:0];
 	}
 	return self;
 }
@@ -36,34 +49,11 @@
 - (NSString *)relativePath
 {
     NSString* path = nil;
-    path = [OSCAPIClient relativePathForForumListWithCatalogId:[self getCatalogIdFromType:self.topicType]
-                                                     pageIndex:self.pageIndex
-                                                      pageSize:self.pageSize];
+    path = [OSCAPIClient relativePathForForumListWithType:self.type
+                                                pageIndex:self.pageIndex
+                                                 pageSize:self.pageSize];
     return path;
 
-}
-
-- (NSString *)getCatalogIdFromType:(OSCForumTopicType)type
-{
-    NSString *catalogId = nil;
-    switch (type) {
-        case OSCForumTopicType_All:// = 0,      //所有
-        case OSCForumTopicType_QA:// = 1,       //问答
-        case OSCForumTopicType_Share:// = 2,    //分享
-        case OSCForumTopicType_Watering:// = 3, //综合灌水
-        case OSCForumTopicType_Feedback:// = 4:   //站务
-            catalogId = [NSString stringWithFormat:@"%d", type];
-            break;
-            
-        case OSCForumTopicType_Career:// = 100,   //职业
-            catalogId = @"100";
-            break;
-            
-        default:
-            break;
-    }
-    
-    return catalogId;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,16 +70,29 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSXMLParserDelegate
+#pragma mark - Public
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+- (NSString *)getTitleForSegmentedIndex:(NSInteger)index
 {
-    if ([elementName isEqualToString:@"catalog"]) {
-        self.catalogType = [self.tmpInnerElementText integerValue];
+    NSString *title = @"";
+    
+    if (self.segmentedDataArray.count > index) {
+        NSDictionary *dic = self.segmentedDataArray[index];
+        title = dic[@"title"];
     }
-    // super will set nil to self.tmpInnerElementText
-    [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
+    
+    return title;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)setTypeForSegmentedIndex:(NSInteger)index
+{
+    if (self.segmentedDataArray.count > index) {
+        NSDictionary *dic = self.segmentedDataArray[index];
+        NSString *typeStr = dic[@"type"];
+        self.type = [typeStr integerValue];
+    }
 }
 
 @end

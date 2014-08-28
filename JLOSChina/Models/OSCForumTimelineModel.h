@@ -10,7 +10,9 @@
 
 @interface OSCForumTimelineModel : OSCBaseTableModel
 
-@property (nonatomic, assign) OSCForumTopicType topicType;
-@property (nonatomic, assign) unsigned int catalogType;
+@property (nonatomic, strong) NSArray* segmentedDataArray;
+
+- (NSString *)getTitleForSegmentedIndex:(NSInteger)index;
+- (void)setTypeForSegmentedIndex:(NSInteger)index;
 
 @end
