@@ -10,7 +10,7 @@
 
 @interface OSCRelativeEntity : JLNimbusEntity
 
-@property (nonatomic, copy)     NSString* url;
-@property (nonatomic, assign)   unsigned long contentId;
+@property (nonatomic, copy)   NSString *url;
+@property (nonatomic, copy)   NSString *contentId;
 
 @end

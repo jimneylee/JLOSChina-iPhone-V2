@@ -18,7 +18,7 @@ typedef void (^ReturnBlock)(OSCErrorEntity* errorEntity);
 
 + (OSCRelationshipActionModel *)sharedModel;
 
-- (void)followUserId:(long long)userId block:(void(^)(OSCErrorEntity* errorEntity))block;
-- (void)unfollowUserId:(long long)userId block:(void(^)(OSCErrorEntity* errorEntity))block;
+- (void)followUserId:(NSString *)uid block:(void(^)(OSCErrorEntity* errorEntity))block;
+- (void)unfollowUserId:(NSString *)uid block:(void(^)(OSCErrorEntity* errorEntity))block;
 
 @end

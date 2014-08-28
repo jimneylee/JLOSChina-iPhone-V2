@@ -17,10 +17,10 @@
 @property(nonatomic, strong) HPGrowingTextView *textView;
 @property (nonatomic, strong) OSCEmotionMainView* emojiView;
 @property (nonatomic, assign) id<RCQuickReplyDelegate> replyDelegate;
-@property (nonatomic, assign) unsigned long topicId;
+@property (nonatomic, copy)   NSString *topicId;
 @property (nonatomic, assign) OSCCatalogType catalogType;
 
-- (id)initWithTopicId:(unsigned long)topicId catalogType:(OSCCatalogType)catalogType;
+- (id)initWithTopicId:(NSString *)topicId catalogType:(OSCCatalogType)catalogType;
 - (void)appendString:(NSString*)string;
 
 @end

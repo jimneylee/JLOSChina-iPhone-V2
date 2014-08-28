@@ -31,7 +31,7 @@
         NSArray* array = [self.url componentsSeparatedByString:@"/"];
         for (NSString* string in array) {
             if ([string isPureInt:string]) {
-                self.contentId = [string longLongValue];
+                self.contentId = string;
                 break;
             }
         }

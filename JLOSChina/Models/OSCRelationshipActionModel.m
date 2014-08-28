@@ -49,12 +49,11 @@
 #pragma mark - Public
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)followUserId:(long long)userId block:(void(^)(OSCErrorEntity* errorEntity))block
+- (void)followUserId:(NSString *)uid block:(void(^)(OSCErrorEntity* errorEntity))block
 {
     self.returnBlock = block;
     
-    NSString *userIdStr = [NSString stringWithFormat:@"%lld", userId];
-    NSDictionary *parameters = @{@"friend" : userIdStr,
+    NSDictionary *parameters = @{@"friend" : uid,
                                  @"relation" : @"1"};
     
     [self getParams:parameters errorBlock:^(OSCErrorEntity *errorEntity) {
@@ -68,12 +67,11 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)unfollowUserId:(long long)userId block:(void(^)(OSCErrorEntity* errorEntity))block
+- (void)unfollowUserId:(NSString *)uid block:(void(^)(OSCErrorEntity* errorEntity))block
 {
     self.returnBlock = block;
     
-    NSString *userIdStr = [NSString stringWithFormat:@"%lld", userId];
-    NSDictionary *parameters = @{@"friend" : userIdStr,
+    NSDictionary *parameters = @{@"friend" : uid,
                                  @"relation" : @"0"};
     
     [self getParams:parameters errorBlock:^(OSCErrorEntity *errorEntity) {

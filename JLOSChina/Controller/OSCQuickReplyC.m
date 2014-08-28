@@ -28,7 +28,7 @@
 #pragma mark - UIViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTopicId:(unsigned long)topicId catalogType:(OSCCatalogType)catalogType
+- (id)initWithTopicId:(NSString *)topicId catalogType:(OSCCatalogType)catalogType
 {
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
