@@ -1,5 +1,5 @@
 ##JLOSChina-iPhone
-开源中国客户端V2版本，参考[新的OpenAPI接口](http://www.oschina.net/openapi)，目前已兼容主要的接口，还有一些需要继续完善，希望感兴趣的童鞋一起参与。
+开源中国客户端V2版本，参考[新的OpenAPI接口](http://www.oschina.net/openapi)，目标易维护，结构简单，KISS原则！
 
 ## 开发环境
 XCode5 iOS6+
@@ -36,7 +36,6 @@ $ pod update
 
 ####BUG
 
-1、token服务器给的时间跟真实时间不符，已联系@oscfox
 
 ####TODO
 
