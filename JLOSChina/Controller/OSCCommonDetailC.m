@@ -30,12 +30,12 @@
 @implementation OSCCommonDetailC
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithTopicId:(unsigned long)topicId topicType:(OSCContentType)topicType
+- (id)initWithTopicId:(NSString *)topicId topicType:(OSCCatalogType)type
 {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         ((OSCCommonDetailModel*)self.model).topicId = topicId;
-        ((OSCCommonDetailModel*)self.model).contentType = topicType;
+        ((OSCCommonDetailModel*)self.model).type = type;
     }
     return self;
 }
@@ -164,7 +164,7 @@
 - (void)showRepliesListView
 {
     OSCCommonRepliesListC* c = [[OSCCommonRepliesListC alloc] initWithTopicId:((OSCCommonDetailModel*)self.model).topicId
-                                                                    topicType:((OSCCommonDetailModel*)self.model).contentType
+                                                                    topicType:((OSCCommonDetailModel*)self.model).type
                                                                  repliesCount:((OSCCommonDetailModel*)self.model).topicDetailEntity.repliesCount];
     [self.navigationController pushViewController:c animated:YES];
 }
@@ -199,9 +199,8 @@
 - (OSCQuickReplyC*)quickReplyC
 {
     if (!_quickReplyC) {
-        OSCCatalogType catalogType = [OSCGlobalConfig catalogTypeForContentType:((OSCCommonDetailModel*)self.model).contentType];
         _quickReplyC = [[OSCQuickReplyC alloc] initWithTopicId:((OSCCommonDetailModel*)self.model).topicId
-                                                     catalogType:catalogType];
+                                                     catalogType:((OSCCommonDetailModel*)self.model).type];
         _quickReplyC.replyDelegate = self;
     }
     return _quickReplyC;

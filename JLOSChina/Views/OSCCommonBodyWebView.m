@@ -45,7 +45,7 @@
     
 #if 1
     NSString *authorStr =
-    [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%lld'>%@</a>&nbsp;发表于&nbsp;%@",
+    [NSString stringWithFormat:@"<a href='http://my.oschina.net/u/%@'>%@</a>&nbsp;发表于&nbsp;%@",
      self.topicDetailEntity.user.authorId, self.topicDetailEntity.user.authorName, self.topicDetailEntity.createdAtDate];
     
     NSString *html = [NSString stringWithFormat:@"<body style='background-color:#EBEBF3'>%@<div id='oschina_title'>%@</div><div id='oschina_outline'>%@</div><hr/><div id='oschina_body'>%@</div>%@</body>",

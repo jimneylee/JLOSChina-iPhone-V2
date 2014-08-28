@@ -70,44 +70,44 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
             pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForNewsDetailWithId:(unsigned long)newsId
++ (NSString*)relativePathForNewsDetailWithId:(NSString *)newsId
 {
-    return [NSString stringWithFormat:@"news_detail?id=%ld", newsId];
+    return [NSString stringWithFormat:@"news_detail?id=%@", newsId];
 }
 
-+ (NSString*)relativePathForBlogDetailWithId:(unsigned long)blogId
++ (NSString*)relativePathForBlogDetailWithId:(NSString *)blogId
 {
-    return [NSString stringWithFormat:@"blog_detail?id=%ld", blogId];
+    return [NSString stringWithFormat:@"blog_detail?id=%@", blogId];
 }
 
-+ (NSString*)relativePathForTopicDetailWithId:(unsigned long)blogId
++ (NSString*)relativePathForTopicDetailWithId:(NSString *)blogId
 {
-    return [NSString stringWithFormat:@"post_detail?id=%ld", blogId];
+    return [NSString stringWithFormat:@"post_detail?id=%@", blogId];
 }
 
-+ (NSString*)relativePathForRepliesListWithCatalogType:(unsigned int)catalogType
-                                             contentId:(unsigned long)contentId
++ (NSString*)relativePathForRepliesListWithCatalogType:(OSCCatalogType)catalogType
+                                             contentId:(NSString *)contentId
                                              pageIndex:(unsigned int)pageIndex
                                               pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"comment_list?catalog=%u&id=%ld&pageIndex=%u&pageSize=%u",
+    return [NSString stringWithFormat:@"comment_list?catalog=%u&id=%@&pageIndex=%u&pageSize=%u",
             catalogType, contentId, pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForRepliesListWithBlogId:(unsigned long)blogId
++ (NSString*)relativePathForRepliesListWithBlogId:(NSString *)blogId
                                         pageIndex:(unsigned int)pageIndex
                                          pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"blog_comment_list?id=%ld&pageIndex=%u&pageSize=%u",
+    return [NSString stringWithFormat:@"blog_comment_list?id=%@&pageIndex=%u&pageSize=%u",
             blogId, pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForForumListWithCatalogId:(NSString *)catalogId
-                                         pageIndex:(unsigned int)pageIndex
-                                          pageSize:(unsigned int)pageSize
++ (NSString*)relativePathForForumListWithType:(OSCForumTopicType)type
+                                    pageIndex:(unsigned int)pageIndex
+                                     pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"post_list?catalog=%@&pageIndex=%u&pageSize=%u",
-            catalogId, pageIndex, pageSize];
+    return [NSString stringWithFormat:@"post_list?catalog=%d&pageIndex=%u&pageSize=%u",
+            type, pageIndex, pageSize];
 }
 
 //用户ID [ 0：最新动弹，-1：热门动弹，其他：我的动弹 ]
@@ -121,21 +121,21 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 
 // 活动状态：所有、@我、评论、我的
 // catalog : 类别ID [ 0、1所有动态,2提到我的,3评论,4我自己 ]
-+ (NSString*)relativePathForActiveListWithLoginedUserId:(long long)uid
++ (NSString*)relativePathForActiveListWithLoginedUserId:(NSString *)uid
                                       activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
                                               pageIndex:(unsigned int)pageIndex
                                                pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"active_list?user=%lld&catalog=%u&pageIndex=%u&pageSize=%u",
+    return [NSString stringWithFormat:@"active_list?user=%@&catalog=%u&pageIndex=%u&pageSize=%u",
             uid, activeCatalogType, pageIndex, pageSize];
 }
 
-+ (NSString*)relativePathForUserActiveListWithUserId:(long long)uid
++ (NSString*)relativePathForUserActiveListWithUserId:(NSString *)uid
                                    activeCatalogType:(OSCMyActiveCatalogType)activeCatalogType
                                            pageIndex:(unsigned int)pageIndex
                                             pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"active_list?friend=%lld&catalog=%u&&pageIndex=%u&pageSize=%u",
+    return [NSString stringWithFormat:@"active_list?friend=%@&catalog=%u&&pageIndex=%u&pageSize=%u",
             uid, activeCatalogType, pageIndex, pageSize];
 }
 
@@ -144,7 +144,7 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
     return [NSString stringWithFormat:@"my_information"];
 }
 
-+ (NSString*)relativePathForUserInfoWithUserId:(long long)uid
++ (NSString*)relativePathForUserInfoWithUserId:(NSString *)uid
                                     orUsername:(NSString*)username
 {
     if (username.length) {
@@ -152,7 +152,7 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
                 [username urlEncoded]];
     }
     else {
-        return [NSString stringWithFormat:@"user_information?friend=%lld",
+        return [NSString stringWithFormat:@"user_information?friend=%@",
                 uid];
     }
 }
@@ -160,6 +160,14 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
 + (NSString*)relativePathForUpdateUserRelationship
 {
     return [NSString stringWithFormat:@"update_user_relation"];
+}
+
++ (NSString*)relativePathForFavoriteListWithCatalogType:(OSCMyFavoriteCatalogType)catalogType
+                                              pageIndex:(unsigned int)pageIndex
+                                               pageSize:(unsigned int)pageSize
+{
+    return [NSString stringWithFormat:@"favorite_list?type=%u&pageIndex=%u&pageSize=%u",
+            catalogType, pageIndex, pageSize];
 }
 
 //================================================================================
@@ -197,11 +205,11 @@ NSString *const kAPIBaseURLString = @"http://www.oschina.net/action/openapi/";
     return [NSString stringWithFormat:@"friends_list"];
 }
 
-+ (NSString*)relativePathForFriendsListWithUserId:(unsigned long)uid
++ (NSString*)relativePathForFriendsListWithUserId:(NSString *)uid
                                         pageIndex:(unsigned int)pageIndex
                                          pageSize:(unsigned int)pageSize
 {
-    return [NSString stringWithFormat:@"friends_list?uid=%ld&pageIndex=%u&pageSize=%u",
+    return [NSString stringWithFormat:@"friends_list?uid=%@&pageIndex=%u&pageSize=%u",
             uid, pageIndex, pageSize];
 }
 
