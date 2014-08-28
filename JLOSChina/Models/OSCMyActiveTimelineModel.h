@@ -11,6 +11,5 @@
 @interface OSCMyActiveTimelineModel : OSCBaseTableModel
 
 @property (nonatomic, assign) OSCMyActiveCatalogType activeCatalogType;
-@property (nonatomic, assign) unsigned int catalogType;
 
 @end

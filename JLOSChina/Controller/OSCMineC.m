@@ -64,7 +64,6 @@
     
     [self initSegmentedControl];
     ((OSCMyActiveTimelineModel*)self.model).activeCatalogType = self.segmentedControl.selectedSegmentIndex;
-    
     self.infoModel = [[OSCMyInfoModel alloc] init];
     if ([OSCGlobalConfig getAuthAccessToken]) {
         [self.infoModel loadMyInfoWithBlock:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {

@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) OSCUserInfoModel *infoModel;
 @property (nonatomic, assign) long long userId;
-@property (nonatomic, copy) NSString* username;
+@property (nonatomic, copy)   NSString* username;
 
 @end
 
@@ -80,14 +80,9 @@
     self.infoModel = [[OSCUserInfoModel alloc] init];
     [self.infoModel loadUserInfoWithUserId:self.userId orUsername:self.username
                                      block:^(OSCUserFullEntity *entity, OSCErrorEntity *errorEntity) {
-                                         {
                                              [self updateHeaderViewWithUserEntity:entity];
-                                             
-//                                             if (((OSCUserActiveTimelineModel*)self.model).userId == NSNotFound) {
-//                                                 ((OSCUserActiveTimelineModel*)self.model).userId = entity.authorId;
-//                                                 [self refreshData:YES];
-//                                             }
-                                         }
+                                                 ((OSCUserActiveTimelineModel *)self.model).userId = entity.authorId;
+                                                 [self refreshData:YES];
     }];
 }
 
