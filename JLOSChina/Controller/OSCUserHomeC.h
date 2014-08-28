@@ -10,7 +10,7 @@
 
 @interface OSCUserHomeC : JLNimbusTableViewController
 
-- (id)initWithUserId:(long long)userId;
+- (id)initWithUserId:(NSString *)uid;
 - (id)initWithUsername:(NSString*)username;
 
 @end

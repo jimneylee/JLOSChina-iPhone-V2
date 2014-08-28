@@ -10,8 +10,8 @@
 
 @interface OSCUserEntity : JLNimbusEntity
 
-@property (nonatomic, assign) long long authorId;
-@property (nonatomic, copy)   NSString* authorName;
-@property (nonatomic, copy)   NSString* avatarUrl;
+@property (nonatomic, copy) NSString *authorId;
+@property (nonatomic, copy) NSString *authorName;
+@property (nonatomic, copy) NSString *avatarUrl;
 
 @end

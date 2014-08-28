@@ -16,11 +16,10 @@
 
 @interface OSCUserHomeC ()
 
-@property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, strong) OSCUserInfoHeaderView* homepageHeaderView;
 
 @property (nonatomic, strong) OSCUserInfoModel *infoModel;
-@property (nonatomic, assign) long long userId;
+@property (nonatomic, copy)   NSString *userId;
 @property (nonatomic, copy)   NSString* username;
 
 @end
@@ -32,12 +31,12 @@
 #pragma mark - UIViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (id)initWithUserId:(long long)userId
+- (id)initWithUserId:(NSString *)uid
 {
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
-        self.userId = userId;
-        ((OSCUserActiveTimelineModel*)self.model).userId = userId;
+        self.userId = uid;
+        ((OSCUserActiveTimelineModel*)self.model).userId = uid;
     }
     return self;
 }
@@ -48,8 +47,6 @@
     self = [self initWithStyle:UITableViewStylePlain];
     if (self) {
         self.username = username;
-        ((OSCUserActiveTimelineModel*)self.model).userId = NSNotFound;
-        self.userId = NSNotFound;
     }
     return self;
 }

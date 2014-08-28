@@ -11,7 +11,7 @@
 
 @interface OSCUserActiveTimelineModel : OSCBaseTableModel
 
-@property (nonatomic, assign) long long userId;
+@property (nonatomic, copy)   NSString *userId;
 @property (nonatomic, strong) OSCUserFullEntity* userEntity;
 
 @end

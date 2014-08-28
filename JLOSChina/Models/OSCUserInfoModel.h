@@ -13,12 +13,12 @@ typedef void (^ReturnBlock)(OSCUserFullEntity* entity, OSCErrorEntity* errorEnti
 
 @interface OSCUserInfoModel : OSCBaseModel<NSXMLParserDelegate>
 
-@property (nonatomic, assign) long long userId;
+@property (nonatomic, copy)   NSString *userId;
 @property (nonatomic, copy)   NSString* username;
 @property (nonatomic, strong) OSCUserFullEntity* userEntity;
 @property (nonatomic, strong) ReturnBlock returnBlock;
 
-- (void)loadUserInfoWithUserId:(long long)uid
+- (void)loadUserInfoWithUserId:(NSString *)uid
                     orUsername:(NSString*)username
                          block:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block;
 

@@ -25,7 +25,7 @@
     
     self = [super initWithDictionary:dic];
     if (self) {
-        self.authorId = [dic[@"authorid"] longLongValue];
+        self.authorId = dic[@"authorid"];
         self.authorName = dic[@"author"];
         self.avatarUrl = dic[@"portrait"];
     }

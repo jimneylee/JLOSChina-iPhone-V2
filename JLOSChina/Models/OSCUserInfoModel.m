@@ -40,7 +40,7 @@
 #pragma mark - Public
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)loadUserInfoWithUserId:(long long)uid
+- (void)loadUserInfoWithUserId:(NSString *)uid
                     orUsername:(NSString*)username
                          block:(void(^)(OSCUserFullEntity* entity, OSCErrorEntity* errorEntity))block
 {
