@@ -64,7 +64,8 @@
 
     if (self.showIndexPathsBlock) {
         self.showIndexPathsBlock(self.sections, nil);
-        // TODO: show search bar
+        
+        // show search bar
         [self setSectionIndexType:NITableViewModelSectionIndexDynamic showsSearch:YES showsSummary:YES];
     }
 }
