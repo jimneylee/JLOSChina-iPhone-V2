@@ -101,6 +101,14 @@
 		2866028B19A72943007542FC /* tab_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2866028019A72943007542FC /* tab_search@2x.png */; };
 		2866028C19A72943007542FC /* tab_tweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2866028119A72943007542FC /* tab_tweet@2x.png */; };
 		2866028D19A72943007542FC /* tab_tweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2866028119A72943007542FC /* tab_tweet@2x.png */; };
+		28782A9A19AF07A60043C963 /* OSCMyFavoriteTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782A9919AF07A60043C963 /* OSCMyFavoriteTimelineModel.m */; };
+		28782A9B19AF07A60043C963 /* OSCMyFavoriteTimelineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782A9919AF07A60043C963 /* OSCMyFavoriteTimelineModel.m */; };
+		28782A9E19AF09EE0043C963 /* OSCMyFavoriteListC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782A9D19AF09EE0043C963 /* OSCMyFavoriteListC.m */; };
+		28782A9F19AF09EE0043C963 /* OSCMyFavoriteListC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782A9D19AF09EE0043C963 /* OSCMyFavoriteListC.m */; };
+		28782AA219AF180D0043C963 /* OSCFavoriteEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782AA119AF180D0043C963 /* OSCFavoriteEntity.m */; };
+		28782AA319AF180D0043C963 /* OSCFavoriteEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782AA119AF180D0043C963 /* OSCFavoriteEntity.m */; };
+		28782AA619AF19140043C963 /* OSCFavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782AA519AF19140043C963 /* OSCFavoriteCell.m */; };
+		28782AA719AF19140043C963 /* OSCFavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28782AA519AF19140043C963 /* OSCFavoriteCell.m */; };
 		287CBBF8188783340002F534 /* 001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 287CBB91188783340002F534 /* 001@2x.png */; };
 		287CBBF9188783340002F534 /* 001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 287CBB91188783340002F534 /* 001@2x.png */; };
 		287CBBFA188783340002F534 /* 002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 287CBB92188783340002F534 /* 002@2x.png */; };
@@ -659,6 +667,14 @@
 		2866027F19A72943007542FC /* tab_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_info@2x.png"; sourceTree = "<group>"; };
 		2866028019A72943007542FC /* tab_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_search@2x.png"; sourceTree = "<group>"; };
 		2866028119A72943007542FC /* tab_tweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_tweet@2x.png"; sourceTree = "<group>"; };
+		28782A9819AF07A60043C963 /* OSCMyFavoriteTimelineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMyFavoriteTimelineModel.h; sourceTree = "<group>"; };
+		28782A9919AF07A60043C963 /* OSCMyFavoriteTimelineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMyFavoriteTimelineModel.m; sourceTree = "<group>"; };
+		28782A9C19AF09EE0043C963 /* OSCMyFavoriteListC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCMyFavoriteListC.h; sourceTree = "<group>"; };
+		28782A9D19AF09EE0043C963 /* OSCMyFavoriteListC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCMyFavoriteListC.m; sourceTree = "<group>"; };
+		28782AA019AF180D0043C963 /* OSCFavoriteEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCFavoriteEntity.h; sourceTree = "<group>"; };
+		28782AA119AF180D0043C963 /* OSCFavoriteEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCFavoriteEntity.m; sourceTree = "<group>"; };
+		28782AA419AF19140043C963 /* OSCFavoriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCFavoriteCell.h; sourceTree = "<group>"; };
+		28782AA519AF19140043C963 /* OSCFavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCFavoriteCell.m; sourceTree = "<group>"; };
 		287CBB91188783340002F534 /* 001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "001@2x.png"; sourceTree = "<group>"; };
 		287CBB92188783340002F534 /* 002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "002@2x.png"; sourceTree = "<group>"; };
 		287CBB93188783340002F534 /* 003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "003@2x.png"; sourceTree = "<group>"; };
@@ -1388,6 +1404,8 @@
 				CE543D731882A5D000D18D77 /* OSCForumC.m */,
 				CE9CA9C4188D63A500C9177C /* OSCMineC.h */,
 				CE9CA9C5188D63A500C9177C /* OSCMineC.m */,
+				28782A9C19AF09EE0043C963 /* OSCMyFavoriteListC.h */,
+				28782A9D19AF09EE0043C963 /* OSCMyFavoriteListC.m */,
 				28B3367D188E1CC800179302 /* OSCUserHomeC.h */,
 				28B3367E188E1CC800179302 /* OSCUserHomeC.m */,
 				CEF6F39818821FC20065F852 /* OSCCommonDetailC.h */,
@@ -1433,6 +1451,8 @@
 				2832C22F1883ABFB003E96F3 /* OSCTweetEntity.m */,
 				CE9CA9CC188D674100C9177C /* OSCActivityEntity.h */,
 				CE9CA9CD188D674100C9177C /* OSCActivityEntity.m */,
+				28782AA019AF180D0043C963 /* OSCFavoriteEntity.h */,
+				28782AA119AF180D0043C963 /* OSCFavoriteEntity.m */,
 				28B094A9185EDD73003F8789 /* OSCAccountEntity.h */,
 				28B094AA185EDD73003F8789 /* OSCAccountEntity.m */,
 				2897EF961856ECBD000BB6B9 /* OSCUserEntity.h */,
@@ -1489,6 +1509,8 @@
 				CE329B231890024E0045AC0D /* OSCTweetBodyView.m */,
 				CE9CA9D0188D67FC00C9177C /* OSCActivityCell.h */,
 				CE9CA9D1188D67FC00C9177C /* OSCActivityCell.m */,
+				28782AA419AF19140043C963 /* OSCFavoriteCell.h */,
+				28782AA519AF19140043C963 /* OSCFavoriteCell.m */,
 				28CABA5F188678EE00BFA036 /* OSCPostButtonBar.h */,
 				28CABA60188678EE00BFA036 /* OSCPostButtonBar.m */,
 				28CABA8318867CF900BFA036 /* OSCFriendCell.h */,
@@ -1522,6 +1544,8 @@
 				28B33672188E0A1F00179302 /* OSCMyInfoModel.m */,
 				CE9CA9C8188D641600C9177C /* OSCMyActiveTimelineModel.h */,
 				CE9CA9C9188D641600C9177C /* OSCMyActiveTimelineModel.m */,
+				28782A9819AF07A60043C963 /* OSCMyFavoriteTimelineModel.h */,
+				28782A9919AF07A60043C963 /* OSCMyFavoriteTimelineModel.m */,
 				283B29C11998E3270018F2C8 /* OSCUserInfoModel.h */,
 				283B29C21998E3270018F2C8 /* OSCUserInfoModel.m */,
 				28B33679188E1AD800179302 /* OSCUserActiveTimelineModel.h */,
@@ -2366,7 +2390,9 @@
 				2897EF791856E073000BB6B9 /* OSCGlobalConfig.m in Sources */,
 				28B3367B188E1AD800179302 /* OSCUserActiveTimelineModel.m in Sources */,
 				CE543D7018829EF800D18D77 /* OSCRelativeCell.m in Sources */,
+				28782A9E19AF09EE0043C963 /* OSCMyFavoriteListC.m in Sources */,
 				CEF6F3A618821FE00065F852 /* OSCCommentEntity.m in Sources */,
+				28782A9A19AF07A60043C963 /* OSCMyFavoriteTimelineModel.m in Sources */,
 				28E68077199AF2E900019F9B /* UIViewAdditions.m in Sources */,
 				28E68071199AF2E900019F9B /* TTGlobalUICommon.m in Sources */,
 				CEF6F39E18821FC20065F852 /* OSCQuickReplyC.m in Sources */,
@@ -2408,7 +2434,9 @@
 				2897EF721856C54B000BB6B9 /* OSCAPIClient.m in Sources */,
 				2897EF981856ECBD000BB6B9 /* OSCUserEntity.m in Sources */,
 				CEF6F3B6188221CF0065F852 /* OSCReplyModel.m in Sources */,
+				28782AA619AF19140043C963 /* OSCFavoriteCell.m in Sources */,
 				CEF6F3AC18821FF20065F852 /* OSCCommonBodyView.m in Sources */,
+				28782AA219AF180D0043C963 /* OSCFavoriteEntity.m in Sources */,
 				28CABA65188678EE00BFA036 /* TTButtonBar.m in Sources */,
 				CE543D1A1882498C00D18D77 /* OSCCommonRepliesListC.m in Sources */,
 				28E6804B199AF2DB00019F9B /* JLAFAPIBaseClient.m in Sources */,
@@ -2482,7 +2510,9 @@
 				CE90A0701872E6910030DB1E /* OSCGlobalConfig.m in Sources */,
 				28B3367C188E1AD800179302 /* OSCUserActiveTimelineModel.m in Sources */,
 				CE543D7118829EF800D18D77 /* OSCRelativeCell.m in Sources */,
+				28782A9F19AF09EE0043C963 /* OSCMyFavoriteListC.m in Sources */,
 				CEF6F3A718821FE00065F852 /* OSCCommentEntity.m in Sources */,
+				28782A9B19AF07A60043C963 /* OSCMyFavoriteTimelineModel.m in Sources */,
 				28E68078199AF2E900019F9B /* UIViewAdditions.m in Sources */,
 				28E68072199AF2E900019F9B /* TTGlobalUICommon.m in Sources */,
 				CEF6F39F18821FC20065F852 /* OSCQuickReplyC.m in Sources */,
@@ -2524,7 +2554,9 @@
 				CE90A08C1872E6910030DB1E /* OSCAPIClient.m in Sources */,
 				CE90A08D1872E6910030DB1E /* OSCUserEntity.m in Sources */,
 				CEF6F3B7188221CF0065F852 /* OSCReplyModel.m in Sources */,
+				28782AA719AF19140043C963 /* OSCFavoriteCell.m in Sources */,
 				CEF6F3AD18821FF20065F852 /* OSCCommonBodyView.m in Sources */,
+				28782AA319AF180D0043C963 /* OSCFavoriteEntity.m in Sources */,
 				28CABA66188678EE00BFA036 /* TTButtonBar.m in Sources */,
 				CE543D1B1882498C00D18D77 /* OSCCommonRepliesListC.m in Sources */,
 				28E6804C199AF2DB00019F9B /* JLAFAPIBaseClient.m in Sources */,
