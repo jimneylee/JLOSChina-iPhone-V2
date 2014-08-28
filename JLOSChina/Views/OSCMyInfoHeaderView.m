@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImage+nimbusImageNamed.h"
 #import "UIView+findViewController.h"
+#import "OSCMyFavoriteListC.h"
 #import "OSCUserFullEntity.h"
 
 #define NAME_FONT_SIZE [UIFont boldSystemFontOfSize:22.f]
@@ -189,16 +190,13 @@
 #pragma mark - UIButton Action
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)showFavoritedTopicsAction
+- (void)showMyFavoriteView
 {
-//    UIViewController* superviewC = self.viewController;
-//    if (superviewC) {
-//        RCForumTopicsC* c = [[RCForumTopicsC alloc] initForFavoritedWithUserLoginId:self.user.loginId];
-//        [superviewC.navigationController pushViewController:c animated:YES];
-//    }
-    // TODO:
-    [OSCGlobalConfig HUDShowMessage:@"to do it!"
-                        addedToView:[UIApplication sharedApplication].keyWindow];
+    UIViewController* superviewC = self.viewController;
+    if (superviewC) {
+        OSCMyFavoriteListC* c = [[OSCMyFavoriteListC alloc] init];
+        [superviewC.navigationController pushViewController:c animated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -270,7 +268,7 @@
         [_favoriteBtn setTitle:@"收藏" forState:UIControlStateNormal];
         [_favoriteBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_favoriteBtn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-        [_favoriteBtn addTarget:self action:@selector(showFavoritedTopicsAction)
+        [_favoriteBtn addTarget:self action:@selector(showMyFavoriteView)
              forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:_favoriteBtn];
         _favoriteBtn.layer.borderColor = CELL_CONTENT_VIEW_BORDER_COLOR.CGColor;
