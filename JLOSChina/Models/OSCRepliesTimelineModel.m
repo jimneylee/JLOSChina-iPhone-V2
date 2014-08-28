@@ -37,35 +37,20 @@
 {
     NSString* path = nil;
     
-    // must to do this，dirty!
-    OSCCatalogType catalogType = [OSCGlobalConfig catalogTypeForContentType:self.contentType];
-    switch (self.contentType) {
-        case OSCContentType_LatestNews:
-            path = [OSCAPIClient relativePathForRepliesListWithCatalogType:catalogType
+    switch (self.type) {
+        case OSCCatalogType_News:
+        case OSCCatalogType_Forum:
+        case OSCCatalogType_Tweet:
+            path = [OSCAPIClient relativePathForRepliesListWithCatalogType:self.type
                                                                  contentId:self.topicId
-                                                               pageIndex:self.pageIndex
-                                                              pageSize:self.pageSize];
+                                                                 pageIndex:self.pageIndex
+                                                                  pageSize:self.pageSize];
             break;
             
-        case OSCContentType_LatestBlog:
-        case OSCContentType_RecommendBlog:
+        case OSCCatalogType_Blog:
             path = [OSCAPIClient relativePathForRepliesListWithBlogId:self.topicId
-                                                          pageIndex:self.pageIndex
-                                                         pageSize:self.pageSize];
-            break;
-            
-        case OSCContentType_Forum:
-            path = [OSCAPIClient relativePathForRepliesListWithCatalogType:catalogType
-                                                                 contentId:self.topicId
-                                                               pageIndex:self.pageIndex
-                                                              pageSize:self.pageSize];
-            break;
-            
-        case OSCContentType_Tweet:
-            path = [OSCAPIClient relativePathForRepliesListWithCatalogType:catalogType
-                                                                 contentId:self.topicId
-                                                               pageIndex:self.pageIndex
-                                                              pageSize:self.pageSize];
+                                                            pageIndex:self.pageIndex
+                                                             pageSize:self.pageSize];
             break;
             
         default:

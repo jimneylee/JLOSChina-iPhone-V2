@@ -9,13 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "OSCUserFullEntity.h"
 
-// 内容类型：资讯、博客、帖子、动弹（微博）类型
-typedef NS_ENUM(NSInteger, OSCContentType) {
-    OSCContentType_LatestNews,      //资讯  catalog:1
-    OSCContentType_LatestBlog,      //博客  catalog:none
-    OSCContentType_RecommendBlog,   //推荐阅读    catalog:none
-    OSCContentType_Forum,           //社区帖子    catalog:2
-    OSCContentType_Tweet            //社区帖子  catalog:3
+// 首页分栏类型
+typedef NS_ENUM(NSInteger, OSCHomeType) {
+    OSCHomeType_LatestNews,      //最新资讯
+    OSCHomeType_LatestBlog,      //最新博客
+    OSCHomeType_RecommendBlog,   //推荐博客
 };
 
 // 社区活动类型
@@ -40,7 +38,7 @@ typedef NS_ENUM(NSInteger, OSCCatalogType) {
     OSCCatalogType_News  = 1,
     OSCCatalogType_Forum = 2,
     OSCCatalogType_Tweet = 3,
-    OSCCatalogType_Blog  = 4, //-1 之前为什么设置成-1
+    OSCCatalogType_Blog  = 4,
     OSCCatalogType_Other = 0
 };
 
@@ -52,7 +50,17 @@ typedef NS_ENUM(NSInteger, OSCMyActiveCatalogType) {
     OSCMyActiveCatalogType_Mine = 4
 };
 
-// 客户端来源类型
+// 我的收藏类型
+typedef NS_ENUM(NSInteger, OSCMyFavoriteCatalogType) {
+    OSCMyFavoriteCatalogType_All = 0,
+    OSCMyFavoriteCatalogType_Software = 1,
+    OSCMyFavoriteCatalogType_Topic = 2,
+    OSCMyFavoriteCatalogType_Blog = 3,
+    OSCMyFavoriteCatalogType_News = 4,
+    OSCMyFavoriteCatalogType_Code = 5,
+    OSCMyFavoriteCatalogType_Translation = 7,
+};
+
 // 客户端类型：1-WEB、2-WAP、3-Android、4-IOS、5-WP
 typedef NS_ENUM(NSInteger, OSCAppClientType) {
     OSCAppClientType_WEB        = 1,
@@ -78,7 +86,7 @@ typedef NS_ENUM(NSInteger, OSCAppClientType) {
 + (void)clearAccountDataWhenLogout;
 
 // App Info
-+ (OSCCatalogType)catalogTypeForContentType:(OSCContentType)contentType;
+//+ (OSCCatalogType)catalogTypeForContentType:(OSCContentType)contentType;
 + (NSString *)getNameFromAppClientType:(OSCAppClientType)appClientType;
 
 // Global UI

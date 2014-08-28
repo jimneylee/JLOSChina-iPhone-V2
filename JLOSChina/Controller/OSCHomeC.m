@@ -15,7 +15,6 @@
 
 @interface OSCHomeC ()
 
-@property (nonatomic, assign) OSCContentType contentType;
 @property (nonatomic, strong) SDSegmentedControl *segmentedControl;
 
 @end
@@ -51,7 +50,7 @@
     self.tableView.backgroundView = nil;
     
     [self initSegmentedControl];
-    ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCHomeTimelineModel*)self.model).type = self.segmentedControl.selectedSegmentIndex;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +95,7 @@
     // first cancel request operation
     [self.model cancelRequstOperation];
     
-    ((OSCHomeTimelineModel*)self.model).contentType = self.segmentedControl.selectedSegmentIndex;
+    ((OSCHomeTimelineModel*)self.model).type = self.segmentedControl.selectedSegmentIndex;
     
     // remove all, sometime crash, fix later on
     // if (self.model.sections.count > 0) {
@@ -139,8 +138,24 @@
         if ([object isKindOfClass:[OSCCommonEntity class]]) {
             OSCCommonEntity* entity = (OSCCommonEntity*)object;
             if (entity.newsId > 0) {
+                
+                OSCCatalogType type = OSCCatalogType_News;
+                switch (((OSCHomeTimelineModel*)self.model).type) {
+                    case OSCHomeType_LatestNews:
+                        type = OSCCatalogType_News;
+                        break;
+                        
+                    case OSCHomeType_LatestBlog:
+                    case OSCHomeType_RecommendBlog:
+                        type = OSCCatalogType_Blog;
+                        break;
+                        
+                    default:
+                        break;
+                }
+
                 OSCCommonDetailC* c = [[OSCCommonDetailC alloc] initWithTopicId:entity.newsId
-                                                                  topicType:self.segmentedControl.selectedSegmentIndex];
+                                                                  topicType:type];
                 [self.navigationController pushViewController:c animated:YES];
             }
             else {

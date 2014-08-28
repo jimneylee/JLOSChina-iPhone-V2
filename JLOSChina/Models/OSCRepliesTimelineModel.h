@@ -11,7 +11,7 @@
 
 @interface OSCRepliesTimelineModel : OSCBaseTableModel
 
-@property (nonatomic, assign) OSCContentType contentType;
-@property (nonatomic, assign) unsigned long topicId;
+@property (nonatomic, assign) OSCCatalogType type;
+@property (nonatomic, copy)   NSString *topicId;
 
 @end

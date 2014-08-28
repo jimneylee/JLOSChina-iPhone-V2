@@ -37,21 +37,22 @@
     NSString* path = nil;
     
     // 由于接口未统一，不得不怎么做，dirty!
-    switch (self.contentType) {
-        case OSCContentType_LatestNews:
+    switch (self.type) {
+        case OSCHomeType_LatestNews:
             path = [OSCAPIClient relativePathForLatestNewsListWithPageIndex:self.pageIndex
                                                                  pageSize:self.pageSize];
             self.listElementName = @"newslist";
             self.itemElementName = @"news";
             break;
-        case OSCContentType_LatestBlog:
+            
+        case OSCHomeType_LatestBlog:
             path = [OSCAPIClient relativePathForLatestBlogsListWithPageIndex:self.pageIndex
                                                                   pageSize:self.pageSize];
             self.listElementName = @"bloglist";
             self.itemElementName = @"blog";
             break;
             
-        case OSCContentType_RecommendBlog:
+        case OSCHomeType_RecommendBlog:
             path = [OSCAPIClient relativePathForRecommendBlogsListWithPageIndex:self.pageIndex
                                                                      pageSize:self.pageSize];
             self.listElementName = @"bloglist";
@@ -74,21 +75,6 @@
 - (Class)cellClass
 {
     return [OSCCommonCell class];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSXMLParserDelegate
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-{
-    if ([elementName isEqualToString:@"catalog"]) {
-        self.catalogType = [self.tmpInnerElementText integerValue];
-    }
-    
-    // super will set nil to self.tmpInnerElementText
-    [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 }
 
 @end

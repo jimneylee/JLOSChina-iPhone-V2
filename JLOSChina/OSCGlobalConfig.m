@@ -79,35 +79,6 @@ static OSCUserFullEntity* loginedUserEntity = nil;
 #pragma mark - App Info
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-+ (OSCCatalogType)catalogTypeForContentType:(OSCContentType)contentType
-{
-    OSCCatalogType catalogType = OSCCatalogType_News;
-    switch (contentType) {
-        case OSCContentType_LatestNews:
-            catalogType = OSCCatalogType_News;
-            break;
-            
-        case OSCContentType_LatestBlog:
-        case OSCContentType_RecommendBlog:
-            catalogType = OSCCatalogType_Blog;
-            break;
-            
-        case OSCContentType_Forum:
-            catalogType = OSCCatalogType_Forum;
-            
-            break;
-            
-        case OSCContentType_Tweet:
-            catalogType = OSCCatalogType_Tweet;
-            break;
-            
-        default:
-            break;
-    }
-    return catalogType;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 + (NSString *)getNameFromAppClientType:(OSCAppClientType)appClientType
 {
     NSString *appClientName = @"WEB";
