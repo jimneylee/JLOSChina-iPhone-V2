@@ -8,6 +8,7 @@
 
 #import "OSCTweetCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "NimbusNetworkImage.h"
 #import "NIAttributedLabel.h"
 #import "NIWebController.h"
@@ -39,10 +40,12 @@
 @interface OSCTweetCell()<NIAttributedLabelDelegate>
 // data entity
 @property (nonatomic, strong) OSCTweetEntity* tweetEntity;
+
 // content
-@property (nonatomic, strong) NINetworkImageView* headView;
+@property (nonatomic, strong) UIImageView* headView;
 @property (nonatomic, strong) NIAttributedLabel* contentLabel;
-@property (nonatomic, strong) NINetworkImageView* contentImageView;
+@property (nonatomic, strong) UIImageView *contentImageView;
+
 // action buttons
 @property (nonatomic, strong) UIButton* commentBtn;
 @end
@@ -218,7 +221,7 @@
         [self.contentView addSubview:self.contentLabel];
         
         // content image
-        self.contentImageView = [[NINetworkImageView alloc] initWithFrame:CGRectMake(0, 0,
+        self.contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,
                                                                                      CONTENT_IMAGE_HEIGHT,
                                                                                      CONTENT_IMAGE_HEIGHT)];
         [self.contentView addSubview:self.contentImageView];
@@ -325,10 +328,7 @@
         OSCTweetEntity* o = (OSCTweetEntity*)object;
         self.tweetEntity = o;
         if (o.user.avatarUrl.length) {
-            [self.headView setPathToNetworkImage:o.user.avatarUrl];
-        }
-        else {
-            [self.headView setPathToNetworkImage:nil];
+            [self.headView sd_setImageWithURL:[NSURL URLWithString:o.user.avatarUrl]];
         }
         
         self.textLabel.text = o.user.authorName;
@@ -349,6 +349,7 @@
         [OSCTweetCell addAllLinksForSharpSoftwareInContentLabel:self.contentLabel withStatus:object fromLocation:0];
         [OSCTweetCell insertAllEmotionsInContentLabel:self.contentLabel withStatus:o];
         
+#if 0
         if (o.smallImageUrl.length) {
             self.contentImageView.hidden = NO;
             self.contentImageView.scaleOptions |= NINetworkImageViewScaleToFitCropsExcess;
@@ -359,6 +360,16 @@
             self.contentImageView.hidden = YES;
             [self.contentImageView setPathToNetworkImage:nil];
         }
+#else
+        if (o.smallImageUrl.length) {
+            self.contentImageView.hidden = NO;
+            self.contentImageView.contentMode = UIViewContentModeScaleAspectFit;
+            [self.contentImageView sd_setImageWithURL:[NSURL URLWithString:o.smallImageUrl]];
+        }
+        else {
+            self.contentImageView.hidden = YES;
+        }
+#endif
     }
     return YES;
 }

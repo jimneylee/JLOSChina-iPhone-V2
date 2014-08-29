@@ -23,6 +23,21 @@ PODS:
   - FlatUIKit (1.4)
   - HPGrowingTextView (1.1)
   - JSCustomBadge (1.0.1)
+  - libwebp (0.4.0):
+    - libwebp/dec
+    - libwebp/demux
+    - libwebp/dsp
+    - libwebp/enc
+    - libwebp/mux
+    - libwebp/utils
+    - libwebp/webp
+  - libwebp/dec (0.4.0)
+  - libwebp/demux (0.4.0)
+  - libwebp/dsp (0.4.0)
+  - libwebp/enc (0.4.0)
+  - libwebp/mux (0.4.0)
+  - libwebp/utils (0.4.0)
+  - libwebp/webp (0.4.0)
   - LTUpdate (0.0.2)
   - MBProgressHUD (0.8)
   - MTStatusBarOverlay (0.9.1)
@@ -79,6 +94,16 @@ PODS:
   - Nimbus/WebController (1.2.0):
     - Nimbus/Core
   - SDSegmentedControl (1.0.2)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+    - SDWebImage/MapKit
+    - SDWebImage/WebP
+  - SDWebImage/Core (3.7.1)
+  - SDWebImage/MapKit (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/WebP (3.7.1):
+    - libwebp
+    - SDWebImage/Core
   - SSKeychain (1.2.2)
 
 DEPENDENCIES:
@@ -91,6 +116,7 @@ DEPENDENCIES:
   - MTStatusBarOverlay (~> 0.9.1)
   - Nimbus (~> 1.2.0)
   - SDSegmentedControl (~> 1.0.2)
+  - SDWebImage (~> 3.7.1)
   - SSKeychain (~> 1.2.2)
 
 SPEC CHECKSUMS:
@@ -98,11 +124,13 @@ SPEC CHECKSUMS:
   FlatUIKit: edc1ed0c130687dc64a10e45851cc58925f6893d
   HPGrowingTextView: 07d5ab1f1e867acfb7a6f498b819948c9e97d07c
   JSCustomBadge: d48f5917ababec44971cca9d9bfdc8f646946ce9
+  libwebp: 7774a1ee15d19c0f70a992a7e4e4a23f3874a253
   LTUpdate: 2b565ebcec2be846c89c94072301696dc93b8074
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
   MTStatusBarOverlay: f1fef7143ed3e9ce3d2c6ee3f297079e5cab905f
   Nimbus: 14fd6f034c5f53d3dccef6cfd5763959497289a9
   SDSegmentedControl: 01fda28a7ba24a45915c0a3e69c32691643aa327
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
 
 COCOAPODS: 0.32.1
