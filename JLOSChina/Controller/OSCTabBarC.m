@@ -9,7 +9,6 @@
 #import "OSCTabBarC.h"
 #import "NIBadgeView.h"
 #import <JSCustomBadge/JSCustomBadge.h>
-#import "UINavigationBar+FlatUI.h"
 
 #import "OSCHomeC.h"
 #import "OSCTweetC.h"
@@ -244,18 +243,13 @@
     nav.navigationBar.titleTextAttributes = @{UITextAttributeFont : [UIFont boldSystemFontOfSize:18.f],
                                               UITextAttributeTextColor : [UIColor blackColor]};
     
-    if (TTOSVersionIsAtLeast7()) {
-        nav.navigationBar.translucent = NO;
-    }
-    else {
-        [nav.navigationBar configureFlatNavigationBarWithColor:RGBCOLOR(248, 248, 248)];
-    }
+    nav.navigationBar.translucent = NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)createTabBarBtns
 {
-    int viewCount = self.viewControllers.count > MAX_TAB_COUNT ? MAX_TAB_COUNT : self.viewControllers.count;
+    NSInteger viewCount = self.viewControllers.count > MAX_TAB_COUNT ? MAX_TAB_COUNT : self.viewControllers.count;
 	self.tabBtns = [NSMutableArray arrayWithCapacity:viewCount];
 	for (int i = 0; i < viewCount; i++) {
 #ifdef USE_TAB_IMAGE

@@ -1,63 +1,45 @@
 PODS:
-  - AFNetworking (2.3.1):
+  - AFNetworking (2.2.4):
+    - AFNetworking/NSURLConnection (= 2.2.4)
+    - AFNetworking/NSURLSession (= 2.2.4)
+    - AFNetworking/Reachability (= 2.2.4)
+    - AFNetworking/Security (= 2.2.4)
+    - AFNetworking/Serialization (= 2.2.4)
+    - AFNetworking/UIKit (= 2.2.4)
+  - AFNetworking/NSURLConnection (2.2.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.2.4):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.2.4)
+  - AFNetworking/Security (2.2.4)
+  - AFNetworking/Serialization (2.2.4)
+  - AFNetworking/UIKit (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.3.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.3.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.3.1)
-  - AFNetworking/Security (2.3.1)
-  - AFNetworking/Serialization (2.3.1)
-  - AFNetworking/UIKit (2.3.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - FlatUIKit (1.4)
   - HPGrowingTextView (1.1)
   - JSCustomBadge (1.0.1)
-  - libwebp (0.4.0):
-    - libwebp/dec
-    - libwebp/demux
-    - libwebp/dsp
-    - libwebp/enc
-    - libwebp/mux
-    - libwebp/utils
-    - libwebp/webp
-  - libwebp/dec (0.4.0)
-  - libwebp/demux (0.4.0)
-  - libwebp/dsp (0.4.0)
-  - libwebp/enc (0.4.0)
-  - libwebp/mux (0.4.0)
-  - libwebp/utils (0.4.0)
-  - libwebp/webp (0.4.0)
   - LTUpdate (0.0.2)
-  - MBProgressHUD (0.8)
+  - MBProgressHUD (0.9)
   - MTStatusBarOverlay (0.9.1)
   - Nimbus (1.2.0):
-    - Nimbus/AttributedLabel
-    - Nimbus/Badge
-    - Nimbus/Collections
-    - Nimbus/Collections
-    - Nimbus/Core
-    - Nimbus/CSS
-    - Nimbus/Interapp
-    - Nimbus/Launcher
-    - Nimbus/Models
-    - Nimbus/NetworkControllers
-    - Nimbus/NetworkImage
-    - Nimbus/Overview
-    - Nimbus/PagingScrollView
-    - Nimbus/Photos
-    - Nimbus/Textfield
-    - Nimbus/WebController
+    - Nimbus/AttributedLabel (= 1.2.0)
+    - Nimbus/Badge (= 1.2.0)
+    - Nimbus/Collections (= 1.2.0)
+    - Nimbus/Collections (= 1.2.0)
+    - Nimbus/Core (= 1.2.0)
+    - Nimbus/CSS (= 1.2.0)
+    - Nimbus/Interapp (= 1.2.0)
+    - Nimbus/Launcher (= 1.2.0)
+    - Nimbus/Models (= 1.2.0)
+    - Nimbus/NetworkControllers (= 1.2.0)
+    - Nimbus/NetworkImage (= 1.2.0)
+    - Nimbus/Overview (= 1.2.0)
+    - Nimbus/PagingScrollView (= 1.2.0)
+    - Nimbus/Photos (= 1.2.0)
+    - Nimbus/Textfield (= 1.2.0)
+    - Nimbus/WebController (= 1.2.0)
   - Nimbus/AttributedLabel (1.2.0):
     - Nimbus/Core
   - Nimbus/Badge (1.2.0):
@@ -95,20 +77,12 @@ PODS:
     - Nimbus/Core
   - SDSegmentedControl (1.0.2)
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
-    - SDWebImage/MapKit
-    - SDWebImage/WebP
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
-  - SDWebImage/MapKit (3.7.1):
-    - SDWebImage/Core
-  - SDWebImage/WebP (3.7.1):
-    - libwebp
-    - SDWebImage/Core
   - SSKeychain (1.2.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2.3)
-  - FlatUIKit (~> 1.4)
   - HPGrowingTextView (~> 1.1)
   - JSCustomBadge (~> 1.0.1)
   - LTUpdate (~> 0.0.2)
@@ -120,17 +94,15 @@ DEPENDENCIES:
   - SSKeychain (~> 1.2.2)
 
 SPEC CHECKSUMS:
-  AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  FlatUIKit: edc1ed0c130687dc64a10e45851cc58925f6893d
+  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
   HPGrowingTextView: 07d5ab1f1e867acfb7a6f498b819948c9e97d07c
   JSCustomBadge: d48f5917ababec44971cca9d9bfdc8f646946ce9
-  libwebp: 7774a1ee15d19c0f70a992a7e4e4a23f3874a253
   LTUpdate: 2b565ebcec2be846c89c94072301696dc93b8074
-  MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   MTStatusBarOverlay: f1fef7143ed3e9ce3d2c6ee3f297079e5cab905f
   Nimbus: 14fd6f034c5f53d3dccef6cfd5763959497289a9
   SDSegmentedControl: 01fda28a7ba24a45915c0a3e69c32691643aa327
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.35.0

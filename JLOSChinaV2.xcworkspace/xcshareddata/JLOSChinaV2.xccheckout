@@ -10,49 +10,53 @@
 	<string>JLOSChinaV2</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8B83DEB5-9C11-4BCF-93E2-99016F49753D</key>
+		<key>3696B39AF9A7D45AA2A36BD621E04A71FEC24306</key>
+		<string>https://github.com/jimneylee/JLNimbusTimeline.git</string>
+		<key>C4A70CDE19EFEDCC56B6E1D8D10FA532490E23E6</key>
 		<string>https://git.oschina.net/jimneylee/JLOSChina-iPhone-V2.git</string>
+		<key>E252D7BD2F0F58EA499CABA45B3A8E07286F0E94</key>
+		<string>https://github.com/jimneylee/320Categories.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>JLOSChinaV2.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>695AAAF5-1581-42C2-B6A5-DA5A6DF1D1E4</key>
-		<string>../vendor/JASidePanels</string>
-		<key>8B83DEB5-9C11-4BCF-93E2-99016F49753D</key>
+		<key>3696B39AF9A7D45AA2A36BD621E04A71FEC24306</key>
+		<string>../vendor/JLNimbusTime/</string>
+		<key>C4A70CDE19EFEDCC56B6E1D8D10FA532490E23E6</key>
 		<string>..</string>
-		<key>A7FC5780-7B5A-42E3-80B7-70E7CB267E4F</key>
-		<string>../vendor/JLNimbusTimeline</string>
+		<key>E252D7BD2F0F58EA499CABA45B3A8E07286F0E94</key>
+		<string>../vendor/320Categories/</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://git.oschina.net/jimneylee/JLOSChina-iPhone-V2.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8B83DEB5-9C11-4BCF-93E2-99016F49753D</string>
+	<string>C4A70CDE19EFEDCC56B6E1D8D10FA532490E23E6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>695AAAF5-1581-42C2-B6A5-DA5A6DF1D1E4</string>
+			<string>E252D7BD2F0F58EA499CABA45B3A8E07286F0E94</string>
 			<key>IDESourceControlWCCName</key>
-			<string>JASidePanels</string>
+			<string>320Categories</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>A7FC5780-7B5A-42E3-80B7-70E7CB267E4F</string>
+			<string>3696B39AF9A7D45AA2A36BD621E04A71FEC24306</string>
 			<key>IDESourceControlWCCName</key>
-			<string>JLNimbusTimeline</string>
+			<string>JLNimbusTime</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8B83DEB5-9C11-4BCF-93E2-99016F49753D</string>
+			<string>C4A70CDE19EFEDCC56B6E1D8D10FA532490E23E6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>JLOSChina-iPhone-V2</string>
 		</dict>
